@@ -1,4 +1,4 @@
-import sys, os, time
+import sys, os, time, random, unidecode
 
 try:
     import markdown
@@ -20,6 +20,7 @@ class Content:
     def __init__(self, filename, foldername):
         lines = open(filename, "r").readlines()
         self.prop = {}
+        self.folder = foldername
                  
         # we expect first line to be three dashes
         if lines[0] == "---\n":
@@ -39,15 +40,19 @@ class Content:
 #        print "\tproperties: "+str(self.prop)
         
         # adjust folder filename if necessary
-        newfilename = str((int(time.mktime(time.strptime(self.prop['date'], '%Y-%m-%d %H:%M:%S')))-1428316490)/60)+" - "+self.prop['title']+".post"
+        newfilename = str((int(time.mktime(time.strptime(self.prop['date'], '%Y-%m-%d %H:%M:%S'))))/60)+" - "+self.prop['title']+".post"
         
         if newfilename != foldername:
             print "\trenaming to \""+newfilename+"\""
+            self.folder = newfilename
             os.rename("posts/"+foldername, "posts/"+newfilename)
-            
+                        
     def buildHTML(self):
         # parse gfm to html
-        self.gfm = markdown.markdown(self.content, ['gfm'])
+        try:
+            self.gfm = markdown.markdown(self.content, ['gfm'])
+        except UnicodeDecodeError:
+            self.gfm = markdown.markdown(unidecode.unidecode(self.content.decode("utf-8")), ['gfm'])
         
 if action == "compile":
     
@@ -60,6 +65,7 @@ if action == "compile":
     
         # open the content markdown file        
         content = Content("posts/"+e+"/content.md", e)
+        e = content.folder 
         
         # write the contents to an index file
         index = open("posts/"+e+"/index.html", "w")
@@ -81,7 +87,7 @@ if action == "new":
         postname = "Untitled Post"
         
     # set the post full name with the time offset
-    filename = str(int(init_time-1428316490)/60)+" - "+postname+".post"
+    filename = str(int(init_time)/60)+" - "+postname+".post"
         
     # make the directory of this post
     os.mkdir("posts/"+filename)
@@ -89,12 +95,18 @@ if action == "new":
     # create the content file
     f = open("posts/"+filename+"/content.md", "w")
     
+    # print out the path to the created file
+    print "posts/"+filename+"/content.md"
+    
     f.write("---\n")
     f.write("layout: post\n")
     f.write("title: " + postname + "\n")
     f.write("date: " + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(init_time)) + "\n")
     f.write("comments: true\n")
     f.write("categories: \n")
-    f.write("id: "+str(init_time)+"\n")
+    f.write("id: %0.10d\n" % random.randint(0, 9999999999))
     f.write("---\n\n")
-            
+    f.close()
+    
+    # open it in the finder
+    os.system("open -a Brackets \""+"posts/"+filename+"/content.md\"")

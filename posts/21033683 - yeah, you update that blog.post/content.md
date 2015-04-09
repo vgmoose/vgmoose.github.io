@@ -1,0 +1,11 @@
+---
+layout: post
+title: yeah, you update that blog
+date: 2009-12-28 12:23:00
+comments: true
+categories: old days
+id: 9037637820
+original: http://rickyayoub.blogspot.com/2009/12/yeah-you-update-that-blog.html
+---
+
+And I will! There are no capital letters in the title because I hate you. Anyway, um. Stuff. Blog update type stuff. HAVE I EVER TOLD YOU HOW NICE THE KEYBOARD IS ON THE MOTOROLA DROID? I have? Well... IT'S REALLY NICE. It even has the same alt+symbol configuration as my Macbook. Examples: ?,?,?,?. Never mind. It doesn't have the exact same one... But it's pretty similar! Okay, I'm off to see a movie about chipmunks now. Bye bye.
