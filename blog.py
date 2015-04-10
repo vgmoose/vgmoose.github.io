@@ -1,4 +1,4 @@
-import sys, os, time, random, unidecode
+import sys, os, time, random, unidecode, re
 
 try:
     import markdown
@@ -15,6 +15,14 @@ try:
     action = sys.argv[1]
 except:
     usage()
+    
+def dash_phrase(phrase):
+    words = pattern.sub('', phrase)
+    words = words.split()
+    return '-'.join(words)
+    
+# match all non-whitespace and non-alphanumeric
+pattern = re.compile('([^\s\w]|_)+')
     
 class Content:
     def __init__(self, filename, foldername):
@@ -57,6 +65,13 @@ class Content:
 if action == "compile":
     
     posts = []
+    
+    # load the template
+    template = open("layout/template.html", "r").readlines().close()
+    
+    # build the blog pages
+    os.rmtree("blog")
+    os.mkdir("blog")
 
     # build all md files in posts
     for e in os.listdir("posts"):
@@ -70,8 +85,16 @@ if action == "compile":
         # write the contents to an index file
         index = open("posts/"+e+"/index.html", "w")
         index.write(content.gfm)
+        index.close()
         
-    # build the blog pages
+        dirname = content.prop["id"]+"-"+dash_phrase(content["title"])
+        os.mkdir(dirname)
+        blog = open("blog/"+dirname+"/index.html")
+        blog.write(template)
+        blog.write(content.gfm)
+        blog.close()
+    
+    
     # build the category pages
     
     

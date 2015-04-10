@@ -3,7 +3,7 @@ layout: post
 title: First Post
 date: 2015-04-06 14:55:43
 comments: true
-categories: 
+categories: test
 ---
 
 Hello this is a test of the very first post that will be generated from this markdown file.

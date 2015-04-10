@@ -3,7 +3,7 @@ layout: post
 title: Using Visual Boy Advance
 date: 2010-09-14 00:00:00
 comments: true
-categories: old days, tutorials
+categories: old days, tutorials, pokemon
 id: 9430192265
 original: http://vgmoose.com/Tutorials/Entries/2010/9/14_Using_Visual_Boy_Advance.html
 ---
