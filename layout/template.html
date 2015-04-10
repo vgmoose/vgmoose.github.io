@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="style.css"></link>
+<link rel="stylesheet" href="layout/style.css"></link>
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 
 <div id="all">
-    <img src="vgnocolorhead.png" />
+    <img src="layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
             <li><a href="/">Blog</a></li>
@@ -13,4 +13,27 @@
             <li><a href="http://rickyayoub.com" target="_blank">Portfolio</a></li>
         </ul>
     </div>
+    <br>
+    <div id="sidebar">
+        Date: $date<br />
+        Tags: $categories<br />
+    </div>
+    <div id="content">
+        $content
+    </div>
+    <br>
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = $id;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>

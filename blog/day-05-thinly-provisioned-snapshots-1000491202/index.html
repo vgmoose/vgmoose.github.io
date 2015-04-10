@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="../../layout/style.css"></link>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+<div id="all">
+    <img src="../../layout/vgnocolorhead.png" />
+    <div id="nav">
+        <ul>
+            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../tutorials">Tutorials</a></li>
+            <li><a href="../../employment">Employment</a></li>
+            <li><a href="../../github">Github</a></li>
+            <li><a href="../../about">About</a></li>
+            <li><a href="../../http://rickyayoub.com" target="_blank">Portfolio</a></li>
+        </ul>
+    </div>
+    <br>
+    <div id="sidebar">
+        Date: 2014-05-28 22:54:34<br />
+        Tags: red hat, internship, lvm, lvmthin, rhel, snapshot<br />
+    </div>
+    <div id="content">
+        <p>In yesterday's post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of commands. To recap, snapshots <em>physically</em> store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created.</p>
+<p>That, of course, is really cool, but let's say you want to take a TON of snapshots (like we're talking daily ones). The daily snaps would allow you to easily revert to what the filesystem looked like on a given day without using much more space. Of course, if they were just regular LVM snapshots, you'd need to decide on a size to give them. Taking daily snapshots in this manner would fill up in no time.</p>
+<p><img alt="Blog Image" src="../../posts/23355534 - Day 05 - Thinly Provisioned Snapshots.post/uglydiagram.png" /></p>
+<p>A thin pool is a logical volume. You give it a set size, and it is that size, much like a logical volume. The total amount of bytes cannot exceed that size ever, and if it does you'll have to resize it. Making one is as follows:</p>
+<div class="highlight"><pre>lvcreate --thinpool vg/thin_pool --size 30G
+</pre></div>
+
+
+<p>Where vg is the volume group. Nothing special <em>so far</em>. What's amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 100TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 100TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
+<div class="highlight"><pre>lvcreate -T vg/thin_pool -V 100T -n big_filesystem
+</pre></div>
+
+
+<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let's say you put 2GB worth of files on this "100TB filesystem." Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn't matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I'd give it a try.</p>
+<div class="highlight"><pre>lvcreate -s vg/big_filesystem -n snappy
+</pre></div>
+
+
+<p>Another added bonus of being within the pool is that the thin snapshots will share common data with <em>each other</em> too. This would have also been wasted duplicated space. These enhancements change the game of snapshots from a useful way to get a O(1) image of the filesystem to a meaningful way of storing the filesystem at any point and time.</p>
+<p>QUICK CAVEAT. I got hung up on this for a long time. Thin snapshots have a special case when they are generated and are <strong>not</strong> automatically marked active to be mountable in <code>/dev</code>. You can view this information using <code>lvscan</code>. You will see any thin snapshots are marked inactive. Normally to mark a volume active, you'd simply perform:</p>
+<div class="highlight"><pre>lvconvert -ay vg/lv
+</pre></div>
+
+
+<p>However, as thin snapshots have the special flag set to not be marked active, you need to modify this to look like:</p>
+<div class="highlight"><pre>lvconvert -ay -K vg/lv
+</pre></div>
+
+
+<p>That simple <code>-K</code> argument drove me crazy for a bit. It was mentioned in the documentation, but I must have passed by it. As leaving <code>-K</code> out silently fails, I wasn't sure if my build of lvm2 was broken or what (as it would just not mark it active without telling me it failed).</p>
+<p>With this knowledge it is possible to easily create daily full snapshots of an entire filesystem without taking up any more space than would have been taken up by the difference bytes. The thin volumes will dynamically expand to fill the pool, so one does not have to worry at all about the sizes of the snapshots (in fact, you aren't allowed to set it for a thin snapshot). The <a href="http://wiki.gentoo.org/wiki/LVM">Gentoo Wiki</a> actually has really good instructions and easy to follow commands on all of this if you don't want to take my word for them (or in the more likely case, if I've left something out).</p>
+    </div>
+    <br>
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = 1000491202;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>

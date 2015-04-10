@@ -8,7 +8,7 @@ id: 1000491202
 original: http://vgmoose.github.io/deku-scrub/blag/blog/2014/05/28/day-05-thinly-provisioned-snapshots/
 ---
 
-In yesterday's post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of comamnds. To recap, snapshots *physically* store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created.
+In yesterday's post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of commands. To recap, snapshots *physically* store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created.
 
 That, of course, is really cool, but let's say you want to take a TON of snapshots (like we're talking daily ones). The daily snaps would allow you to easily revert to what the filesystem looked like on a given day without using much more space. Of course, if they were just regular LVM snapshots, you'd need to decide on a size to give them. Taking daily snapshots in this manner would fill up in no time.
 
@@ -48,4 +48,4 @@ lvconvert -ay -K vg/lv
 
 That simple ```-K``` argument drove me crazy for a bit. It was mentioned in the documentation, but I must have passed by it. As leaving ```-K``` out silently fails, I wasn't sure if my build of lvm2 was broken or what (as it would just not mark it active without telling me it failed).
 
-With this knowledge it is possible to easily create daily full snapshots of an entire filesystem without taking up any more space than would have been taken up by the difference bytes. The thin volumes will dynammically expand to fill the pool, so one does not have to worry at all about the sizes of the snapshots (in fact, you aren't allowed to set it for a thin snapshot). The [Gentoo Wiki](http://wiki.gentoo.org/wiki/LVM) actually has really good instructions and easy to follow commands on all of this if you don't want to take my word for them (or in the more likely case, if i've left something out).
+With this knowledge it is possible to easily create daily full snapshots of an entire filesystem without taking up any more space than would have been taken up by the difference bytes. The thin volumes will dynamically expand to fill the pool, so one does not have to worry at all about the sizes of the snapshots (in fact, you aren't allowed to set it for a thin snapshot). The [Gentoo Wiki](http://wiki.gentoo.org/wiki/LVM) actually has really good instructions and easy to follow commands on all of this if you don't want to take my word for them (or in the more likely case, if I've left something out).

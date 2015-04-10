@@ -1,4 +1,4 @@
-import sys, os, time, random, unidecode, re
+import sys, os, time, random, unidecode, re, shutil
 
 try:
     import markdown
@@ -17,6 +17,8 @@ except:
     usage()
     
 def dash_phrase(phrase):
+    phrase = phrase.lower()
+    phrase = unidecode.unidecode(phrase.decode("utf-8"))
     words = pattern.sub('', phrase)
     words = words.split()
     return '-'.join(words)
@@ -50,6 +52,8 @@ class Content:
         # adjust folder filename if necessary
         newfilename = str((int(time.mktime(time.strptime(self.prop['date'], '%Y-%m-%d %H:%M:%S'))))/60)+" - "+self.prop['title']+".post"
         
+        newfilename = unidecode.unidecode(newfilename.decode("utf-8"))
+        
         if newfilename != foldername:
             print "\trenaming to \""+newfilename+"\""
             self.folder = newfilename
@@ -67,10 +71,15 @@ if action == "compile":
     posts = []
     
     # load the template
-    template = open("layout/template.html", "r").readlines().close()
+    tfile = open("layout/template.html", "r")
+    template = tfile.read()
+    tfile.close()
+    
+    template = template.replace("href=\"", "href=\"../../")
+    template = template.replace("src=\"", "src=\"../../")
     
     # build the blog pages
-    os.rmtree("blog")
+    shutil.rmtree("blog")
     os.mkdir("blog")
 
     # build all md files in posts
@@ -86,12 +95,24 @@ if action == "compile":
         index = open("posts/"+e+"/index.html", "w")
         index.write(content.gfm)
         index.close()
+                
+        tcontent = content.gfm
+        tcontent = tcontent.replace("src=\"", "src=\"../../posts/"+e+"/")
+        temp_template = template.replace("$content", tcontent)
+            
+        tdate = content.prop["date"]
+        if (tdate.endswith(" 00:00:00")):
+            tdate = tdate[:-9]
+        temp_template = temp_template.replace("$date", tdate)
+            
+        temp_template = temp_template.replace("$categories", content.prop["categories"])
+        temp_template = temp_template.replace("$id", content.prop["id"])
+
+        dirname = dash_phrase(content.prop["title"]) + "-" + content.prop["id"]
         
-        dirname = content.prop["id"]+"-"+dash_phrase(content["title"])
-        os.mkdir(dirname)
-        blog = open("blog/"+dirname+"/index.html")
-        blog.write(template)
-        blog.write(content.gfm)
+        os.mkdir("blog/"+dirname)
+        blog = open("blog/"+dirname+"/index.html", "w")
+        blog.write(temp_template)
         blog.close()
     
     

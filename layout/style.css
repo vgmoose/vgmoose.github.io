@@ -1,6 +1,7 @@
 body
 {
     font-family: 'Droid Sans', sans-serif;
+/*    background-color: #fafafa;*/
 }
 
 #all
@@ -43,4 +44,38 @@ li
 {
     margin: 0 auto;
     width: 900px;
+}
+
+#sidebar
+{
+    margin: 50px;
+    margin-right: 0px;
+    width: 150px;
+    font-size: 14px;
+    float: left;
+}
+
+#content
+{
+    margin: 50px;
+    margin-top: 30px;
+    width: 600px;
+    float: left;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#content img
+{
+    max-width: 100%;
+    text-align: center;
+}
+
+pre, code
+{
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
 }

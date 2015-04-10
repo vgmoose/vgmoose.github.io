@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="../../layout/style.css"></link>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+<div id="all">
+    <img src="../../layout/vgnocolorhead.png" />
+    <div id="nav">
+        <ul>
+            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../tutorials">Tutorials</a></li>
+            <li><a href="../../employment">Employment</a></li>
+            <li><a href="../../github">Github</a></li>
+            <li><a href="../../about">About</a></li>
+            <li><a href="../../http://rickyayoub.com" target="_blank">Portfolio</a></li>
+        </ul>
+    </div>
+    <br>
+    <div id="sidebar">
+        Date: 2013-03-06<br />
+        Tags: apps, java<br />
+    </div>
+    <div id="content">
+        <p><strong>JWiiload</strong> is an program that sends bootable ELF and DOL files to a Wii that is currently running the Homebrew Channel mod. It sends the file over the network, so code can easily be compiled for the Wii, and then run by using it from the console.</p>
+<p><img alt="JWiiload on Mac" src="../../posts/22709100 - JWiiload.post/Jwiiloadmac.png" /><br />
+<img alt="JWiiload on Windows" src="../../posts/22709100 - JWiiload.post/Jwiiloadxp.png" /></p>
+<p>JWiiload is programmed in Java so that it is compatible on any OS that can run the Java Runtime. Unlike many other Wiiload programs with graphical interfaces, JWiiload does not rely on any pre-built binaries, and runs everything from Java natively.</p>
+<h4>Requirements</h4>
+<ul>
+<li>Java Runtime Environment (JRE)</li>
+<li>Be on the same network as your Wii</li>
+<li>Linux, Mac, or Windows machine</li>
+</ul>
+<h4>Usage</h4>
+<p>Double click the program, and if you have the JRE installed, it should just launch. First, it will ask for a file if the auto-send is on (by default) and then try to automatically find the Wii behind the scenes. If it can't locate it, which it often cannot, enter the IP address and hit send. There are preferences to specify arguments and a specific port, and also to disable the autosend feature. When autosend is disabled, it will not prompt the user at launch for a file.</p>
+<p>To use it from the command line, run it as you normally would a .jar file, and pass it the necessary arguments. Passing any arguments at all will not launch the GUI, and keep it contained in the command line only.</p>
+<div class="highlight"><pre>java -jar JWiiload.jar 
+</pre></div>
+
+
+<p>pass $WIILOAD (*nix) or %WIILOAD% (win) as the first argument if your environment is set up that way. (Accepts "tcp:x.x.x.x" or just "x.x.x.x" to ensure compatibility with Wiiload.)</p>
+<p>pass "AUTO" as the first argument to try to automatically find the Wii.</p>
+<p>pass "PREV" as the first argument to use the last known Wii IP that worked.</p>
+<p>For more information, see the <a href="http://wiibrew.org/wiki/JWiiload">WiiBrew page</a> on JWiiload</p>
+<p>The project's source code is all available at <a href="https://github.com/vgmoose/JWiiLoad">GitHub</a>, and older changes can be tracked on <a href="http://code.google.com/p/jwiiload/">Google Code</a>.</p>
+    </div>
+    <br>
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = 9909702342;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
