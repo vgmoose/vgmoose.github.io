@@ -5,7 +5,7 @@
     <img src="../../layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
-            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../">Blog</a></li>
             <li><a href="../../tutorials">Tutorials</a></li>
             <li><a href="../../employment">Employment</a></li>
             <li><a href="../../github">Github</a></li>
@@ -14,11 +14,14 @@
         </ul>
     </div>
     <br>
+    
+    
     <div id="sidebar">
         Date: 2014-05-27 15:32:05<br />
         Tags: red hat, internship, lvm, fedora, dm<br />
     </div>
     <div id="content">
+        <h2>Day 04 - LVM and LVM Snapshots</h2>
         <p>We're jumping right into this, because it's pretty crazy. Like, mad crazy son. I haven't talked much about what <a href="http://en.wikipedia.org/wiki/Logical_volume_management">lvm</a> actually is. So I'm gonna attempt to do an introduction to it right now. Right here. Literally next.</p>
 <p>An entire drive can be split into partitions. This is old news. What's also old news is that you can only have a maximum of four primary partitions on an MBR drive. While this is <a href="http://en.wikipedia.org/wiki/GUID_Partition_Table">being phased out</a>, it is still very popular. Additionally, what if you want to have a partition that's <strong>bigger</strong> than your entire physical drive? That sounds a little silly-- when exactly would you WANT to have more data than can fit on one drive? Just buy another drive and make a new filesystem and manage 'em no? Well that's annoying and not as cool as LOGICAL VOLUME MANAGEMENT. I hope I'm asking the right rhetorical questions here.</p>
 <p><img alt="Blog Image" src="../../posts/23353652 - Day 04 - LVM and LVM Snapshots.post/lvm.png" /></p>
@@ -61,7 +64,16 @@ mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
 <p>Before I go, I found this special mirror-outlet today on a mirror in the building. WHAT. That's amazing.</p>
 <p>Oh also, I forgot to mention, a snapshot is 100% read and writable, just as if it were the original filesystem, without taking up the same amount of space (as it shares the common bytes). AWESOME.</p>
     </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
     <br>
+    
     <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
@@ -76,4 +88,6 @@ mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
 </div>

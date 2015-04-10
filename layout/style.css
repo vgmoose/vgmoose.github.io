@@ -29,7 +29,7 @@ a
 
 }
 
-#nav a:hover
+a:hover
 {
     color: red;text-decoration: none;
 }
@@ -78,4 +78,19 @@ pre, code
     padding: 2px;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+#footer
+{
+    margin-top: -55px;
+    height: 55px;
+    z-index: 99999999999999999;
+    position: relative;
+    color: #aaa;
+    background-color: white;
+}
+
+br
+{
+    clear: both;
 }

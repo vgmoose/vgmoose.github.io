@@ -5,7 +5,7 @@
     <img src="../../layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
-            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../">Blog</a></li>
             <li><a href="../../tutorials">Tutorials</a></li>
             <li><a href="../../employment">Employment</a></li>
             <li><a href="../../github">Github</a></li>
@@ -14,11 +14,14 @@
         </ul>
     </div>
     <br>
+    
+    
     <div id="sidebar">
         Date: 2014-06-04 19:31:40<br />
         Tags: red hat, internship, lvm, snapshot, lvmthin<br />
     </div>
     <div id="content">
+        <h2>Day 10 - Snapshot Restore Aftermath</h2>
         <p>So today I thought I'd through caution to the wind and just restore one of the daily snapshots that I had lying around from the cron job. This turned out to be not such a great idea... Despite being in charge of reviewing the documentation, it was not so obvious to me that upon merging one of the snapshots from my "Time Machine" the other ones would be de-linked as snapshots, and simply exist as thin volumes within the pool. This is pretty upsetting, as the inability to merge the snapshots that I have diminishes their value... Or so I thought.</p>
 <p>You see, as it turns out, and as I probably should have realized, merging thin snapshots isn't the only way to restore one of these snapshots. Since at a lower level device mapper is taking care of the bytes within the thin pool, I can simply rename the snapshot I want to restore's thin volume to my current one and swap them. As I've been backing up my home directory, I'll obviously have to do this either as root or from another volume, but such was the case with merging as well.</p>
 <div class="highlight"><pre>lvrename vg/cur_home old_home
@@ -40,7 +43,16 @@ lvchange -ky vg/old_home
 <p><img alt="Blog Image" src="../../posts/23365411 - Day 10 - Snapshot Restore Aftermath.post/IMG_20140604_162042.jpg" /></p>
 <p>I'd move the other one to the floor, but until I get an extension cord moving the first one isn't much of an option. This bottom one is the one with the removable hard disks, so in retrospect perhaps I should have left it on the desk instead of having to lean down to remove a disk.</p>
     </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
     <br>
+    
     <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
@@ -55,4 +67,6 @@ lvchange -ky vg/old_home
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
 </div>

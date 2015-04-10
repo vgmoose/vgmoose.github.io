@@ -5,7 +5,7 @@
     <img src="../../layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
-            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../">Blog</a></li>
             <li><a href="../../tutorials">Tutorials</a></li>
             <li><a href="../../employment">Employment</a></li>
             <li><a href="../../github">Github</a></li>
@@ -14,11 +14,14 @@
         </ul>
     </div>
     <br>
+    
+    
     <div id="sidebar">
         Date: 2014-05-30 22:17:38<br />
         Tags: red hat, internship, lvm, cron, lvmthin, snapshot<br />
     </div>
     <div id="content">
+        <h2>Day 07 - Daily Time Machine</h2>
         <p>Happy Friday! I finally feel like I'm becoming well-versed with these LVM commands. I'm also starting to feel a lot more comfortable in general. It might just be because we're using Thinkpads, but this laptop has byfar been the most comfortable linux experience I've had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant. Maybe I'm being brainwashed by Red Hat, but I'm also probably gonna swap out my home server with Fedora instead of Debian.</p>
 <p>But that's ALL besides the point. Today I set up a cool thing which I shall now share with you now.</p>
 <div class="highlight"><pre># lvs
@@ -59,7 +62,16 @@ Filesystem               Size  Used Avail Use% Mounted on
 <p>I have a couple more questions in my head about this mysterious, magical snapshot process. The big ones are: What happens to garbage files, like if I were to run <code>dd if=/dev/zero of=file.out bs=4k count=5000000</code>? Would the resulting 10G file be kept around in the thinpool? And if so, how could that easily be detached from all the snapshots? And another question is, in the output from <code>lvs</code> above, why is the data percent so high? I am not using 2% of 1T, as seen in <code>df</code> my home directory is only 6G, and 2% of 1T is 20G. Is that <em>because</em> I ran commands similar to that <code>dd</code> one? Not that I <em>did</em>.</p>
 <p>I have a feeling Monday's post is going to involve ram disks and dm-cache, so stay tuned and try not to fall off the edge of your seat.</p>
     </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
     <br>
+    
     <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
@@ -74,4 +86,6 @@ Filesystem               Size  Used Avail Use% Mounted on
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
 </div>

@@ -5,7 +5,7 @@
     <img src="../../layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
-            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../">Blog</a></li>
             <li><a href="../../tutorials">Tutorials</a></li>
             <li><a href="../../employment">Employment</a></li>
             <li><a href="../../github">Github</a></li>
@@ -14,11 +14,14 @@
         </ul>
     </div>
     <br>
+    
+    
     <div id="sidebar">
         Date: 2014-06-06 16:32:48<br />
         Tags: red hat, internship, kernel, yum, lvmcache, grub<br />
     </div>
     <div id="content">
+        <h2>Day 12 - Kernel Upgrading and Reinstallation</h2>
         <p>The toolset <code>lvmcache</code> is special in that it isn't supported in the default kernel that ships with Fedora 20. My RHEL7 machines (and partition on my laptop) have no issues using it, but it would be most useful to have functioning on my laptop. After a lot of researching I learned that it eventually boiled down to the version of the linux kernel that I was using.</p>
 <div class="highlight"><pre>uname -r 
 </pre></div>
@@ -39,7 +42,16 @@
 
 <p>So as it turned out, getting grub to re-run the OS scanner and reconfigure itself allowed it to pick up both kernels, and 3.11 and 3.14 are both selectable at boot time. Such fine grained control should have been expected. I'm a little surprised that I had never come across this in any of my kernel building tutorials, but I should probably blame myself for not having ran a real multi-boot linux machine in a long time.</p>
     </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
     <br>
+    
     <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
@@ -54,4 +66,6 @@
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
 </div>

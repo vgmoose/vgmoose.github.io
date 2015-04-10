@@ -5,7 +5,7 @@
     <img src="../../layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
-            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../">Blog</a></li>
             <li><a href="../../tutorials">Tutorials</a></li>
             <li><a href="../../employment">Employment</a></li>
             <li><a href="../../github">Github</a></li>
@@ -14,11 +14,14 @@
         </ul>
     </div>
     <br>
+    
+    
     <div id="sidebar">
         Date: 2014-06-03 19:31:20<br />
         Tags: red hat, internship, lvm, ramdisk, dd<br />
     </div>
     <div id="content">
+        <h2>Day 09 - RAM Disks and Write Speeds</h2>
         <p>As discussed in yesterday's post, caching is beneficial when a large slow volume is assisted by a fast small one. While it isn't a practical use for production, my manager suggested I could emulate this faster behavior by using a ramdisk, as 2/3 of my machines don't have flash storage. A <a href="http://en.wikipedia.org/wiki/RAM_drive">RAM disk</a>, (which, from this point on, I shall continue going back and forth between "RAM disk" and "ramdisk" spellings) allows a piece of memory to be sectioned off and mounted like a disk would. This means it no longer performs its RAM duties of storing memory, and the computer effectively treats your computer has having that much less RAM.</p>
 <div class="highlight"><pre>mkdir /mnt/ramdisk
 mount -t tmpfs -o size=4096m tmpfs /mnt/ramdisk
@@ -58,7 +61,16 @@ vgextend volume_group /dev/loop1
 
 <p>(Yeah, I've more recorded these for myself to reference at a later date, so what.)</p>
     </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
     <br>
+    
     <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
@@ -73,4 +85,6 @@ vgextend volume_group /dev/loop1
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
 </div>

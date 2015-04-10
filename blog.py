@@ -28,7 +28,8 @@ pattern = re.compile('([^\s\w]|_)+')
     
 class Content:
     def __init__(self, filename, foldername):
-        lines = open(filename, "r").readlines()
+        outfile = open(filename, "r")
+        lines = outfile.readlines()
         self.prop = {}
         self.folder = foldername
                  
@@ -44,6 +45,8 @@ class Content:
                 
         self.content = ''.join(lines[count+1:])
         
+        outfile.close()
+        
         self.buildHTML()
         
 #        print "processing \""+filename+"\""
@@ -53,6 +56,7 @@ class Content:
         newfilename = str((int(time.mktime(time.strptime(self.prop['date'], '%Y-%m-%d %H:%M:%S'))))/60)+" - "+self.prop['title']+".post"
         
         newfilename = unidecode.unidecode(newfilename.decode("utf-8"))
+        self.prop["title"] = unidecode.unidecode(self.prop["title"].decode("utf-8"))
         
         if newfilename != foldername:
             print "\trenaming to \""+newfilename+"\""
@@ -77,10 +81,14 @@ if action == "compile":
     
     template = template.replace("href=\"", "href=\"../../")
     template = template.replace("src=\"", "src=\"../../")
+    template = template.replace("<!-- single_entry", "")
+    template = template.replace("single_entry -->", "")
     
     # build the blog pages
     shutil.rmtree("blog")
     os.mkdir("blog")
+    
+    groups = []
 
     # build all md files in posts
     for e in os.listdir("posts"):
@@ -90,6 +98,12 @@ if action == "compile":
         # open the content markdown file        
         content = Content("posts/"+e+"/content.md", e)
         e = content.folder 
+        
+        groups.append(content)
+        print len(groups)
+            
+#        if len(groups) > 10:
+#            groups.pop(0)
         
         # write the contents to an index file
         index = open("posts/"+e+"/index.html", "w")
@@ -107,8 +121,11 @@ if action == "compile":
             
         temp_template = temp_template.replace("$categories", content.prop["categories"])
         temp_template = temp_template.replace("$id", content.prop["id"])
+        temp_template = temp_template.replace("$title", content.prop["title"])
 
         dirname = dash_phrase(content.prop["title"]) + "-" + content.prop["id"]
+        
+        content.dirname = dirname
         
         os.mkdir("blog/"+dirname)
         blog = open("blog/"+dirname+"/index.html", "w")
@@ -117,6 +134,18 @@ if action == "compile":
     
     
     # build the category pages
+    # load the template
+    tfile = open("layout/template.html", "r")
+    template = tfile.read()
+    tfile.close()
+    
+    groups = groups[::-1]
+    template = template.replace("<!-- entry_group", "")
+    template = template.replace("entry_group -->", "")
+    template = template.replace("$entry_group", '<br>'.join([(groups[x].prop["date"][:4]+": <a href=\"blog/"+groups[x].dirname+"\">"+groups[x].prop["title"]+"</a>") for x in range(0, len(groups))]))
+    main = open("index.html", "w")
+    main.write(template)
+    main.close()
     
     
 if action == "new":

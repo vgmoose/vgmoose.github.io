@@ -5,7 +5,7 @@
     <img src="../../layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
-            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../">Blog</a></li>
             <li><a href="../../tutorials">Tutorials</a></li>
             <li><a href="../../employment">Employment</a></li>
             <li><a href="../../github">Github</a></li>
@@ -14,11 +14,14 @@
         </ul>
     </div>
     <br>
+    
+    
     <div id="sidebar">
         Date: 2014-06-05 19:32:13<br />
         Tags: red hat, internship, lvm, lvmcache, lvmthin<br />
     </div>
     <div id="content">
+        <h2>Day 11 - Triple Threat</h2>
         <p>Much of my job consists of taking my computers... and destroying them. Well, I'm not supposed to be destroying them, and I'm not necessarily trying to either, but usually in testing LVM I manage to find one way or another to make the machines unbootable. Thankfully, due to the wealth of LVM information out there, more often than not I am capable of fixing the problems that develop on my laptop, but for the desktops it's usually just less effort to reformat them and try something different.</p>
 <p><img alt="xkcd" src="../../posts/23366852 - Day 11 - Triple Threat.post/http://imgs.xkcd.com/comics/computer_problems.png" /></p>
 <p>I was going to put in that <a href="http://xkcd.com/349/">other xkcd</a> relating to computer problems, but this one seems more appropriate.</p>
@@ -33,7 +36,16 @@
 <p>Another caveat that frequently and still catches me is when I'm playing around with a ramdisk via loop back device as discussed a few posts ago. If one reboots without running <code>vgreduce</code> to remove the loopback device from the volume group, chaos usually ensues.</p>
 <p>When it's all said and done though, hopefully I can find some combination that people haven't accounted for that will destroy the systems. And until then, hopefully I can understand how and why the machine are actually breaking.</p>
     </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
     <br>
+    
     <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
@@ -48,4 +60,6 @@
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
 </div>

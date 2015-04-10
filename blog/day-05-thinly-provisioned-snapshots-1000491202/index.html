@@ -5,7 +5,7 @@
     <img src="../../layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
-            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../">Blog</a></li>
             <li><a href="../../tutorials">Tutorials</a></li>
             <li><a href="../../employment">Employment</a></li>
             <li><a href="../../github">Github</a></li>
@@ -14,11 +14,14 @@
         </ul>
     </div>
     <br>
+    
+    
     <div id="sidebar">
         Date: 2014-05-28 22:54:34<br />
         Tags: red hat, internship, lvm, lvmthin, rhel, snapshot<br />
     </div>
     <div id="content">
+        <h2>Day 05 - Thinly Provisioned Snapshots</h2>
         <p>In yesterday's post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of commands. To recap, snapshots <em>physically</em> store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created.</p>
 <p>That, of course, is really cool, but let's say you want to take a TON of snapshots (like we're talking daily ones). The daily snaps would allow you to easily revert to what the filesystem looked like on a given day without using much more space. Of course, if they were just regular LVM snapshots, you'd need to decide on a size to give them. Taking daily snapshots in this manner would fill up in no time.</p>
 <p><img alt="Blog Image" src="../../posts/23355534 - Day 05 - Thinly Provisioned Snapshots.post/uglydiagram.png" /></p>
@@ -51,7 +54,16 @@
 <p>That simple <code>-K</code> argument drove me crazy for a bit. It was mentioned in the documentation, but I must have passed by it. As leaving <code>-K</code> out silently fails, I wasn't sure if my build of lvm2 was broken or what (as it would just not mark it active without telling me it failed).</p>
 <p>With this knowledge it is possible to easily create daily full snapshots of an entire filesystem without taking up any more space than would have been taken up by the difference bytes. The thin volumes will dynamically expand to fill the pool, so one does not have to worry at all about the sizes of the snapshots (in fact, you aren't allowed to set it for a thin snapshot). The <a href="http://wiki.gentoo.org/wiki/LVM">Gentoo Wiki</a> actually has really good instructions and easy to follow commands on all of this if you don't want to take my word for them (or in the more likely case, if I've left something out).</p>
     </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
     <br>
+    
     <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
@@ -66,4 +78,6 @@
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
 </div>

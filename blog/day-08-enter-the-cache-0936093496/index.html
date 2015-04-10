@@ -5,7 +5,7 @@
     <img src="../../layout/vgnocolorhead.png" />
     <div id="nav">
         <ul>
-            <li><a href="../..//">Blog</a></li>
+            <li><a href="../../">Blog</a></li>
             <li><a href="../../tutorials">Tutorials</a></li>
             <li><a href="../../employment">Employment</a></li>
             <li><a href="../../github">Github</a></li>
@@ -14,11 +14,14 @@
         </ul>
     </div>
     <br>
+    
+    
     <div id="sidebar">
         Date: 2014-06-02 18:24:45<br />
         Tags: red hat, internship, cache, lvm, lvmcache<br />
     </div>
     <div id="content">
+        <h2>Day 08 - Enter the Cache</h2>
         <p>Logical volumes are very unique in the sense that you can inject some higher level logic into something as low level as the bytes on your disk. Flash disks are very fast, but large ones are also still very expensive. This obviously creates an interesting problem for server maintainers, as ideally large amount of content would be served as fast as possible which would require the best of both worlds. </p>
 <p><img alt="Image" src="../../posts/23362464 - Day 08 - Enter the Cache.post/cash.gif" /></p>
 <p>Not.. that kind of cash. Ha. HA HA. <a href="http://en.wikipedia.org/wiki/Dm-cache">dm-cache</a> was a proprosed kernel module solution to allow quick access to frequently used blocks from a large slow disk using a quick fast disk. As of <a href="https://www.kernel.org/doc/Documentation/device-mapper/cache.txt">April 28, 2013</a> it is now officially a part of the Linux kernel. The Wiki article does a better job of explaining, as usual, but dm-cache helps speed up a slow device by storing only the modified blocks to the fast device and marking the slow device as dirty, allowing full reads and writes to occur solely off the cache. For this reason, it is recommended that the caching device be <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_1">mirrored</a>.</p>
@@ -36,7 +39,16 @@
 
 <p>But unfortunately, I don't know much else about them. I believe though that they provide some abstraction that was desired previously with the bypassing of the volume group. <a href="http://rwmj.wordpress.com/2014/05/30/lvm-cache-contd-tip-using-tags/">Here is more information</a> on that.</p>
     </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
     <br>
+    
     <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
@@ -51,4 +63,6 @@
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
 </div>
