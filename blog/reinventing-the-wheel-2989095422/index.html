@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="../../layout/style.css"></link>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+<div id="all">
+    <img src="../../layout/vgnocolorhead.png" />
+    <div id="nav">
+        <ul>
+            <li><a href="../../">Blog</a></li>
+            <li><a href="../../tutorials">Tutorials</a></li>
+            <li><a href="../../employment">Employment</a></li>
+            <li><a href="../../github">Github</a></li>
+            <li><a href="../../about">About</a></li>
+            <li><a href="../../http://rickyayoub.com" target="_blank">Portfolio</a></li>
+        </ul>
+    </div>
+    <br>
+    
+    
+    <div id="sidebar">
+        Date: 2015-04-10 23:56:01<br />
+        Tags: javascript, python<br />
+    </div>
+    <div id="content">
+        <h2>Reinventing The Wheel</h2>
+        <p>Today marks the launch of YET ANOTHER VGMoose site redesign. The old site will remain available at <a href="http://backpack.vgmoose.com">backpack.vgmoose.com</a>. The current iteration of the site is built offline using python with <a href="https://github.com/vgmoose/vgmoose.com/blob/gh-pages/blog.py">this script</a>. Each post is stored in a .post directory as seen <a href="https://github.com/vgmoose/vgmoose.com/tree/gh-pages/posts">here</a>. This is very similar to the way my <a href="http://rickyayoub.com">personal site</a> is built.</p>
+<p>I've amassed a surprisingly large number of blogs throughout the last decade that I've spent on the interwebs! I've made blogs using <a href="http://moosebeta.blogdrive.com/">BlogDrive</a>, <a href="https://vgmoose.wordpress.com/">Wordpress</a>, <a href="http://vgmoose.blogspot.com/">BlogSpot</a>,<a href="http://rickyayoub.tumblr.com">Tumblr</a>, <a href="http://vgmoose.com/Blog/Blog.html">iWeb</a>, and <a href="http://vgmoose.github.io/deku-scrub/blag/">Octopress</a>. I haven't stuck with any of them, however...</p>
+<p>One problem that I seem to inevitably have with most of the sites listed above is that they don't allow for an extremely detailed degree of control. That might sound CRAZY! After all, there are an abundance of Wordpress and Tumblr themes out there, and Octopress was even designed with programmers in mind specifically to address this problem! Why would I roll my own tools to generate a blog when software already exists that does it?</p>
+<p><img alt="xkcd" src="../../posts/23812076 - Reinventing The Wheel.post/standards.png" /></p>
+<p>A big part of programming is being stumped. That is, encountering a problem, and being forced to debug it until you find a solution that makes the program behave the way you want it to. That goes doubly for visual things like web design. If you want a website to look the way it does in your head, you need to spend the time using the tools you have to try to make it look like that. And of course, there's generally a high after solving such problems.</p>
+<p>However, if I'm relying on some cookie-cutter copy-and-paste blogging engine, the high doesn't seem to feel nearly as good. Maybe I happen to be particularly picky about the alignment of some of the words, or I'd prefer a different permalink structure, or I want ajax loading if javascript is enabled. To implement such things I would have to spent a good chunk of time learning very specific things about the blogging engine to make it do what I want. And the payoff would be minimal.</p>
+<p>Perhaps I am being too preachy. After all, my design (compiling markdown files statically with python) isn't too dissimilar to the main idea behind Octopress. A key difference though is I understand every single part of my own implementation. If you see some glitches on here, that's my bad. On the other hand though, if the site looks nice you know who is responsible!</p>
+    </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+    entry_group -->
+    
+    <br>
+    
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = 2989095422;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="../../https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2006-2015 VGMoose (Ricky Ayoub)</div>
+</div>

@@ -21,6 +21,7 @@ a
 {
     color: #555555;
     text-decoration: none;
+/*    font-style:oblique;*/
 }
 
 .active, #nav li:hover
@@ -78,6 +79,7 @@ pre, code
     padding: 2px;
     padding-left: 5px;
     padding-right: 5px;
+    overflow-x: scroll;
 }
 
 #footer
