@@ -96,3 +96,35 @@ br
 {
     clear: both;
 }
+
+blockquote
+{
+    border-left: 8px solid #ddd;
+    padding-left: 10px;
+    margin-left: 30px;
+}
+
+table
+{
+    border-collapse: collapse;
+    border: 1px solid #eee;
+}
+
+th
+{
+    background-color: #e0e0e0;
+}
+
+tr:nth-child(even)
+{
+    background: #eee;
+}
+
+td, th
+{
+    font-size: 14px;
+    padding: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0px;
+}

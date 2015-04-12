@@ -10,7 +10,7 @@ original: http://vgmoose.github.io/deku-scrub/blag/blog/2014/06/05/day-11-triple
 
 Much of my job consists of taking my computers... and destroying them. Well, I'm not supposed to be destroying them, and I'm not necessarily trying to either, but usually in testing LVM I manage to find one way or another to make the machines unbootable. Thankfully, due to the wealth of LVM information out there, more often than not I am capable of fixing the problems that develop on my laptop, but for the desktops it's usually just less effort to reformat them and try something different.
 
-![xkcd](http://imgs.xkcd.com/comics/computer_problems.png)
+![xkcd](computer_problems.png)
 
 I was going to put in that [other xkcd](http://xkcd.com/349/) relating to computer problems, but this one seems more appropriate.
 

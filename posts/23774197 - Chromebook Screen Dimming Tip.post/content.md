@@ -5,6 +5,7 @@ date: 2015-03-15 16:37:47
 comments: true
 categories: chromebook, linux, bash
 id: 2405391604
+original: http://www.reddit.com/r/chromeos/comments/2z4vz9/screen_brightness_dimming_tip/
 ---
 
 I was looking for an alternative to f.lux / screen filter (android) / shades (mac) to keep the screen more dim at night, and couldn't find one that I liked. A lot of them would just dim the webpage and not the whole system. However, on linux there's a trick you can do to write the brightness value directly from the terminal, and I wondered if the same trick would work on chromeos.

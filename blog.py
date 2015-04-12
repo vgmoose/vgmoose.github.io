@@ -1,5 +1,7 @@
 import sys, os, time, random, unidecode, re, shutil
 
+from progressbar import *
+
 try:
     import markdown
     import gfm
@@ -89,9 +91,16 @@ if action == "compile":
     os.mkdir("blog")
     
     groups = []
+    
+    all_posts = os.listdir("posts")
+    total_posts = len(all_posts)-1
+    cur_count = 0
+    
+    widgets = ['Compiling ', Percentage(), ' ', Bar("*"), ' ', Counter(), '/', str(total_posts)]
+    pbar = ProgressBar(widgets=widgets, maxval=total_posts).start()
 
     # build all md files in posts
-    for e in os.listdir("posts"):
+    for e in all_posts:
         if not e.endswith(".post"):
             continue
     
@@ -100,7 +109,6 @@ if action == "compile":
         e = content.folder 
         
         groups.append(content)
-        print len(groups)
             
 #        if len(groups) > 10:
 #            groups.pop(0)
@@ -131,7 +139,11 @@ if action == "compile":
         blog = open("blog/"+dirname+"/index.html", "w")
         blog.write(temp_template)
         blog.close()
+        
+        pbar.update(cur_count+1)
+        cur_count+=1
     
+    print "All Done!"
     
     # build the category pages
     # load the template
@@ -142,6 +154,7 @@ if action == "compile":
     groups = groups[::-1]
     template = template.replace("<!-- entry_group", "")
     template = template.replace("entry_group -->", "")
+    template = template.replace("$title", "VGMoose's Blog")
     template = template.replace("$entry_group", '<br>'.join([(groups[x].prop["date"][:4]+": <a href=\"blog/"+groups[x].dirname+"\">"+groups[x].prop["title"]+"</a>") for x in range(0, len(groups))]))
     main = open("index.html", "w")
     main.write(template)

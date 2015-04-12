@@ -18,12 +18,12 @@ They gave us these stickers, and this one left me confused. But don't worry, I t
 Thar she blows in all her beauty. The specs are below in a neat little table that hopefully will come out and not look awful:
 
 | Spec        | Value    |
-| -----------------------|
-| Processor   | i7-4600U
-| Memory      | 12GB
-| Storage     | 256GB
-| Resolution  | 1080p
-| Battery     | two???
+| ------------|----------|
+| Processor   | i7-4600U |
+| Memory      | 12GB     |
+| Storage     | 256GB    |
+| Resolution  | 1080p    |
+| Battery     | two???   |
 
 Yeah, it has two batteries for some reason which was very confusing at first. Well, that's all the good news, but the bad news is that I will have to return it at the end of the internship :(. My poor baby.
 
