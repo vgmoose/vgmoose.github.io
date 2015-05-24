@@ -7,7 +7,7 @@ try:
     import gfm
     from progressbar import *
 except:
-    print "[ERROR] Some pythom modules are missing. Check requirements.txt and ensure all modules are installed."
+    print "[ERROR] Some python modules are missing. Check requirements.txt and ensure all modules are installed."
     exit()
 
 def usage():
@@ -116,6 +116,8 @@ if action == "compile":
         # open the content markdown file        
         content = Content("posts/"+e+"/content.md", e)
         if "hidden" in content.prop and content.prop["hidden"] == "true":
+            pbar.update(cur_count+1)
+            cur_count+=1
             continue
 
         e = content.folder 
