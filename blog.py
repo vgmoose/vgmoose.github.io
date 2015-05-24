@@ -1,12 +1,14 @@
-import sys, os, time, random, unidecode, re, shutil
+import sys, os, time, random, re, shutil
 
-from progressbar import *
 
 try:
+    import unidecode
     import markdown
     import gfm
+    from progressbar import *
 except:
-    print "install py-gfm and markdown modules"
+    print "[ERROR] Some pythom modules are missing. Check requirements.txt and ensure all modules are installed."
+    exit()
 
 def usage():
     print "usage: python blog.py compile"
@@ -17,6 +19,7 @@ try:
     action = sys.argv[1]
 except:
     usage()
+    exit()
     
 def dash_phrase(phrase):
     phrase = phrase.lower()
@@ -61,9 +64,13 @@ class Content:
         self.prop["title"] = unidecode.unidecode(self.prop["title"].decode("utf-8"))
         
         if newfilename != foldername:
-            print "\trenaming to \""+newfilename+"\""
-            self.folder = newfilename
-            os.rename("posts/"+foldername, "posts/"+newfilename)
+            print "[INFO] Renaming \""+foldername+"\" to\""+newfilename+"\""
+            try:
+                os.rename("posts/"+foldername, "posts/"+newfilename)
+                self.folder = newfilename
+            except:
+                print "[WARNING] Could not rename \""+foldername+"\"! Skipping..."
+                self.prop["hidden"] = "true"
                         
     def buildHTML(self):
         # parse gfm to html
@@ -87,12 +94,14 @@ if action == "compile":
     template = template.replace("single_entry -->", "")
     
     # build the blog pages
-    shutil.rmtree("blog")
+    if os.path.isdir("blog"): 
+        shutil.rmtree("blog")
     os.mkdir("blog")
     
     groups = []
     
     all_posts = os.listdir("posts")
+    all_posts.sort()
     total_posts = len(all_posts)-1
     cur_count = 0
     
@@ -106,6 +115,9 @@ if action == "compile":
     
         # open the content markdown file        
         content = Content("posts/"+e+"/content.md", e)
+        if "hidden" in content.prop and content.prop["hidden"] == "true":
+            continue
+
         e = content.folder 
         
         groups.append(content)
@@ -194,5 +206,5 @@ if action == "new":
     f.write("---\n\n")
     f.close()
     
-    # open it in the finder
+    # open it in the specified Editor
     os.system("open -a Brackets \""+"posts/"+filename+"/content.md\"")

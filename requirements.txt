@@ -1,0 +1,4 @@
+unidecode
+progressbar
+py-gfm
+markdown
