@@ -83,6 +83,11 @@ pre, code
     overflow-x: scroll;
 }
 
+.minidescription
+{
+	font-size: 10px;
+}
+
 #footer
 {
     margin-top: -55px;

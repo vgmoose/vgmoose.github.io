@@ -49,10 +49,14 @@ class Content:
                 count += 1
                 
         self.content = ''.join(lines[count+1:])
-        
+		        
         outfile.close()
         
         self.buildHTML()
+        self.minicontent = re.sub('<[^<]+?>', '', self.gfm)
+		
+        if len(self.minicontent) > 500:
+            self.minicontent = self.minicontent[:500] + "..."
         
 #        print "processing \""+filename+"\""
 #        print "\tproperties: "+str(self.prop)
@@ -169,7 +173,7 @@ if action == "compile":
     template = template.replace("<!-- entry_group", "")
     template = template.replace("entry_group -->", "")
     template = template.replace("$title", "VGMoose's Blog")
-    template = template.replace("$entry_group", '<br>'.join([(groups[x].prop["date"][:4]+": <a href=\"blog/"+groups[x].dirname+"\">"+groups[x].prop["title"]+"</a>") for x in range(0, len(groups))]))
+    template = template.replace("$entry_group", '<br>'.join([(groups[x].prop["date"][:4]+": <a href=\"blog/"+groups[x].dirname+"\">"+groups[x].prop["title"]+"</a> <div class='minidescription'>")+groups[x].minicontent+"</div>" for x in range(0, len(groups))]))
     main = open("index.html", "w")
     main.write(template)
     main.close()
