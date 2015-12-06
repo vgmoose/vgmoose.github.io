@@ -15,7 +15,7 @@ I had been a fan of the operating system, but seeing that video made the dots co
 
 I was able to pickup the laptop for only ~$1000, which is relatively cheap in the Macbook space. Despite me being very attached to the computer initially, I did not expect it to last me into college (that is, I thought that when I went to college in 2011, I'd surely be getting a new computer again).
 
-Fast forward six years. SIX YEARS, can you believe that? That's more than a quarter of my life! I am still rocking the same Macbook Pro. I've upgradeded the RAM, added an SSD, changed the battery, and even swapped out the DVD drive for another hard disk. Here are all the specs (original and upgraded over the last 6 years):
+Fast forward six years. SIX YEARS, can you believe that? That's more than a quarter of my life! I am still rocking the same Macbook Pro. I've upgraded the RAM, added an SSD, changed the battery, and even swapped out the DVD drive for another hard disk. Here are all the specs (original and upgraded over the last 6 years):
 
 |Spec|Original|Upgraded|
 |----|----|----|

@@ -9,7 +9,7 @@ id: 6627877368
 
 Mario Face is an application that is based off a funny mini-game in [Mario Party Advanced](http://www.mariowiki.com/Mario_Party_Advance). In the application, the entire phone’s screen fills with the face of one of multiple Mario characters– Mario, Peach, Goomba, or Boo. Once this is done, you simply hold the phone up to your face (screen facing away from you), and then press the volume buttons or tap the screen to make it appear as if you are talking with that character’s mouth.
 
-[Download APK file here](Mario Faces.apk)
+[Download APK file here](http://rickyayoub.com/ups/Mario%20Faces.apk)
 
 To put it less elegantly:
 ![Mario Face](s.iosfans.png)
