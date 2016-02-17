@@ -10,6 +10,13 @@ body
     width: 900px;
     margin: 0px auto;
 }
+/*
+
+#nav li:first-child
+{
+	float: left;
+}
+*/
 
 #nav li
 {
@@ -23,6 +30,11 @@ a
     color: #555555;
     text-decoration: none;
 /*    font-style:oblique;*/
+}
+
+p a
+{
+    color: #009bff;
 }
 
 .active, #nav li:hover
