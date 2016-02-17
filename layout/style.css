@@ -2,13 +2,21 @@ body
 {
     font-family: 'Droid Sans', sans-serif;
     background-color: white;
-/*    background-color: #fafafa;*/
+	margin: 0px;
+    background-color: #fafafa;
+}
+
+#disqus_thread
+{
+	width: 840px;
+	margin: 0 auto;
 }
 
 #all
 {
     width: 900px;
     margin: 0px auto;
+	background-color: white;
 }
 /*
 
@@ -106,6 +114,8 @@ pre, code
     height: 55px;
     z-index: 99999999999999999;
     position: relative;
+	text-align: right;
+	padding-right: 40px;
     color: #aaa;
     background-color: white;
 }
