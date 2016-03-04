@@ -3,7 +3,7 @@ layout: post
 title: [release] UnderScore
 date: 2008-06-27 02:29:00
 comments: true
-categories: old days
+categories: old days, release
 id: 5495631835
 original: https://vgmoose.wordpress.com/2008/06/27/release-underscore/
 ---

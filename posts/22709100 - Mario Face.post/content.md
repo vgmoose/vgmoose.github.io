@@ -3,7 +3,7 @@ layout: post
 title: Mario Face
 date: 2013-03-06 00:00:00
 comments: true
-categories: apps, flash, javascript, java, ios, android, objective-c, mario
+categories: apps, flash, javascript, java, ios, android, objective-c, mario, release
 id: 6627877368
 ---
 

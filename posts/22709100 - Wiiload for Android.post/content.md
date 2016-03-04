@@ -3,7 +3,7 @@ layout: post
 title: Wiiload for Android
 date: 2013-03-06 00:00:00
 comments: true
-categories: apps, android, java, wii
+categories: apps, android, java, wii, release
 id: 2007493297
 ---
 

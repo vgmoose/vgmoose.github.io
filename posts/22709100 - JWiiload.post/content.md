@@ -3,7 +3,7 @@ layout: post
 title: JWiiload
 date: 2013-03-06 00:00:00
 comments: true
-categories: apps, java
+categories: apps, java, release
 id: 9909702342
 ---
 
@@ -35,6 +35,9 @@ pass $WIILOAD (*nix) or %WIILOAD% (win) as the first argument if your environmen
 pass “AUTO” as the first argument to try to automatically find the Wii.
 
 pass “PREV” as the first argument to use the last known Wii IP that worked.
+
+####Download
+You can download JWiiload.jar at the [Google Code Archive page](https://code.google.com/archive/p/jwiiload/downloads)
 
 For more information, see the [WiiBrew page](http://wiibrew.org/wiki/JWiiload) on JWiiload
 
