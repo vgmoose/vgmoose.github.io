@@ -1,4 +1,4 @@
-import sys, os, time, random, re, shutil
+import sys, os, time, random, re, shutil, json
 
 
 try:
@@ -30,6 +30,12 @@ def dash_phrase(phrase):
     
 # match all non-whitespace and non-alphanumeric
 pattern = re.compile('([^\s\w]|_)+')
+
+class SetEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, set):
+            return list(obj)
+        return json.JSONEncoder.default(self, obj)
     
 class Content:
     def __init__(self, filename, foldername):
@@ -49,12 +55,12 @@ class Content:
                 count += 1
                 
         self.content = ''.join(lines[count+1:])
-		        
+                
         outfile.close()
         
         self.buildHTML()
         self.minicontent = re.sub('<[^<]+?>', '', self.gfm)
-		
+        
         if len(self.minicontent) > 500:
             self.minicontent = self.minicontent[:500] + "..."
         
@@ -113,6 +119,9 @@ if action == "compile":
     widgets = ['Compiling ', Percentage(), ' ', Bar("*"), ' ', Counter(), '/', str(total_posts)]
     pbar = ProgressBar(widgets=widgets, maxval=total_posts).start()
 
+    # keep track of all unique words and their post IDs
+    vocab = {}
+
     # build all md files in posts
     for e in all_posts:
         if not e.endswith(".post"):
@@ -136,6 +145,15 @@ if action == "compile":
         index = open("posts/"+e+"/index.html", "w")
         index.write(content.gfm)
         index.close()
+		
+        nopunc = re.sub('[?! -.:/]', ' ', content.gfm.lower()).replace("\n", " ")
+
+        words = re.sub('<[^<]+?>', '', nopunc).split(" ")
+        for word in words:
+#            word = re.sub('[?! -.]', '', word.lower()).replace("\n",'')
+            if not word in vocab:
+                vocab[word] = set()
+            vocab[word].add(content.prop["id"])
                 
         tcontent = content.gfm
         tcontent = tcontent.replace("src=\"", "src=\"../../posts/"+e+"/")
@@ -163,6 +181,7 @@ if action == "compile":
         cur_count+=1
     
     print "All Done!"
+#    print json.dumps(vocab, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': '))
     
     # build the category pages
     # load the template
