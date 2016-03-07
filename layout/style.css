@@ -156,3 +156,14 @@ td, th
     padding-right: 15px;
     margin: 0px;
 }
+
+#search_input
+{
+    width: 300px;
+    margin-right: 10px;
+}
+
+#go_search
+{
+    width: 70px;
+}

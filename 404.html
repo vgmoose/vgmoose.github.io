@@ -5,8 +5,24 @@
   }
 </style>
 
+<script src="/js/redirects.js"></script>
+
 <script>
-  location.href = "http://backpack.vgmoose.com" + window.location.pathname;
+    var path = window.location.pathname;
+    path = path.replace(/\//g, "");
+    path = path.substring(path.length-10, path.length);
+    
+    // try to redirect to a blog post if possible
+    if (path in all_posts)
+    {
+        // redirect to this post
+        location.href = all_posts[path];
+    }
+    else
+    {
+        // legacy handler for migration from backpack
+        location.href = "http://backpack.vgmoose.com" + window.location.pathname;
+    }
 </script>
 
 <noscript>

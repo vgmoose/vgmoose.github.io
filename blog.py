@@ -121,6 +121,9 @@ if action == "compile":
 
     # keep track of all unique words and their post IDs
     vocab = {}
+    
+    # keep track of all uris (id -> uri)
+    urimap = {}
 
     # build all md files in posts
     for e in all_posts:
@@ -145,7 +148,7 @@ if action == "compile":
         index = open("posts/"+e+"/index.html", "w")
         index.write(content.gfm)
         index.close()
-		
+        		
         nopunc = re.sub('[?! -.:/]', ' ', content.gfm.lower()).replace("\n", " ")
 
         words = re.sub('<[^<]+?>', '', nopunc).split(" ")
@@ -172,6 +175,8 @@ if action == "compile":
         
         content.dirname = dirname
         
+        urimap[content.prop["id"]] = "/blog/"+dirname+"/";
+        
         os.mkdir("blog/"+dirname)
         blog = open("blog/"+dirname+"/index.html", "w")
         blog.write(temp_template)
@@ -197,6 +202,32 @@ if action == "compile":
     main = open("index.html", "w")
     main.write(template)
     main.close()
+    
+    # load the template
+    tfile = open("layout/template.html", "r")
+    template = tfile.read()
+    tfile.close()
+    
+    template = template.replace("<!-- search_group", "")
+    template = template.replace("search_group -->", "")
+    template = template.replace("$title", "VGMoose.com Search")
+    template = template.replace("$search_vocab", json.dumps(vocab, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': ')))
+    template = template.replace("href=\"", "href=\"../")
+    template = template.replace("src=\"", "src=\"../")
+    template = template.replace("../http", "http")
+    
+    # build the search page
+    try:
+        os.mkdir("search")
+    except:
+        pass
+    search = open("search/index.html", "w")
+    search.write(template)
+    search.close()
+    
+    redirs = open("js/redirects.js", "w")
+    redirs.write("all_posts = " + json.dumps(urimap, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': ')) + ";")
+    redirs.close()
     
     
 if action == "new":
