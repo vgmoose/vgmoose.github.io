@@ -36,6 +36,7 @@ all_posts = {
     "3972771157": "/blog/launching-of-the-blag-3972771157/",
     "4154581713": "/blog/day-03-cubicle-sweet-cubicle-4154581713/",
     "4314069407": "/blog/day-02-orientation-part-2-4314069407/",
+    "4370481922": "/blog/hosting-files-locally-4370481922/",
     "4539158900": "/blog/idunno-4539158900/",
     "4561313446": "/blog/i-already-forgot-4561313446/",
     "4632920139": "/blog/beta-ohsnapp-4632920139/",
