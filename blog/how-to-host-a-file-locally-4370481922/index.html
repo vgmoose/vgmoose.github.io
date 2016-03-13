@@ -1,7 +1,7 @@
 <head>
     <link rel="stylesheet" href="../../layout/style.css"></link>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-    <title>Hosting Files Locally</title>
+    <title>How To: Host a File Locally</title>
 </head>
 
 <div id="all">
@@ -24,14 +24,14 @@
         Tags: python, tutorial<br />
     </div>
     <div id="content">
-        <h2>Hosting Files Locally</h2>
+        <h2>How To: Host a File Locally</h2>
         <p>Here's a quick guide on how to host a file over the network. </p>
 <p>There are three basic parts to this:<br />
 1. Knowing your local IP<br />
 2. Knowing where the files to host are<br />
 3. Running a server to serve it over HTTP</p>
-<p>Every single website that you see and visit in your browser is done over the (HyperText Transfer Protocol)[<a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol</a>]. These websites are hosted on remote servers, which distribute content to you via this protocol. So to host a file, we will need to run a server on your machine, to be visited by the other machine.</p>
-<p>After step 3. is accomplished on the hosting computer that is running the server, any machine on your network will be able to visit the content that is being hosted by navigating to <a href="http://YOUR">http://YOUR</a> IP:port. The default port is 80. This is true for any website: for example <a href="http://serebii.net">this</a> vs <a href="http://serebii.net:80">this</a>.</p>
+<p>Every single website that you see and visit in your browser is done over the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HyperText Transfer Protocol</a>. These websites are hosted on remote servers, which distribute content to you via this protocol. So to host a file, we will need to run a server on your machine, to be visited by the other machine.</p>
+<p>After step 3. is accomplished on the hosting computer that is running the server, any machine on your network will be able to visit the content that is being hosted by navigating to <a href="http://YOUR_IP:port">http://YOUR_IP:port</a>. The default port is 80. This is true for any website: for example <a href="http://serebii.net">this</a> vs <a href="http://serebii.net:80">this</a>.</p>
 <h3>Installing a server</h3>
 <p>The host will require a server. There are many different types of http servers for many various operating systems. For this guide, I will be demonstrating how to host it using a built-in module in <a href="https://www.python.org/">python</a>.</p>
 <p>Python is included on most modern operating systems, but not on some of the most <em>popular</em> operating systems. Open up a terminal (or CMD on Windows) and run: <code>python --version</code> If you get back "no command found" or something similar, you will have to <a href="https://www.python.org/downloads/">install python</a>. This guide uses the 2.7.x version. Also if on Windows, you'll want to add the python binaries to your path, <a href="https://docs.python.org/2/using/windows.html#configuring-python">instructions here</a>.</p>
@@ -49,7 +49,7 @@ Python 2.7.6</code></pre>
 Serving HTTP on 0.0.0.0 port 8000 ...</code></pre>
 
 
-<p>This command will run until you hit Ctrl+C. While it's running, you should be able to go to <a href="http://YOUR">http://YOUR</a> IP:8000/ in your browser <strong>on any computer on your network</strong>. Upon visiting, you should see a list of files in the current directory. If you put html files in this folder, you will also be able to see them rendered on screen.</p>
+<p>This command will run until you hit Ctrl+C. While it's running, you should be able to go to <a href="http://YOUR_IP:8000/">http://YOUR_IP:8000/</a> in your browser <strong>on any computer on your network</strong>. Upon visiting, you should see a list of files in the current directory. If you put html files in this folder, you will also be able to see them rendered on screen.</p>
 <p>If you are using python 3, the command is as follows:</p>
 <pre class="highlight"><code>&gt;&gt; python3 -m http.server
 Serving HTTP on 0.0.0.0 port 8000 ...</code></pre>

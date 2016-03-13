@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hosting Files Locally
+title: How To: Host a File Locally
 date: 2016-03-13 13:35:41
 comments: true
 categories: python, tutorial
@@ -15,7 +15,7 @@ There are three basic parts to this:
 
 Every single website that you see and visit in your browser is done over the [HyperText Transfer Protocol](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol). These websites are hosted on remote servers, which distribute content to you via this protocol. So to host a file, we will need to run a server on your machine, to be visited by the other machine.
 
-After step 3. is accomplished on the hosting computer that is running the server, any machine on your network will be able to visit the content that is being hosted by navigating to http://YOUR IP:port. The default port is 80. This is true for any website: for example [this](http://serebii.net) vs [this](http://serebii.net:80).
+After step 3. is accomplished on the hosting computer that is running the server, any machine on your network will be able to visit the content that is being hosted by navigating to http://YOUR_IP:port. The default port is 80. This is true for any website: for example [this](http://serebii.net) vs [this](http://serebii.net:80).
 
 ### Installing a server
 The host will require a server. There are many different types of http servers for many various operating systems. For this guide, I will be demonstrating how to host it using a built-in module in [python](https://www.python.org/).
@@ -39,7 +39,7 @@ Now that we are ready to run the server, we need files to actually host. cd into
 >> python -m SimpleHTTPServer
 Serving HTTP on 0.0.0.0 port 8000 ...
 ```
-This command will run until you hit Ctrl+C. While it's running, you should be able to go to http://YOUR IP:8000/ in your browser **on any computer on your network**. Upon visiting, you should see a list of files in the current directory. If you put html files in this folder, you will also be able to see them rendered on screen.
+This command will run until you hit Ctrl+C. While it's running, you should be able to go to http://YOUR_IP:8000/ in your browser **on any computer on your network**. Upon visiting, you should see a list of files in the current directory. If you put html files in this folder, you will also be able to see them rendered on screen.
 
 If you are using python 3, the command is as follows:
 ```
