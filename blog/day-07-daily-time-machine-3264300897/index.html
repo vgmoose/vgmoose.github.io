@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="../../layout/style.css"></link>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'></link>
     <title>Day 07 - Daily Time Machine</title>
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" />
+    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
     <div id="nav">
         <ul>
             <li><a href="../../">Blog</a></li>
@@ -27,7 +28,7 @@
         <h2>Day 07 - Daily Time Machine</h2>
         <p>Happy Friday! I finally feel like I'm becoming well-versed with these LVM commands. I'm also starting to feel a lot more comfortable in general. It might just be because we're using Thinkpads, but this laptop has byfar been the most comfortable linux experience I've had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant. Maybe I'm being brainwashed by Red Hat, but I'm also probably gonna swap out my home server with Fedora instead of Debian.</p>
 <p>But that's ALL besides the point. Today I set up a cool thing which I shall now share with you now.</p>
-<div class="highlight"><pre># lvs
+<div class="highlight"><pre><span></span># lvs
 
   LV            VG    Attr       LSize  Pool    Origin Data%  Meta%
   homey         purin Vwi-aotz--  1.00t thinset          2.24     
@@ -41,7 +42,7 @@
 
 <p>Here you can see that I have a 50G lvm thin pool called "thinset" (at the bottom), and within this pool is a logical thin volume called "homey". Then there are three snapshots that use "homey" as their origin, meaning they are a snapshot of "homey," and will copy the required bytes on write to maintain their snapshot state.</p>
 <p>What ISN'T shown here is that I currently have the "homey" LV mounted at <code>/home</code></p>
-<div class="highlight"><pre># df -h
+<div class="highlight"><pre><span></span># df -h
 
 Filesystem               Size  Used Avail Use% Mounted on
 /dev/mapper/purin-homey 1008G  6.0G  951G   1% /home
@@ -49,7 +50,7 @@ Filesystem               Size  Used Avail Use% Mounted on
 
 
 <p>There are the usual interesting things about lvmthin volumes that you can note here, such as <code>df</code> believing the filesystem only has 1% of its "1008G" used, when in reality the thin pool only has 50G that it is able to allocated. But you can also see that I have snapshots of the form <code>snapMM.DD.YY(e/m)</code>, which are taken daily on that date (with e for evening and m for morning). This was configured via <code>cron</code> by editing <code>/etc/crontab</code> to have the following new lines appended:</p>
-<div class="highlight"><pre>  0  10 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)m
+<div class="highlight"><pre><span></span>  0  10 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)m
   0  17 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)e
 </pre></div>
 
@@ -57,7 +58,7 @@ Filesystem               Size  Used Avail Use% Mounted on
 <p>Making my snapshot commands being run on the 10th (10AM) and 17th (5PM) hours of each day. It's also worth noting that <code>anacron</code> could be used if I wanted to queue up the snapshots for when the computer was powered down, but that isn't desired behavior, at least not for me.</p>
 <p>You might be thinking to yourself "Okay who cares about cron what does that really have to do with your internship?" To which I respond it's just cool, okay?! SHARING IS CARING.</p>
 <p>Some more things to note here is that I did have to create the "homey" LV from nothing and manually copy over my files from my old <code>/home</code>. This is due to the fact that I needed it to be within a thin pool, and you can only take thin snapshots of an external origin (LV that isn't within a thin pool) when that source is read-only. I thought I'd just start it all over.</p>
-<div class="highlight"><pre>lvconvert --merge purin/snapMM.DD.YYz
+<div class="highlight"><pre><span></span>lvconvert --merge purin/snapMM.DD.YYz
 </pre></div>
 
 
@@ -105,4 +106,7 @@ Filesystem               Size  Used Avail Use% Mounted on
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">&copy; 2005-2016 VGMoose</div>
+	<!-- home_page
+	<iframe src="../../http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
+	home_page -->
 </div>

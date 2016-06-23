@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="../../layout/style.css"></link>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'></link>
     <title>Day 04 - LVM and LVM Snapshots</title>
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" />
+    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
     <div id="nav">
         <ul>
             <li><a href="../../">Blog</a></li>
@@ -30,19 +31,19 @@
 <p><img alt="Blog Image" src="../../posts/23353652 - Day 04 - LVM and LVM Snapshots.post/lvm.png" /></p>
 <p>Okay, I've pretty much ALREADY butchered this explanation, so let's try to salvage what I've said so far with this diagram. At the bottom layer are the physical volumes. In this case, there are two SEPARATE devices (<code>/dev/sda</code> and <code>/dev/sdb</code>). They don't actually have to be the same size but in this case they are. Now, these could be like, a spinning hard disk and a flash drive, for example. Then on top of this you create something called a volume group (VG). On top of that are the actual logical volumes which can be split up however you want, and then finally those volumes can be formatted as filesystems.</p>
 <p>For simplicity's sake, these instructions are going to refer to a single 32GB device, <code>/dev/sdc</code> that is assumed to be totally unallocated (no filesystems). While you span multiple different types of device media, lvm still has benefits to offer on a single physical device. You can play along at home if you'd like by destroying all the filesystems on it through a tool like parted or gparted.</p>
-<div class="highlight"><pre>pvcreate /dev/sdc1
+<div class="highlight"><pre><span></span>pvcreate /dev/sdc1
 vgcreate dat_group_name_tho /dev/sdc1
 </pre></div>
 
 
 <p>So now we've got ourselves a volume group spanning the entire USB stick. If you had an existing filesystem on <code>/dev/sdc1</code>, but some unallocated space after, you could also have created the physical volume (with <code>pvcreate</code>) on /dev/sdc2.</p>
 <p>So now check this out:</p>
-<div class="highlight"><pre>lvcreate --size 10G --name first_lv dat_group_name_tho
+<div class="highlight"><pre><span></span>lvcreate --size 10G --name first_lv dat_group_name_tho
 </pre></div>
 
 
 <p>This creates a single 10GB logical volume across the device. Keep in mind this now leaves us with 22GB left free to create more logical volumes within this volume group. This of course can be formatted an mounted just like any real disk.</p>
-<div class="highlight"><pre>mkfs.ext4 /dev/mapper/dat_group_name_tho-first_lv
+<div class="highlight"><pre><span></span>mkfs.ext4 /dev/mapper/dat_group_name_tho-first_lv
 mkdir /mnt/my_lvm
 mount /dev/mapper/dat_group_name_tho-first_lv /mnt/my_lvm
 </pre></div>
@@ -50,12 +51,12 @@ mount /dev/mapper/dat_group_name_tho-first_lv /mnt/my_lvm
 
 <p>Nothing special so far though, ya? WRONG. So in between the LV and the PV exists something called the device mapper, of which I know nothing about. Hopefully I will learn about it in the future, though. But thanks to this, it's possible to play with the data in some interesting ways, including making <a href="http://en.wikipedia.org/wiki/Snapshot_(computer_storage)">snapshots</a> of the filesystem.</p>
 <p>So here's how this diddy breaks down: a snapshot, from the moment it is created on a target filesystem, is a logical volume itself that will store the <strong>differences</strong> between it and the target volume. That is, physically the snapshot logical volume will ONLY contain the old bytes that have since been overwritten on the original device since it was taken. This means that the snapshot will be empty until a write is made on its target. Then the old data, before being overwritten will be written to the snapshot volume. Using this small set of differences, given a snapshot and its target, one can recreate the entire filesystem from the point it was taken.</p>
-<div class="highlight"><pre>lvcreate --snapshot dat_group_name_tho/first_lv --size 200M --name snap5_27_14 dat_group_name_tho
+<div class="highlight"><pre><span></span>lvcreate --snapshot dat_group_name_tho/first_lv --size 200M --name snap5_27_14 dat_group_name_tho
 </pre></div>
 
 
 <p>Above I've created a snapshot of our <code>first_lv</code> using <code>lvcreate</code>, just like other logical volumes, but using the <code>--snapshot [target]</code> argument. Now here's the fun part: MOUNTING that snapshot.</p>
-<div class="highlight"><pre>mkdir /mnt/snap
+<div class="highlight"><pre><span></span>mkdir /mnt/snap
 mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
 </pre></div>
 
@@ -107,4 +108,7 @@ mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">&copy; 2005-2016 VGMoose</div>
+	<!-- home_page
+	<iframe src="../../http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
+	home_page -->
 </div>

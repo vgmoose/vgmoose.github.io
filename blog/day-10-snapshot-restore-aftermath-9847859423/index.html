@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="../../layout/style.css"></link>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'></link>
     <title>Day 10 - Snapshot Restore Aftermath</title>
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" />
+    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
     <div id="nav">
         <ul>
             <li><a href="../../">Blog</a></li>
@@ -27,13 +28,13 @@
         <h2>Day 10 - Snapshot Restore Aftermath</h2>
         <p>So today I thought I'd through caution to the wind and just restore one of the daily snapshots that I had lying around from the cron job. This turned out to be not such a great idea... Despite being in charge of reviewing the documentation, it was not so obvious to me that upon merging one of the snapshots from my "Time Machine" the other ones would be de-linked as snapshots, and simply exist as thin volumes within the pool. This is pretty upsetting, as the inability to merge the snapshots that I have diminishes their value... Or so I thought.</p>
 <p>You see, as it turns out, and as I probably should have realized, merging thin snapshots isn't the only way to restore one of these snapshots. Since at a lower level device mapper is taking care of the bytes within the thin pool, I can simply rename the snapshot I want to restore's thin volume to my current one and swap them. As I've been backing up my home directory, I'll obviously have to do this either as root or from another volume, but such was the case with merging as well.</p>
-<div class="highlight"><pre>lvrename vg/cur_home old_home
+<div class="highlight"><pre><span></span>lvrename vg/cur_home old_home
 lvrename vg/snap_to_restore cur_home
 </pre></div>
 
 
 <p>In addition to that, the skip automatic activation flags should be set up accordingly, and at the very least the new home volume should have it turned off. This is that weird <code>-k</code> stuff.</p>
-<div class="highlight"><pre>lvchange -kn vg/cur_home
+<div class="highlight"><pre><span></span>lvchange -kn vg/cur_home
 lvchange -ky vg/old_home
 </pre></div>
 
@@ -86,4 +87,7 @@ lvchange -ky vg/old_home
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">&copy; 2005-2016 VGMoose</div>
+	<!-- home_page
+	<iframe src="../../http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
+	home_page -->
 </div>

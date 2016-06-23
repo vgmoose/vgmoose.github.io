@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="../../layout/style.css"></link>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'></link>
     <title>Day 02 - Orientation Part 2</title>
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" />
+    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
     <div id="nav">
         <ul>
             <li><a href="../../">Blog</a></li>
@@ -70,17 +71,17 @@
 <p><img alt="Blog Image" src="../../posts/23345484 - Day 02 - Orientation Part 2.post/Sad-pug.jpg" /></p>
 <p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
 <p>To list all the logical volumes (these are the things that are within the encrypted partition)</p>
-<div class="highlight"><pre>lvdisplay
+<div class="highlight"><pre><span></span>lvdisplay
 </pre></div>
 
 
 <p>And information regarding the aforementioned volumes appeared, including their volume group name. In this case, the volume group name was RHELCSB6, (configured by the CSB).</p>
-<div class="highlight"><pre>lvcreate --size 30GB RHELCSB6
+<div class="highlight"><pre><span></span>lvcreate --size 30GB RHELCSB6
 </pre></div>
 
 
 <p>That's <strong>it</strong>. It was really confusing to see how simple this was via CLI, but how complicated and unrepresentable it was in the included GUI tools.</p>
-<div class="highlight"><pre>wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
+<div class="highlight"><pre><span></span>wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
 dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M
 </pre></div>
 
@@ -128,4 +129,7 @@ dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">&copy; 2005-2016 VGMoose</div>
+	<!-- home_page
+	<iframe src="../../http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
+	home_page -->
 </div>
