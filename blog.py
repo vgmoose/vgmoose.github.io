@@ -198,7 +198,7 @@ if action == "compile":
     template = template.replace("<!-- entry_group", "")
     template = template.replace("entry_group -->", "")
     template = template.replace("<!-- home_page", "")
-    template = template.replace("home_page-->", "")
+    template = template.replace("home_page -->", "")
     template = template.replace("$title", "VGMoose's Blog")
     template = template.replace("$entry_group", '<br>'.join([(groups[x].prop["date"][:4]+": <a href=\"blog/"+groups[x].dirname+"\">"+groups[x].prop["title"]+"</a> <div class='minidescription'>")+groups[x].minicontent+"</div>" for x in range(0, len(groups))]))
     main = open("index.html", "w")
