@@ -47,6 +47,7 @@ all_posts = {
     "5067427085": "/blog/long-awaited-blog-post-5067427085/",
     "5495631835": "/blog/release-underscore-5495631835/",
     "5522555225": "/blog/first-post-5522555225/",
+    "5574192608": "/blog/leaving-ubuntu-for-fedora-5574192608/",
     "5602543114": "/blog/in-which-i-am-a-dirty-liar-5602543114/",
     "6084689264": "/blog/game-boy-color-frontscreen-mod-6084689264/",
     "6148983223": "/blog/day-06-life-at-red-hat-6148983223/",
