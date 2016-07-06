@@ -11,6 +11,7 @@ all_posts = {
     "0961442332": "/blog/thinkings-and-worklike-creatures-0961442332/",
     "1000491202": "/blog/day-05-thinly-provisioned-snapshots-1000491202/",
     "1007049060": "/blog/feature-stay-signed-in-1007049060/",
+    "1036709243": "/blog/about-me-1036709243/",
     "1665286367": "/blog/making-octopusslapcom-1665286367/",
     "1710207424": "/blog/in-which-deadspace-is-awesome-1710207424/",
     "1825609820": "/blog/the-pokemon-aftercraze-1825609820/",

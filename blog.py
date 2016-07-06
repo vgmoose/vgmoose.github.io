@@ -132,14 +132,10 @@ if action == "compile":
     
         # open the content markdown file        
         content = Content("posts/"+e+"/content.md", e)
-        if "hidden" in content.prop and content.prop["hidden"] == "true":
-            pbar.update(cur_count+1)
-            cur_count+=1
-            continue
-
         e = content.folder 
         
-        groups.append(content)
+        if "hidden" not in content.prop or content.prop["hidden"] != "true":
+            groups.append(content)
             
 #        if len(groups) > 10:
 #            groups.pop(0)
