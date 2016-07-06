@@ -124,6 +124,9 @@ if action == "compile":
     
     # keep track of all uris (id -> uri)
     urimap = {}
+    
+    # keep track of all human readable titles (id -> title)
+    humanmap = {}
 
     # build all md files in posts
     for e in all_posts:
@@ -171,7 +174,8 @@ if action == "compile":
         
         content.dirname = dirname
         
-        urimap[content.prop["id"]] = "/blog/"+dirname+"/";
+        urimap[content.prop["id"]] = "/blog/"+dirname+"/"
+        humanmap[content.prop["id"]] = content.prop["title"]
         
         os.mkdir("blog/"+dirname)
         blog = open("blog/"+dirname+"/index.html", "w")
@@ -210,6 +214,7 @@ if action == "compile":
     template = template.replace("search_group -->", "")
     template = template.replace("$title", "VGMoose.com Search")
     template = template.replace("$search_vocab", json.dumps(vocab, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': ')))
+    template = template.replace("$search_lookup", json.dumps(humanmap, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': ')))
     template = template.replace("href=\"", "href=\"../")
     template = template.replace("src=\"", "src=\"../")
     template = template.replace("../http", "http")

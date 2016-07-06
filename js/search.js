@@ -37,7 +37,8 @@ function doSearch()
     for (var id in results)
     {
         var words = results[id];
-        output += "Post #<a href=\"/" + id + "\">"+id+"</a> contains [" + words + "]<br>";
+        var post_name = lookup[id];
+        output += "<a href=\"/" + id + "\">"+post_name+"</a> contains [" + words + "]<br>";
     }
     
     output += "</p>";
