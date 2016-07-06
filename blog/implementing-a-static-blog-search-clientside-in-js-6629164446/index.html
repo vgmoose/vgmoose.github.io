@@ -30,26 +30,28 @@
 <p>However, there was something that the site had been lacking, and that was a way to go through and actually search through the posts that I had been made. I had a couple of ideas on how to go about this without having to add overhead with a backend.</p>
 <h3>Idea #1 Searching Categories Only</h3>
 <p>My initial intent of the "categories" to the left of every blog post was to generate separate json blobs for every unique category to keep track of which posts were in which categories. Posts can already be referred to by their unique post IDs (seen in the URL). So for instance:</p>
-<pre class="highlight"><code>{
+<div class="highlight"><pre>{
     &quot;tutorial&quot; : [1, 4, 7],
     &quot;javascript&quot; : [1, 2, 5, 6],
     ...
-}</code></pre>
+}
+</pre></div>
 
 
 <p>In my case post IDs are 10 digits, though. So the idea here is that a search can go through specified known tags and return the matches in the form of links to blog posts. This approach is okay, but only covers the tags, which is a small subset of the content in the posts obviously!</p>
 <h3>Idea #2 Searching Everything</h3>
 <p>Scrapping the category-based search ont the grounds of being too limited, I wanted to provide the full powers of an actual search engine. Well there's one pretty straightforward way to accomplish that: provide every blog post in its entirety to the client all at once for manually searching in javascript. The JSON in this case would look like this:</p>
-<pre class="highlight"><code>{
+<div class="highlight"><pre>{
    &quot;6629164446&quot; : &quot;One of the primary features of the blog on this website is the fact that it is compiled offline with a python script and then served ... &quot;,
    ...
-}</code></pre>
+}
+</pre></div>
 
 
 <p>The issue with this is twofold: firstly, I'm providing the entirty of the site just for the search page. The more blog posts, the more text this is going to be. The second issue is similar: every search query is going to to have to thumb through all the words in all the entries. This is probably actually never a real issue due to the size of my blog, but still it isn't very efficient</p>
 <h3>Idea #3 Inverted Index</h3>
 <p>An <a href="https://en.wikipedia.org/wiki/Inverted_index">inverted index</a> is a search engine teachnique to speed up the esponse time of a query. The term inverted index refers to the fac that it's the opposite of a <a href="https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index">forward index</a>. A forward index is a mapping of the indentifier (post ID) to the set of unique words that are within it. An inverted index flips the key and the entry types, and uses the unique words as the key and the entries as the set of identifiers that the word is in. Below is an example:</p>
-<pre class="highlight"><code>{
+<div class="highlight"><pre>{
     &quot;permanent&quot;: [
         &quot;4632920139&quot;
     ],
@@ -69,7 +71,8 @@
         &quot;6547939220&quot;
     ]
     ...
-}</code></pre>
+}
+</pre></div>
 
 
 <p>So now, it's easy to break the search query into unique words and then look those words up in that data structure. This results in a set of blog post IDs that match for each word in the query. It also means that the keyset of this dictionary is the set of unique words in all my blog posts, or in other words my blog's "vocabulary".</p>

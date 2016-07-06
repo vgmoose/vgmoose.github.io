@@ -71,16 +71,19 @@
 <p><img alt="Blog Image" src="../../posts/23345484 - Day 02 - Orientation Part 2.post/Sad-pug.jpg" /></p>
 <p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
 <p>To list all the logical volumes (these are the things that are within the encrypted partition)</p>
-<pre class="highlight"><code>lvdisplay</code></pre>
+<div class="highlight"><pre>lvdisplay
+</pre></div>
 
 
 <p>And information regarding the aforementioned volumes appeared, including their volume group name. In this case, the volume group name was RHELCSB6, (configured by the CSB).</p>
-<pre class="highlight"><code>lvcreate --size 30GB RHELCSB6</code></pre>
+<div class="highlight"><pre>lvcreate --size 30GB RHELCSB6
+</pre></div>
 
 
 <p>That's <strong>it</strong>. It was really confusing to see how simple this was via CLI, but how complicated and unrepresentable it was in the included GUI tools.</p>
-<pre class="highlight"><code>wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
-dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M</code></pre>
+<div class="highlight"><pre>wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
+dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M
+</pre></div>
 
 
 <p>Where /dev/sdc is the usb device. The rest of the fedora process was straightforward, and the install also picked up the RHEL6 CSB install as long as it was mounted during the installation.</p>

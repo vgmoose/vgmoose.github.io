@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
-    <title>Chromebook Screen Dimming Tip</title>
+    <title>[release] Homebrew App Store (for Wii U)</title>
 </head>
 
 <div id="all">
@@ -21,38 +21,15 @@
     
     
     <div id="sidebar">
-        Date: 2015-03-15 16:37:47<br />
-        Tags: chromebook, linux, bash<br />
+        Date: 2016-07-05 20:17:33<br />
+        Tags: wii u, homebrew, release, app store<br />
     </div>
     <div id="content">
-        <h2>Chromebook Screen Dimming Tip</h2>
-        <p>I was looking for an alternative to f.lux / screen filter (android) / shades (mac) to keep the screen more dim at night, and couldn't find one that I liked. A lot of them would just dim the webpage and not the whole system. However, on linux there's a trick you can do to write the brightness value directly from the terminal, and I wondered if the same trick would work on chromeos.</p>
-<p>With developer mode on, from crosh (ctrl+alt+T):</p>
-<div class="highlight"><pre>shell
-sudo su
-cd $(dirname $(find /sys -name brightness))
-</pre></div>
-
-
-<p>This will bring you to a directory with brightness information. On my Samsung chromebook this was <code>/sys/devices/backlight.12/backlight/backlight.12/</code></p>
-<p>From here, you can use the following commands to check the max brightness, current brightness, and then set your own.</p>
-<p>This will display the current brightness value:</p>
-<div class="highlight"><pre>cat actual_brightness
-</pre></div>
-
-
-<p>This will display the maximum brightness value:</p>
-<div class="highlight"><pre>cat max_brightness
-</pre></div>
-
-
-<p>This will set the brightness value to whatever number you put there (in this case, 7):</p>
-<div class="highlight"><pre>echo 7 &gt; brightness
-</pre></div>
-
-
-<p>My chromebook, using just the buttons would allow me to go as low as 18, and so using this trick I was able to make it 1/3 as the dimmest settings the buttons would go!</p>
-<p>This may have gotten a little technical, but it isn't using crouton or any other linux things, just out of the box developer mode. I was very impressed to see this linux trick still work on chromeos.</p>
+        <h2>[release] Homebrew App Store (for Wii U)</h2>
+        <p>On July 4th, 2016, I released another homebrew app for the Wii U called the Homebrew App Store! <a href="https://www.youtube.com/watch?v=dC8SdRMTidg">Here's a video</a> of me using it.</p>
+<p>Check out the <a href="https://gbatemp.net/threads/release-homebrew-app-store.433275/">thread here</a> for information about on how to use it. The source code is available on <a href="https://github.com/vgmoose/hbas">my github</a>.</p>
+<p><a href="https://www.youtube.com/watch?v=dC8SdRMTidg"><img alt="App menu" src="../../posts/24462737 - [release] Homebrew App Store (for Wii U).post/screenshot.png" /></a></p>
+<p>See the github readme for more information!</p>
     </div>
     
     
@@ -82,7 +59,7 @@ cd $(dirname $(find /sys -name brightness))
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
             var disqus_shortname = 'vgmoose';
-            var disqus_identifier = 2405391604;
+            var disqus_identifier = 6514140396;
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {

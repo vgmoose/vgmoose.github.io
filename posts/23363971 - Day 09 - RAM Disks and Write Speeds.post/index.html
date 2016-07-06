@@ -1,32 +1,38 @@
 <p>As discussed in yesterday's post, caching is beneficial when a large slow volume is assisted by a fast small one. While it isn't a practical use for production, my manager suggested I could emulate this faster behavior by using a ramdisk, as 2/3 of my machines don't have flash storage. A <a href="http://en.wikipedia.org/wiki/RAM_drive">RAM disk</a>, (which, from this point on, I shall continue going back and forth between "RAM disk" and "ramdisk" spellings) allows a piece of memory to be sectioned off and mounted like a disk would. This means it no longer performs its RAM duties of storing memory, and the computer effectively treats your computer has having that much less RAM.</p>
-<pre class="highlight"><code>mkdir /mnt/ramdisk
-mount -t tmpfs -o size=4096m tmpfs /mnt/ramdisk</code></pre>
+<div class="highlight"><pre>mkdir /mnt/ramdisk
+mount -t tmpfs -o size=4096m tmpfs /mnt/ramdisk
+</pre></div>
 
 
 <p>Those commands will create a ramdisk on a linux system. <a href="http://www.tekrevue.com/tip/how-to-create-a-4gbs-ram-disk-in-mac-os-x/">Mac instructions here</a>. You can then test the write speed, and note how much faster the RAM disk reacts than your disk originally had.</p>
-<pre class="highlight"><code># dd if=/dev/zero of=/mnt/ramdisk/disk.img bs=1m count=4096
+<div class="highlight"><pre># dd if=/dev/zero of=/mnt/ramdisk/disk.img bs=1m count=4096
 4194304000 GB transferred in 4.0 GB/s
 # dd if=/dev/zero of=~/disk.img bs=1m count=4000
-4194304000 GB transferred in 300 MB/s</code></pre>
+4194304000 GB transferred in 300 MB/s
+</pre></div>
 
 
 <p>As seen there, the RAM is much faster. There are a couple of issues of course. The biggest one is when you reboot the ramdisk won't just be unmounted- it will be totally deleted. So you can't really rely on it for anything. In fact, the linux commands I listed above use <a href="http://en.wikipedia.org/wiki/Tmpfs">tmpfs</a>, which is designed to optimize things in such a situation.</p>
 <p>There's another problem, though. I wanted to use the RAM disks as physical volumes on which to extend a volume group over to use it with lvmcache. AFAIK, the only way to do this is via a loopback device, as "mounting" the ramdisk doesn't actually count as a device in <code>/dev</code>, which is required to create a physical volume.</p>
-<pre class="highlight"><code>losetup /mnt/ramdisk/disk.img /dev/loop1</code></pre>
+<div class="highlight"><pre>losetup /mnt/ramdisk/disk.img /dev/loop1
+</pre></div>
 
 
 <p>And after this, it can be formatted as an LVM2 Physical Volume and added to the volume group.</p>
-<pre class="highlight"><code>pvcreate /dev/loop1
-vgextend volume_group /dev/loop1</code></pre>
+<div class="highlight"><pre>pvcreate /dev/loop1
+vgextend volume_group /dev/loop1
+</pre></div>
 
 
 <p>There is a caveat to this though, which has hurt me on a couple of occasions-- since the loopback device is temporary, once the computer reboots the physical device won't exist anymore. Normally that would mean the data on that device wouldn't be accessible, but as that device was part of a volume group, the volume group becomes inconsistent, and won't be able to be mounted until it is properly repaired.</p>
 <p>To prevent this, prior to rebooting the following command needs to be executed:</p>
-<pre class="highlight"><code>vgreduce volume_group /dev/loop1</code></pre>
+<div class="highlight"><pre>vgreduce volume_group /dev/loop1
+</pre></div>
 
 
 <p>And the following command will attempt to backtrack you out of the situation where one forgets to do that prior to it, and needs to recover the volume group to access the logical volumes on it. Not that anyone would <em>ever</em> do that. </p>
-<pre class="highlight"><code>vgreduce volumegroup --removemissing</code></pre>
+<div class="highlight"><pre>vgreduce volumegroup --removemissing
+</pre></div>
 
 
 <p>(Yeah, I've more recorded these for myself to reference at a later date, so what.)</p>

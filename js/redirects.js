@@ -54,6 +54,7 @@ all_posts = {
     "6158133650": "/blog/blogging-for-the-sake-of-hearing-myself-talk-6158133650/",
     "6224099236": "/blog/all-i-do-is-haaaaxkkck-6224099236/",
     "6405610443": "/blog/release-lipsync-6405610443/",
+    "6514140396": "/blog/release-homebrew-app-store-for-wii-u-6514140396/",
     "6547939220": "/blog/experiment-6547939220/",
     "6627877368": "/blog/mario-face-6627877368/",
     "6629164446": "/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/",
