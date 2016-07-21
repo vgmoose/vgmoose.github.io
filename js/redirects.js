@@ -78,6 +78,7 @@ all_posts = {
     "9361767829": "/blog/again-9361767829/",
     "9430192265": "/blog/using-visual-boy-advance-9430192265/",
     "9640693481": "/blog/day-01-orientation-9640693481/",
+    "9660664784": "/blog/public-key-encryption-and-keybaseio-9660664784/",
     "9832105200": "/blog/im-not-dead-9832105200/",
     "9847859423": "/blog/day-10-snapshot-restore-aftermath-9847859423/",
     "9909702342": "/blog/jwiiload-9909702342/",
