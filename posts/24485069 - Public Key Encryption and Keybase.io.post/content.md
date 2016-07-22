@@ -13,7 +13,7 @@ I have recently signed up for [keybase.io](https://keybase.io/vgmoose), a websit
 
 You can visit [my keybase page](https://keybase.io/vgmoose) to see what I mean, or see my posts on [Twitter](https://twitter.com/vgmoose/status/755564068082110466), [Github](https://gist.github.com/vgmoose/213f95d077b7fa7a36cc94c9e03dc232), and [this site](http://vgmoose.com/keybase.txt). Now that I have a common hub that I can point people to, I can see myself using gpg/pgp more and more. Another useful thing about the site is that it will supply you with the curl/gpg commands to run, so you don't even have to rely on their custom (and open) client.
 
-I'm excited to embrace gpg and use it everywhere, with keybase.io helping me keep it all organized. I've already begun signing commits on Github (again) with my key, and over the next coming weeks, I intend to roll out signing for these blog posts and attach gpg signatures to my releases.
+I'm excited to embrace gpg and use it everywhere, with keybase.io helping me keep it all organized. I've already [begun signing commits](https://github.com/vgmoose/vgmoose.com/commits/gh-pages) on Github (again) with my key, and over the next coming weeks, I intend to roll out signing for these blog posts and attach gpg signatures to my releases.
 
 If you want to send me a message in the comments that only I can read, simply [go here](https://keybase.io/encrypt#vgmoose) and paste the contents into the comments! Similarly, when I do get around to updating my blog code to support signed posts, you can verify it from that site as well.
 
