@@ -19,6 +19,7 @@ all_posts = {
     "2007493297": "/blog/wiiload-for-android-2007493297/",
     "2008820336": "/blog/update-on-project-stick-2008820336/",
     "2091900798": "/blog/im-back-2091900798/",
+    "2383586894": "/blog/moving-from-github-pages-to-netlify-2383586894/",
     "2405391604": "/blog/chromebook-screen-dimming-tip-2405391604/",
     "2779102160": "/blog/hey-is-anybody-reading-this-yet-2779102160/",
     "2893699778": "/blog/orientation-thoughts-2893699778/",
