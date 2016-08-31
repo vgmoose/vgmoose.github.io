@@ -4,7 +4,7 @@ https://keybase.io/vgmoose
 
 I hereby claim:
 
-  * I am an admin of http://vgmoose.com
+  * I am an admin of https://vgmoose.com
   * I am vgmoose (https://keybase.io/vgmoose) on keybase.
   * I have a public key with fingerprint 8304 21EF D95C A2B9 C771  061E 143A D285 8525 B22E
 
@@ -21,17 +21,22 @@ To do so, I am signing this object:
             "uid": "8d9c95ed0db10f24e5f97320c7dfc319",
             "username": "vgmoose"
         },
+        "revoke": {
+            "sig_ids": [
+                "684c513ebc2586eee8f190322b307ce451aba74679f3c1cd231bc21593ac4dd80f"
+            ]
+        },
         "service": {
             "hostname": "vgmoose.com",
-            "protocol": "http:"
+            "protocol": "https:"
         },
         "type": "web_service_binding",
         "version": 1
     },
-    "ctime": 1468975718,
+    "ctime": 1472608469,
     "expire_in": 157680000,
-    "prev": "d531f2098e9c727fffa81a5445481810f67d7a960fa62f5636e3c49155550b5a",
-    "seqno": 4,
+    "prev": "17b6842eaafe9d7ac511729f96b17f0529543a7dfda36060d4ca57ee009d9f17",
+    "seqno": 11,
     "tag": "signature"
 }
 
@@ -40,23 +45,24 @@ which yields the signature:
 -----BEGIN PGP MESSAGE-----
 Version: GnuPG v1
 
-owGtUltIFFEY3jVNXCitNAqiy1hEtck5M3NmzmxFPUjahhFRZL2sM3POrIPrzLoz
-rUoEEVjYDY1Sq4coSZHCrlZsN7Ir5UNJQi+1EBQlomRQSBqdkXoIeux/OZz/fN93
-vv/jb5o2xZfhzw/1NzQsuVrkf/FZ820/+rxmN6fZpJ4L7eaq6ORBY4Q6bqTKJFyI
-AxBAQmUsA0klSKGiooiqACAFREIEU1EggqgiogEdI5HIlBg6JCIUENZUJCsygRJQ
-uSBnmFaUJuIJ03KZLBaAyENqEAXpKq8puixDIEEKRUElPEYY8UjjecqIlbbjMZg5
-TXVokWmzHrtEJu39A/+ffe+alMNE0RVECSAaBAYvUmQossADXWY8ASoe0KEJS62m
-DJ2MVtu2Q7k9QY41k6ZOvVy9Qf4GFOl2NWPGE7Zr63aMPVS6bjzk8dz6uAespVrk
-t0REMy3CQmSEJE04pm1xIciQumt6mlCUsCIjGeIgR+viZoJGTA+BZAkDVt43NMkk
-CRKgwQMF020sdl42DEPFUEWiiEQMMRtPkomsKhIwVIk3kCRIVNBFBSJWQENeKA6t
-sWwuJDKfapRpOmbUUt1dCTZyoNE/L9Pnz/BNzcrw1ssXyMn7s3PDrdkTs+6UntzS
-eH3DWpyXHlm+/mDPSGHBh+b9tRuHise7Pq2qmFOZX7/JPvb6QPGlecmOUwveHPm6
-dfbLTsLtnd7VW9IwPC33Rij1sWnZmpvvDsWcRWFn8MPOsvTj9tGzJQ07olf67If3
-vtt37we2vzUKS7rfd/Rlnyc14Xj4QMnKnwXO5aWjqXMzH42nwOJ0+Y356eZ92/a0
-l4ek02OpxFhg6Ba+1dU2u/dpsHNgQeagujDWUtf5ZSAzJ5LVUzs3fPPZxYoNsc3F
-jcXv7Y9dT5r6152pbW778X1Qm3jQB6zD2Xm5t7/d5hadGFvxojQ20X0oa/Wrh61l
-i93C49fGCy60cLkV5oxf
-=JZ1v
+owGtUk1oVUcYfflRa7TowoA/odgrLooxzsy9c+fOc+EPTVVCF68gghqfc2e+m1zi
+e/d57/NZCWJBo9FQIxpsDVoLlqKLdmHMxt9AxEWMPjUqFkykVDHRZCFqQxWhc0O7
+EFw6m2Fmzjnf+c43hz4tS5SWzEreaWlZeLam5PqIm1h3zXnRbLiB2mEkm40mmNhg
+i4Ion27ylZE0EEZYAXMYsoWiHCzOLWEiDEjZVDlgmcq0BFUukg61FAPlSawsbFLH
+FZRxprCNhFFteH62AcJc6GfzWtYxkUUweIpTKYjLJWMY2RiwZQpFHOpQQl1CQBMb
+gyhmaHOuiKDGD/SdPqQn7H0A/5F9b5uQcxSXnIJCysXIIxZQjzOTIMk0z8Q8BkYQ
+ZkUGNLrQkAmCCIyd1UYIhaAJ4lgjv0F7jozkBsN2LEmxCa4k1LEBwPEwRyYhromY
+BIti4Qpm2Yx7psRSERNrKKbcFNJSykGeUa+1dcGCLyfE45DeL14jg4x2lQuDfCCD
+LfqhMZ/PRcnYVH5HLkZ2bQc3/Z9I2vWzSo9IUwoQRn6QNZJYQ2Xej1WxxYiNHMvm
+1QZ8m/NDSPsxgjLbQXrFhaAQD4S5ujsCQnjAFRO6T8wI97jtYuYhSjjVI9OpKWHa
+yEbKkjpuAIS44h5mRtzW1mygtbE2Khq0pk4uK/LbQh1oxf6SqvJESWli8qTS+PMm
+KqbO/P9HP5g15V3lnLmFju2JBZ9MOjfUveL0jzPqviuO71063N/aZ6/+9ZT3+diM
+Qwc6RfFe3VCmmOrpWdk32JG6tGblxa3nu/sX328tO717bP6t47sGrz6fM/vU6rWD
+IapoftXRjU5OHm6vHjo47eC06X29q756c+J1+IzcWPZsfvuf8q3xw2/1UNVaWVve
+fqztZZdZk9n3O1wu/nwsOnOkc+f6ha1Xqt7g2oFUb+fD4b9+mt74pPhL8Liu7fbh
+XaN/3xyv3RQOpRb7Z3sODGTutrHellSGfDEw+uXy0f5FlYMdy/94tPHpy2sBHtnX
+W/nP15ndXfXFWv/I0wvnNo89GXkw/tm8O0u+v13++uSeb8qO/gs=
+=O4gP
 -----END PGP MESSAGE-----
 
 And finally, I am proving ownership of this host by posting or
@@ -65,3 +71,4 @@ appending to this document.
 View my publicly-auditable identity here: https://keybase.io/vgmoose
 
 ==================================================================
+
