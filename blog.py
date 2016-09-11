@@ -182,6 +182,14 @@ if action == "compile":
         blog.write(temp_template)
         blog.close()
         
+        # if this is the 404 page ID, hardcoded
+        if (content.prop["id"] == "9298654889"):
+            h404 = open("404.html", "w")
+            h404.write(open("layout/404.html", "r").read())
+            temp_template.replace("../../", "https://vgmoose.com/")
+            h404.write(temp_template)
+            h404.close()
+        
         pbar.update(cur_count+1)
         cur_count+=1
     

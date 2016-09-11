@@ -1,0 +1,37 @@
+<!--
+<style>
+  body
+  {
+    background-color: rgb(247, 246, 246);
+  }
+</style>
+-->
+
+<script src="/js/redirects.js"></script>
+
+<script>
+    var path = window.location.pathname;
+    path = path.replace(/\//g, "");
+    path = path.substring(path.length-10, path.length);
+    
+    // try to redirect to a blog post if possible
+    if (path in all_posts)
+    {
+        // redirect to this post
+        location.href = all_posts[path];
+    }
+    else if (location.hash.length < 2)
+    {
+        // legacy handler for migration from backpack
+        location.href = "http://backpack.vgmoose.com" + window.location.pathname;
+    }
+</script>
+
+<!--
+<noscript>
+  Could not find the page you were looking for!<br><br>
+  
+  Try putting "backpack." infront of "vgmoose.com" in the url. Or if you have javascript, you wil be redirected automatically.
+</noscript>
+-->
+

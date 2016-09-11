@@ -1,9 +1,11 @@
+<!--
 <style>
   body
   {
     background-color: rgb(247, 246, 246);
   }
 </style>
+-->
 
 <script src="/js/redirects.js"></script>
 
@@ -18,15 +20,97 @@
         // redirect to this post
         location.href = all_posts[path];
     }
-    else
+    else if (location.hash.length < 2)
     {
         // legacy handler for migration from backpack
         location.href = "http://backpack.vgmoose.com" + window.location.pathname;
     }
 </script>
 
+<!--
 <noscript>
   Could not find the page you were looking for!<br><br>
   
   Try putting "backpack." infront of "vgmoose.com" in the url. Or if you have javascript, you wil be redirected automatically.
 </noscript>
+-->
+
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="../../layout/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+    <title>404 Error - Page Not Found!</title>
+</head>
+
+<div id="all">
+    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="nav">
+        <ul>
+            <li><a href="../../">Blog</a></li>
+            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
+            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
+            <li><a href="https://github.com/vgmoose/">Github</a></li>
+            <li><a href="../../blog/about-me-1036709243/">About</a></li>
+            <li><a href="../../search/">Search</a></li>
+        </ul>
+    </div>
+    <br>
+    
+    
+    <div id="sidebar">
+        Date: 2016-09-11 17:08:39<br />
+        Tags: 404, error, oops, javascript<br />
+    </div>
+    <div id="content">
+        <h2>404 Error - Page Not Found!</h2>
+        <p>The resource that you were expecting to see here either is no longer here or never was.</p>
+<p>This is bad!!</p>
+<p>While I find it very difficult to keep all my older links up and running, I get so very frustrated when some resource on the web I'm looking for 404's. As a result, I've tried to remedy these issues through a series of Javascript redirect tricks and subdomains.</p>
+<p>In other words, I'm sorry that you're seeing this page! I would really like to fix all my 404 errors, so please <a href="mailto:me@vgmoose.com">send me a message</a> telling me the url that 404'd and the page that you were looking for.</p>
+<p>Thank you! And I'm serious, please email me: I want to fix this!</p>
+    </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+<br />
+    entry_group -->
+    
+    <!-- search_group
+    <div id="content">
+        <h2>Search vgmoose.com</h2>
+        <p class="hideme">Search is loading...</p>
+        <script src="../../https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script>lookup = $search_lookup;</script>
+        <script>vocab = $search_vocab;</script>
+        <script src="../../js/search.js"></script>
+        <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
+        <div id="results"></div>
+        <br>
+    </div>
+    search_group -->
+    
+    <br>
+    
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = 9298654889;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">&copy; 2005-2016 VGMoose</div>
+	<!-- home_page
+	<iframe src="../../http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
+	home_page -->
+</div>

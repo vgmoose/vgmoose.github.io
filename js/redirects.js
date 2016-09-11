@@ -76,6 +76,7 @@ all_posts = {
     "9029169910": "/blog/ohai-9029169910/",
     "9037637820": "/blog/yeah-you-update-that-blog-9037637820/",
     "9243474000": "/blog/also-9243474000/",
+    "9298654889": "/blog/404-error-page-not-found-9298654889/",
     "9361767829": "/blog/again-9361767829/",
     "9430192265": "/blog/using-visual-boy-advance-9430192265/",
     "9640693481": "/blog/day-01-orientation-9640693481/",
