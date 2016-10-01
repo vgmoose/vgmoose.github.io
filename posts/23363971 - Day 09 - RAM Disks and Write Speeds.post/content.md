@@ -29,7 +29,7 @@ As seen there, the RAM is much faster. There are a couple of issues of course. T
 There's another problem, though. I wanted to use the RAM disks as physical volumes on which to extend a volume group over to use it with lvmcache. AFAIK, the only way to do this is via a loopback device, as "mounting" the ramdisk doesn't actually count as a device in ```/dev```, which is required to create a physical volume.
 
 ```
-losetup /mnt/ramdisk/disk.img /dev/loop1
+losetup loop1 /mnt/ramdisk/disk.img
 ```
 
 And after this, it can be formatted as an LVM2 Physical Volume and added to the volume group.
