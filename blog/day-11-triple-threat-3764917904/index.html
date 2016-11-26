@@ -32,8 +32,7 @@
 <p>Now don't get me wrong, breaking the computers isn't necessarily <em>bad</em>. The actual problem is the fact that usually they break because of something that <em>I</em> do to them that's out of line. But then I learn so even that isn't a lose-lose situation. In reality, if I could find something that the user would expect to work according to the documentation that consistently (this being the key word here) breaks the machine, then I can create a bugzilla report from that.</p>
 <p>So today's big news was that I had all three computers down, and was gong back and forth between them all frantically trying to fix them. For the laptop that means making sure I can still boot to my fedora install-- this usually means fixing it from the rhel7 release candidate dual boot. For the other two computers, it's reformatting them and deciding on a new order / seeing what exactly went wrong during the latest install. Although Red Hat has a network boot system with a bunch of system installers on it, I usually find it easier to use my usb with rhel7 on it.</p>
 <p>I'm pretty picky with bugs, but I am surprised by how it can sometimes be very simple to break the boot order. That being said, I am practically playing with fire here with some of the commands that I run.</p>
-<div class="highlight"><pre>mkfs.ext4 /dev/mapper/vg-thinpool
-</pre></div>
+<pre class="highlight"><code>mkfs.ext4 /dev/mapper/vg-thinpool</code></pre>
 
 
 <p>The above command will format the thinpool and at first I was surprised that it worked, but in retrospect I don't know how it could be prevented. Upon running it my thin volumes that were within that pool seemed totally broken (and I can't say that I didn't expect them to be.)</p>

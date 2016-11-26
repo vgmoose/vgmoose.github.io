@@ -38,10 +38,9 @@ Above: The default Fedora 24 gnome-3 desktop (<a href="https://i.imgur.com/GnmY4
 <p>Not surprisingly, the computer failed to boot. It was in a strange halfa-state, where the glibc library wasn't installed. And most things depend on glibc! Fortunately, although bash wouldn't work, the recovery mode in Ubuntu jumps to busybox, which isn't linked against glibc. From here I was able to fetch and manually install some .deb files that provided glibc. Then I couldn't boot, but I could get to bash, and apt was working.</p>
 <p>Now I know, perhaps I should cut my losses at this point. Machine lost power mid-upgrade, it's over. Reinstall. But apt is working! If I could repair the packages, surely, I should be fine. I obtained a slew of errors whenever I tried to get apt-get to do anything that I wanted. Most of them seemed to be related to dependency problems. For instance, it would say that it couldn't install something because of something else being a newer version, and that it wouldn't downgrade. </p>
 <p>Let me save you some time if you ever run into apt-get troubles. Everything you ever google and look up online will always recommend the following advice:</p>
-<div class="highlight"><pre>apt-get clean
+<pre class="highlight"><code>apt-get clean
 apt-get update
-apt-get install -f
-</pre></div>
+apt-get install -f</code></pre>
 
 
 <p>Sounds so simple. Well I've never had that work... ever. Never has that resolved apt-get dependency issues I've had in the past, not just now. It doesn't prevent people from continuing to recommend it, however. I wish I could tell you the specific error messages that I came across, but I don't have access to them right now.</p>
