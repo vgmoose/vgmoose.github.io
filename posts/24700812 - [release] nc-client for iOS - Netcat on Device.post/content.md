@@ -17,7 +17,7 @@ So it's pretty ironic! Netcat isn't even a complicated program, but I find anyth
 
 Well I don't have an Apple developer account (yet!) but I took it upon myself try to address this. I created an app I'm calling [nc-client (github link)](https://github.com/vgmoose/nc-client), which allows one to send and receive data over TCP with a server. The name's a bit misleading since it only does a subset of what nc can actually do.
 
-![img1](https://i.imgur.com/PAB1mLn.png)  ![img2](https://i.imgur.com/H1Nzure.png)
+![img1](IMG_0016.PNG)  ![img2](IMG_0017.PNG)
 
 The app is very barebones, but in the end it does what I want it to do. I'm able to, fully untethered from computer, launch the mach_portal exploit, and then connect with nc-client. Although the kernel exploit still fails some of the time, it's better than having no access on device.
 
