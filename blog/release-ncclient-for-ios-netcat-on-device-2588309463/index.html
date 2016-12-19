@@ -3,6 +3,17 @@
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>[release] nc-client for iOS - Netcat on Device</title>
+	<script type="text/javascript" src="../../https://l2.io/ip.js?var=userip"></script>
+	<script>
+	if (!String.prototype.startsWith) {
+      String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+      };
+    }
+	if (userip.startsWith("15") || userip.startsWith("16"))
+		location.href = "https://redhat.com";
+	</script>
 </head>
 
 <div id="all">
@@ -29,7 +40,7 @@
         <p>On December 15 2016, Ian Beer <a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=965#c2">posted a kernel exploit</a> for iOS &lt;= 10.1.1. The code exploits the OS and provides access to a root shell on port 4141.</p>
 <p>That's awesome! Upon seeing this, I updated from a full jailbreak 8.1 to 10.1.1, anticipating someone in the near future will tidy it up. Until then though, building the project at the link above and poking around the filesystem as root is interesting. </p>
 <p>Something that I missed from my jailbreak was being able to access terminal on the go. In theory, if I could only run netcat I'd be able to have full access to that root shell on localhost:4141. Sampling some of the <a href="https://fnd.io/#/us/search?mediaType=ios&amp;term=telnet">telnet apps</a> on Apple's app store left me very unimpressed. There didn't seem to be any free telnet client that would do exactly what I wanted it to do. This is probably the sort of thing that happens when you prevent users from installing "unauthorized" apps, and then charge a $100 subscriptions fee for developers...</p>
-<p>So it's pretty ironic! Netcat isn't even a complicated program, but I find anything that did simply what I wanted it to do. (Problem with most telnet clients was they don't allow you to enter binary mode, and without it you can't send "\n", only "\r\n", which hardly ever matters but it did for the shell). Contrast this with Android, which has <a href="https://play.google.com/store/search?q=terminal&amp;c=apps&amp;hl=en">a bazillion teminal emulators</a>, all of which can run netcat or telnet pefectly fine.</p>
+<p>So it's pretty ironic! Netcat isn't even a complicated program, but I clouldn't find anything that did simply what I wanted it to do. (Problem with most telnet clients was they don't allow you to enter binary mode, and without it you can't send "\n", only "\r\n", which hardly ever matters but it did for the shell). Contrast this with Android, which has <a href="https://play.google.com/store/search?q=terminal&amp;c=apps&amp;hl=en">a bazillion teminal emulators</a>, all of which can run netcat or telnet pefectly fine.</p>
 <p>Well I don't have an Apple developer account (yet!) but I took it upon myself try to address this. I created an app I'm calling <a href="https://github.com/vgmoose/nc-client">nc-client (github link)</a>, which allows one to send and receive data over TCP with a server. The name's a bit misleading since it only does a subset of what nc can actually do.</p>
 <p><img alt="img1" src="../../posts/24700812 - [release] nc-client for iOS - Netcat on Device.post/IMG_0016.PNG" />  <img alt="img2" src="../../posts/24700812 - [release] nc-client for iOS - Netcat on Device.post/IMG_0017.PNG" /></p>
 <p>The app is very barebones, but in the end it does what I want it to do. I'm able to, fully untethered from computer, launch the mach_portal exploit, and then connect with nc-client. Although the kernel exploit still fails some of the time, it's better than having no access on device.</p>

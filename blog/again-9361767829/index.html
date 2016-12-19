@@ -3,6 +3,17 @@
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Again!</title>
+	<script type="text/javascript" src="../../https://l2.io/ip.js?var=userip"></script>
+	<script>
+	if (!String.prototype.startsWith) {
+      String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+      };
+    }
+	if (userip.startsWith("15") || userip.startsWith("16"))
+		location.href = "https://redhat.com";
+	</script>
 </head>
 
 <div id="all">
