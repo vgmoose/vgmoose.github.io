@@ -121,6 +121,7 @@ pre, code
     position: relative;
 	text-align: right;
 	padding-right: 40px;
+	padding-left: 40px;
     color: #aaa;
     background-color: white;
 }
@@ -171,4 +172,15 @@ td, th
 #go_search
 {
     width: 70px;
+}
+
+.left
+{
+	float: left;
+	font-size: 12px;
+}
+
+.right
+{
+	float: right;
 }

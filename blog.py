@@ -165,10 +165,17 @@ if action == "compile":
         if (tdate.endswith(" 00:00:00")):
             tdate = tdate[:-9]
         temp_template = temp_template.replace("$date", tdate)
+        
+        # get appropriately sized ad based on how long this entry is
+        if len(tcontent) >= 1800:
+            appropriate_ad = '<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>'
+        else:
+            appropriate_ad = '<ins class="adsbygoogle" style="display:inline-block;width:120px;height:240px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="2990858106"></ins>'
             
         temp_template = temp_template.replace("$categories", content.prop["categories"])
         temp_template = temp_template.replace("$id", content.prop["id"])
         temp_template = temp_template.replace("$title", content.prop["title"])
+        temp_template = temp_template.replace("$adcode", appropriate_ad)
 
         dirname = dash_phrase(content.prop["title"]) + "-" + content.prop["id"]
         
