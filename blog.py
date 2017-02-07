@@ -101,6 +101,7 @@ if action == "compile":
     template = template.replace("href=\"", "href=\"../../")
     template = template.replace("src=\"", "src=\"../../")
     template = template.replace("href=\"../../http", "href=\"http")
+    template = template.replace("src=\"../../http", "src=\"http")
     template = template.replace("<!-- single_entry", "")
     template = template.replace("single_entry -->", "")
     
