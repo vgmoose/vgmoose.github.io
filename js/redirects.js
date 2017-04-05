@@ -2,6 +2,7 @@ all_posts = {
     "0151687467": "/blog/legitimate-blog-update-0151687467/",
     "0197999306": "/blog/happy-birthday-me-or-else-0197999306/",
     "0249017447": "/blog/inserting-custom-pokemon-sprites-0249017447/",
+    "0304645377": "/blog/using-a-swapfile-to-prevent-outofmemoryerror-in-android-0304645377/",
     "0310593175": "/blog/new-website-0310593175/",
     "0399843385": "/blog/first-post-0399843385/",
     "0404195330": "/blog/new-fullfledged-game-0404195330/",
