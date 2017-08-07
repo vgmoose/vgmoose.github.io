@@ -16,6 +16,7 @@ all_posts = {
     "1665286367": "/blog/making-octopusslapcom-1665286367/",
     "1710207424": "/blog/in-which-deadspace-is-awesome-1710207424/",
     "1825609820": "/blog/the-pokemon-aftercraze-1825609820/",
+    "1847368734": "/blog/fixing-a-suddenly-readonly-flash-drive-1847368734/",
     "1877256098": "/blog/an-interesting-purchase-1877256098/",
     "2007493297": "/blog/wiiload-for-android-2007493297/",
     "2008820336": "/blog/update-on-project-stick-2008820336/",
