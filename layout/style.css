@@ -40,7 +40,7 @@ a
 /*    font-style:oblique;*/
 }
 
-p a
+p a, #content li a
 {
     color: #009bff;
 }
