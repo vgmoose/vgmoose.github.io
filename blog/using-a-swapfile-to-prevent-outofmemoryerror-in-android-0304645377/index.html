@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="../../layout/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+    <title>Using a Swapfile to Prevent OutOfMemoryError in Android</title>
+	<!-- entry_group
+	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+	<script>
+	if (!String.prototype.startsWith) {
+      String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+      };
+    }
+	if (userip.startsWith("15") || userip.startsWith("16"))
+		location.href = "https://redhat.com";
+	</script>
+	entry_group -->
+</head>
+
+<div id="all">
+    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="nav">
+        <ul>
+            <li><a href="../../">Blog</a></li>
+            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
+            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
+            <li><a href="https://github.com/vgmoose/">Github</a></li>
+            <li><a href="../../blog/about-me-1036709243/">About</a></li>
+            <li><a href="../../search/">Search</a></li>
+        </ul>
+    </div>
+    <br>
+    
+    
+    <div id="sidebar">
+        Date: 2017-04-05 14:51:38<br />
+        Tags: android, memory, java, swap, root<br />
+		<br />
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+    </div>
+    <div id="content">
+        <h2>Using a Swapfile to Prevent OutOfMemoryError in Android</h2>
+        <p>I have an old <a href="https://en.wikipedia.org/wiki/Motorola_Droid">OG Motorola Droid</a>, which originally came with Eclair. It's a nice device to develop and debug Android apps on, as it provides a more-or-less accurate representation of what an underpowered device will look like when seeing how well your app performs. This is, in my opinion, an important but often neglected aspect of app development that often goes ignored. And when performance is ignored, apps get bloated and compete for resources, which is something that you rarely want to happen to your phone.</p>
+<p>However, as times change and Android as a platform evolves, my old Motorola Droid has been unable to be useful as a test device in this manner. This is largely in part to <a href="http://www.droid-life.com/2017/03/07/android-distribution-updated-march-2017-whoa-settle-nougat/">Ice Cream Sandwich and up accounting for 99% of all Android users</a>. Which I think either says something to Google doing a good job rolling out Ice Cream Sandwich, or just provides some perspective as to how quickly time can fly. Either way though, with custom ROMs the OG Droid can actually get to Ice Cream Sandwich and run it somewhat smoothly.</p>
+<p><img alt="screenie.png" src="../../posts/24856971 - Using a Swapfile to Prevent OutOfMemoryError in Android.post/screenie.png" /></p>
+<p>The issue that gets hit very quickly, however, is RAM/memory consumption. The Motorola Droid only shipped with 256MB of RAM! That's ridiculously low by today's standards, and it shows in the above screenshot. Just running ICS prevents the Droid from being able to run a large number of apps, even if they would otherwise support it.</p>
+<p>Normally when I make an Android app, I try to target as low of an API as possible. Since the apps I've made up until now haven't been too complicated, this hasn't been difficult to do. As I grow as a programmer and app developer, however, and as less and less Android users have Gingerbread or below, I find myself starting to take advantage of newer APIs that were introduced in Ice Cream Sandwich. And this puts me in an unfortunate position, as even though my Droid can run ICS, it still can't be used to debug the app I'm working on without crashing with out of memory errors.</p>
+<p>Unlike my Galaxy Nexus, my Droid is still kicking. In addition to this, the more underpowered it is, the better a candidate it is to test performance on! If only it had a bit more RAM!</p>
+<p>So this led me to my solution... Which was more straightforward than I thought. Android devices don't use [swapfiles or swap disks](<a href="https://en.wikipedia.org/wiki/Swap_(computer_programming)">https://en.wikipedia.org/wiki/Swap_(computer_programming)</a>, likely as they don't really have much use in the mobile space, where if memory is starved apps should be killed rather than using the disk for more memory. However, all of the low-level Linux tools are still present to enable swap!</p>
+<p>The below steps require adb and a rooted Android phone, but will create a swapfile and allow the device to utilize more memory. <strong>Be aware that you perform these steps at your own risk</strong>, and that frequently reading and writing to the sdcard or flash storage <strong>decreases the life of the card/device</strong>. This is a pretty situational thing to want to do, and I wouldn't recommend it as a daily driver.</p>
+<p>First open a shell session either on your device directly or via <code>adb shell</code></p>
+<p>The first thing that we're going to want to do is create a large empty swap file. You can also use a swap partition, but Android does not come with any built-in partioning utilities. This file can be created with <a href="http://man7.org/linux/man-pages/man1/dd.1.html">dd</a>, and here I am making it 256MB (500,000 counts of 512 bytes) in /sdcard/swapfile.</p>
+<div class="highlight"><pre>dd if=/dev/zero of=/sdcard/swapfile bs=512 count=500000
+</pre></div>
+
+
+<p>Once the empty file is created, you can mount it as a loopback device using <a href="http://linuxcommand.org/man_pages/losetup8.html">losetup</a>. This presents the file as a device under /dev that we can treat as if it were a swap partition.</p>
+<div class="highlight"><pre>losetup /dev/block/loop0 /sdcard/swapfile
+</pre></div>
+
+
+<p>You can verify that this was properly done by running <code>df</code>, and confirming that the device is setup. Next, it's time to make/format the "partition" as swap, and then switch it on:</p>
+<div class="highlight"><pre>mkswap /dev/block/loop0
+swapon /dev/block/loop0
+</pre></div>
+
+
+<p>At this point, the Android device is now able to use more memory! Unfortunately, the swap doesn't show up in Settings under the Apps Memory section, but it can be verified by running <code>free</code>  before and after running <code>swapon</code>.</p>
+<p>It seems Android will still be quick to kill backgrounded applications (as if it is still starved for memory), but the app that I was debugging is now able to run without crashing, which is all that I had set out to do with this task. </p>
+<p>I was pleased to see that this wasn't any more complicated than it would be on a computer, and while it is a corner case, is just another reason why it's nice to be able to root your Android device.</p>
+<p><img alt="Old droid" src="../../posts/24856971 - Using a Swapfile to Prevent OutOfMemoryError in Android.post/olddroid.png" /></p>
+<p>A keyboard! How dated!</p>
+    </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+<div style="clear: both"></div>
+<br /><br />
+    entry_group -->
+    
+    <!-- search_group
+    <div id="content">
+        <h2>Search vgmoose.com</h2>
+        <p class="hideme">Search is loading...</p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script>lookup = $search_lookup;</script>
+        <script>vocab = $search_vocab;</script>
+        <script src="../../js/search.js"></script>
+        <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
+        <div id="results"></div>
+        <br>
+    </div>
+    search_group -->
+    
+    <br>
+    
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = 0304645377;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">
+		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="right">&copy; 2005-2017 VGMoose</div>
+		<div style="clear: both"></div>
+	</div>
+	<!-- home_page
+	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
+	home_page -->
+</div>
