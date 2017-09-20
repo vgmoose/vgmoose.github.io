@@ -35,6 +35,7 @@ all_posts = {
     "3549286605": "/blog/the-pc-goes-boom-3549286605/",
     "3554624611": "/blog/working-on-custom-pokemon-tutorial-3554624611/",
     "3588876378": "/blog/vba-tutorial-up-3588876378/",
+    "3632420593": "/blog/using-libnx-to-compile-nintendo-switch-homebrew-3632420593/",
     "3764917904": "/blog/day-11-triple-threat-3764917904/",
     "3783813953": "/blog/patch-tournaments-3783813953/",
     "3841162130": "/blog/first-entry-3841162130/",
