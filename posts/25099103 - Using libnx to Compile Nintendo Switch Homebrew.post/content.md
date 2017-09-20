@@ -8,8 +8,6 @@ id: 3632420593
 original: https://gist.github.com/vgmoose/8844a812c4bf50889e3f2b65359a6930/
 ---
 
-# Using libnx and compiling your first homebrew app for the Nintendo Switch
-
 ## Requirements
 - [Devkit ARM64](https://sourceforge.net/projects/devkitpro/files/devkitA64/) for your OS
 - unix-like environment

@@ -51,8 +51,7 @@
     
     
     <div id="content">
-        2017: <a href="blog/using-libnx-to-compile-nintendo-switch-homebrew-3632420593">Using libnx to Compile Nintendo Switch Homebrew</a> <div class='minidescription'>Using libnx and compiling your first homebrew app for the Nintendo Switch
-Requirements
+        2017: <a href="blog/using-libnx-to-compile-nintendo-switch-homebrew-3632420593">Using libnx to Compile Nintendo Switch Homebrew</a> <div class='minidescription'>Requirements
 
 Devkit ARM64 for your OS
 unix-like environment
@@ -75,7 +74,10 @@ git clone https://github.com/switchbrew/libnx.git
 
 
 
-Update the DEVKITPRO, DEVKITA64, and PATH env...</div><br>2017: <a href="blog/fixing-a-suddenly-readonly-flash-drive-1847368734">Fixing a Suddenly Read-only Flash Drive</a> <div class='minidescription'>A while back I purchased this Silicon Power 64G USB3 flash drive to put on my keychain. It was a great, durable flash drive for about 6 months... Then, it suddenly showed up as read-only on any device that I connected to it!
+Update the DEVKITPRO, DEVKITA64, and PATH environment variables
+
+export DEVKITPRO=~/devkitpro
+export DEVKITA64=$DEVKITP...</div><br>2017: <a href="blog/fixing-a-suddenly-readonly-flash-drive-1847368734">Fixing a Suddenly Read-only Flash Drive</a> <div class='minidescription'>A while back I purchased this Silicon Power 64G USB3 flash drive to put on my keychain. It was a great, durable flash drive for about 6 months... Then, it suddenly showed up as read-only on any device that I connected to it!
 It was not a permission error, or something wrong with the partition map. The physical device was flat-out refusing to be read. Even gparted -&gt; Create Partition Map would report back "/dev/sdb is read-only".
 After some googling, a common belief is that this may be a sign ...</div><br>2017: <a href="blog/using-a-swapfile-to-prevent-outofmemoryerror-in-android-0304645377">Using a Swapfile to Prevent OutOfMemoryError in Android</a> <div class='minidescription'>I have an old OG Motorola Droid, which originally came with Eclair. It's a nice device to develop and debug Android apps on, as it provides a more-or-less accurate representation of what an underpowered device will look like when seeing how well your app performs. This is, in my opinion, an important but often neglected aspect of app development that often goes ignored. And when performance is ignored, apps get bloated and compete for resources, which is something that you rarely want to happen ...</div><br>2016: <a href="blog/release-ncclient-for-ios-netcat-on-device-2588309463">[release] nc-client for iOS - Netcat on Device</a> <div class='minidescription'>On December 15 2016, Ian Beer posted a kernel exploit for iOS &lt;= 10.1.1. The code exploits the OS and provides access to a root shell on port 4141.
 That's awesome! Upon seeing this, I updated from a full jailbreak 8.1 to 10.1.1, anticipating someone in the near future will tidy it up. Until then though, building the project at the link above and poking around the filesystem as root is interesting. 
