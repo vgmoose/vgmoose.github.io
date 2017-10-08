@@ -8,16 +8,19 @@
 <p>The below steps require adb and a rooted Android phone, but will create a swapfile and allow the device to utilize more memory. <strong>Be aware that you perform these steps at your own risk</strong>, and that frequently reading and writing to the sdcard or flash storage <strong>decreases the life of the card/device</strong>. This is a pretty situational thing to want to do, and I wouldn't recommend it as a daily driver.</p>
 <p>First open a shell session either on your device directly or via <code>adb shell</code></p>
 <p>The first thing that we're going to want to do is create a large empty swap file. You can also use a swap partition, but Android does not come with any built-in partioning utilities. This file can be created with <a href="http://man7.org/linux/man-pages/man1/dd.1.html">dd</a>, and here I am making it 256MB (500,000 counts of 512 bytes) in /sdcard/swapfile.</p>
-<pre class="highlight"><code>dd if=/dev/zero of=/sdcard/swapfile bs=512 count=500000</code></pre>
+<div class="highlight"><pre>dd if=/dev/zero of=/sdcard/swapfile bs=512 count=500000
+</pre></div>
 
 
 <p>Once the empty file is created, you can mount it as a loopback device using <a href="http://linuxcommand.org/man_pages/losetup8.html">losetup</a>. This presents the file as a device under /dev that we can treat as if it were a swap partition.</p>
-<pre class="highlight"><code>losetup /dev/block/loop0 /sdcard/swapfile</code></pre>
+<div class="highlight"><pre>losetup /dev/block/loop0 /sdcard/swapfile
+</pre></div>
 
 
 <p>You can verify that this was properly done by running <code>df</code>, and confirming that the device is setup. Next, it's time to make/format the "partition" as swap, and then switch it on:</p>
-<pre class="highlight"><code>mkswap /dev/block/loop0
-swapon /dev/block/loop0</code></pre>
+<div class="highlight"><pre>mkswap /dev/block/loop0
+swapon /dev/block/loop0
+</pre></div>
 
 
 <p>At this point, the Android device is now able to use more memory! Unfortunately, the swap doesn't show up in Settings under the Apps Memory section, but it can be verified by running <code>free</code>  before and after running <code>swapon</code>.</p>

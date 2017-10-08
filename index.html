@@ -51,33 +51,7 @@
     
     
     <div id="content">
-        2017: <a href="blog/using-libnx-to-compile-nintendo-switch-homebrew-3632420593">Using libnx to Compile Nintendo Switch Homebrew</a> <div class='minidescription'>Requirements
-
-Devkit ARM64 for your OS
-unix-like environment
-git, make, 7zip
-lz4, lz4-devel (Ubuntu, Fedora, Github)
-
-Setup
-
-Make a devkitpro folder (any directory is fine, but this guide will use ~)
-
-mkdir ~/devkitpro
-
-
-
-Extract the contents of Devkit ARM64 to ~/devkitpro/devkitA64  
-Clone the libnx library from github
-
-cd ~
-git clone https://github.com/switchbrew/libnx.git
-
-
-
-Update the DEVKITPRO, DEVKITA64, and PATH environment variables
-
-export DEVKITPRO=~/devkitpro
-export DEVKITA64=$DEVKITP...</div><br>2017: <a href="blog/fixing-a-suddenly-readonly-flash-drive-1847368734">Fixing a Suddenly Read-only Flash Drive</a> <div class='minidescription'>A while back I purchased this Silicon Power 64G USB3 flash drive to put on my keychain. It was a great, durable flash drive for about 6 months... Then, it suddenly showed up as read-only on any device that I connected to it!
+        2017: <a href="blog/fixing-a-suddenly-readonly-flash-drive-1847368734">Fixing a Suddenly Read-only Flash Drive</a> <div class='minidescription'>A while back I purchased this Silicon Power 64G USB3 flash drive to put on my keychain. It was a great, durable flash drive for about 6 months... Then, it suddenly showed up as read-only on any device that I connected to it!
 It was not a permission error, or something wrong with the partition map. The physical device was flat-out refusing to be read. Even gparted -&gt; Create Partition Map would report back "/dev/sdb is read-only".
 After some googling, a common belief is that this may be a sign ...</div><br>2017: <a href="blog/using-a-swapfile-to-prevent-outofmemoryerror-in-android-0304645377">Using a Swapfile to Prevent OutOfMemoryError in Android</a> <div class='minidescription'>I have an old OG Motorola Droid, which originally came with Eclair. It's a nice device to develop and debug Android apps on, as it provides a more-or-less accurate representation of what an underpowered device will look like when seeing how well your app performs. This is, in my opinion, an important but often neglected aspect of app development that often goes ignored. And when performance is ignored, apps get bloated and compete for resources, which is something that you rarely want to happen ...</div><br>2016: <a href="blog/release-ncclient-for-ios-netcat-on-device-2588309463">[release] nc-client for iOS - Netcat on Device</a> <div class='minidescription'>On December 15 2016, Ian Beer posted a kernel exploit for iOS &lt;= 10.1.1. The code exploits the OS and provides access to a root shell on port 4141.
 That's awesome! Upon seeing this, I updated from a full jailbreak 8.1 to 10.1.1, anticipating someone in the near future will tidy it up. Until then though, building the project at the link above and poking around the filesystem as root is interesting. 
@@ -149,7 +123,8 @@ sudo su
 cd $(dirname $(find /sys -name brightness))
 
 
-This wi...</div><br>2014: <a href="blog/game-boy-color-frontscreen-mod-6084689264">Game Boy Color Frontscreen Mod</a> <div class='minidescription'>Final Product
+
+This w...</div><br>2014: <a href="blog/game-boy-color-frontscreen-mod-6084689264">Game Boy Color Frontscreen Mod</a> <div class='minidescription'>Final Product
 
 I wanted to frontlight my gbc, as modern screens have spoiled me to the point where the original gameboy color screen appears almost unreadable. There are a lot of cool mods on /r/gameboy, so after doing some research I finally bought an SP and started on the mod. I was pretty nervous after looking at all the tutorials, but I'm surprised (and happy) to say that it worked out!
 The method I ended up using takes the front light from an AGS-001, cuts it so that it fits horizontally, a...</div><br>2014: <a href="blog/day-13-the-slicer-7435303567">Day 13 - The Slicer</a> <div class='minidescription'>Another Monday. My documentation work is slowly making progress. Although there are still some confusing things, they seem to stem from the fact that I've been mixing and mashing different versions of lvmthin. Things are stable again, for the moment.
@@ -158,7 +133,8 @@ The Slicer is a utility that is not provided to the employees, so I am responsib
 uname -r 
 
 
-The above command reports information about the kernel. I was running 3.11, which does not have dm-cache support. The README ...</div><br>2014: <a href="blog/day-11-triple-threat-3764917904">Day 11 - Triple Threat</a> <div class='minidescription'>Much of my job consists of taking my computers... and destroying them. Well, I'm not supposed to be destroying them, and I'm not necessarily trying to either, but usually in testing LVM I manage to find one way or another to make the machines unbootable. Thankfully, due to the wealth of LVM information out there, more often than not I am capable of fixing the problems that develop on my laptop, but for the desktops it's usually just less effort to reformat them and try something different.
+
+The above command reports information about the kernel. I was running 3.11, which does not have dm-cache support. The README...</div><br>2014: <a href="blog/day-11-triple-threat-3764917904">Day 11 - Triple Threat</a> <div class='minidescription'>Much of my job consists of taking my computers... and destroying them. Well, I'm not supposed to be destroying them, and I'm not necessarily trying to either, but usually in testing LVM I manage to find one way or another to make the machines unbootable. Thankfully, due to the wealth of LVM information out there, more often than not I am capable of fixing the problems that develop on my laptop, but for the desktops it's usually just less effort to reformat them and try something different.
 
 I wa...</div><br>2014: <a href="blog/day-10-snapshot-restore-aftermath-9847859423">Day 10 - Snapshot Restore Aftermath</a> <div class='minidescription'>So today I thought I'd through caution to the wind and just restore one of the daily snapshots that I had lying around from the cron job. This turned out to be not such a great idea... Despite being in charge of reviewing the documentation, it was not so obvious to me that upon merging one of the snapshots from my "Time Machine" the other ones would be de-linked as snapshots, and simply exist as thin volumes within the pool. This is pretty upsetting, as the inability to merge the snapshots that ...</div><br>2014: <a href="blog/day-09-ram-disks-and-write-speeds-8888858920">Day 09 - RAM Disks and Write Speeds</a> <div class='minidescription'>As discussed in yesterday's post, caching is beneficial when a large slow volume is assisted by a fast small one. While it isn't a practical use for production, my manager suggested I could emulate this faster behavior by using a ramdisk, as 2/3 of my machines don't have flash storage. A RAM disk, (which, from this point on, I shall continue going back and forth between "RAM disk" and "ramdisk" spellings) allows a piece of memory to be sectioned off and mounted like a disk would. This means it n...</div><br>2014: <a href="blog/day-08-enter-the-cache-0936093496">Day 08 - Enter the Cache</a> <div class='minidescription'>Logical volumes are very unique in the sense that you can inject some higher level logic into something as low level as the bytes on your disk. Flash disks are very fast, but large ones are also still very expensive. This obviously creates an interesting problem for server maintainers, as ideally large amount of content would be served as fast as possible which would require the best of both worlds. 
 

@@ -6,6 +6,7 @@ comments: true
 categories: nintendo, switch, homebrew, libnx, linux
 id: 3632420593
 original: https://gist.github.com/vgmoose/8844a812c4bf50889e3f2b65359a6930/
+hidden: true
 ---
 
 ## Requirements
