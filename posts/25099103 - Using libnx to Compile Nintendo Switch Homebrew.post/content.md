@@ -9,6 +9,8 @@ original: https://gist.github.com/vgmoose/8844a812c4bf50889e3f2b65359a6930/
 hidden: true
 ---
 
+Notice: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.
+
 ## Requirements
 - [Devkit ARM64](https://sourceforge.net/projects/devkitpro/files/devkitA64/) for your OS
 - unix-like environment
