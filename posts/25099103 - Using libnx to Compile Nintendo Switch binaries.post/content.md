@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using libnx to Compile Nintendo Switch Homebrew
+title: Using libnx to Compile Nintendo Switch binaries
 date: 2017-09-20 18:23:02
 comments: true
 categories: nintendo, switch, homebrew, libnx, linux
@@ -9,7 +9,8 @@ original: https://gist.github.com/vgmoose/8844a812c4bf50889e3f2b65359a6930/
 hidden: true
 ---
 
-Notice: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.
+*Notice*: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.
+*Double Notice*: The creator of devkitpro advises against these instructions in favor of using an automated installer, which as of 10/28/17 has not been released yet. Follow only as your own curiosity permits.
 
 ## Requirements
 - [Devkit ARM64](https://sourceforge.net/projects/devkitpro/files/devkitA64/) for your OS
@@ -42,12 +43,12 @@ make install
 make
 ```
 
-## First homebrew
-The [first switch homebrew](https://github.com/switchbrew/switch-examples/blob/master/templates/simple/source/main.c#L8) example provided by libnx is called **simple**-- it waits for 5 seconds, and then exits. [svcSleepThread](http://switchbrew.org/index.php?title=SVC#svcSleepThread) is a native switch function, exposed by libnx.
+## Compiling example binary
+The [libnx switch example](https://github.com/switchbrew/switch-examples/blob/master/templates/simple/source/main.c#L8) example provided by libnx is called **simple**-- it waits for 5 seconds, and then exits. [svcSleepThread](http://switchbrew.org/index.php?title=SVC#svcSleepThread) is a native switch function, exposed by libnx.
 
 [Here](https://github.com/switchbrew/libnx/tree/4fd0989bf348ffa04d342f12c4e285099df5d266/nx/include/switch) are all of the functions provided by the libnx library. In the future, some drawing functions may be RE'd and allow for simple homebrew games to be made.
 
-An additional important thing to note, is that as of this time of writing there is no method to execute these homebrew binaries on the Switch. They can be executed using the [CageTheUnicorn](https://github.com/reswitched/CageTheUnicorn) emulator on an intel computer, however.
+An additional important thing to note, is that as of this time of writing there is no method to execute these binaries on the Switch. They can be executed using the [CageTheUnicorn](https://github.com/reswitched/CageTheUnicorn) emulator on an intel computer, however.
 
 ### Compiling
 1. Clone the [switch-examples](https://github.com/switchbrew/switch-examples) project

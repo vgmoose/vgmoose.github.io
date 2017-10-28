@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
-    <title>Using libnx to Compile Nintendo Switch Homebrew</title>
+    <title>Using libnx to Compile Nintendo Switch binaries</title>
 	<!-- entry_group
 	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 	<script>
@@ -44,8 +44,9 @@
 		</script>
     </div>
     <div id="content">
-        <h2>Using libnx to Compile Nintendo Switch Homebrew</h2>
-        <p>Notice: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.</p>
+        <h2>Using libnx to Compile Nintendo Switch binaries</h2>
+        <p><em>Notice</em>: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.<br />
+<em>Double Notice</em>: The creator of devkitpro advises against these instructions in favor of using an automated installer, which as of 10/28/17 has not been released yet. Follow only as your own curiosity permits.</p>
 <h2>Requirements</h2>
 <ul>
 <li><a href="https://sourceforge.net/projects/devkitpro/files/devkitA64/">Devkit ARM64</a> for your OS</li>
@@ -89,10 +90,10 @@ make
 </pre></div>
 
 
-<h2>First homebrew</h2>
-<p>The <a href="https://github.com/switchbrew/switch-examples/blob/master/templates/simple/source/main.c#L8">first switch homebrew</a> example provided by libnx is called <strong>simple</strong>-- it waits for 5 seconds, and then exits. <a href="http://switchbrew.org/index.php?title=SVC#svcSleepThread">svcSleepThread</a> is a native switch function, exposed by libnx.</p>
+<h2>Compiling example binary</h2>
+<p>The <a href="https://github.com/switchbrew/switch-examples/blob/master/templates/simple/source/main.c#L8">libnx switch example</a> example provided by libnx is called <strong>simple</strong>-- it waits for 5 seconds, and then exits. <a href="http://switchbrew.org/index.php?title=SVC#svcSleepThread">svcSleepThread</a> is a native switch function, exposed by libnx.</p>
 <p><a href="https://github.com/switchbrew/libnx/tree/4fd0989bf348ffa04d342f12c4e285099df5d266/nx/include/switch">Here</a> are all of the functions provided by the libnx library. In the future, some drawing functions may be RE'd and allow for simple homebrew games to be made.</p>
-<p>An additional important thing to note, is that as of this time of writing there is no method to execute these homebrew binaries on the Switch. They can be executed using the <a href="https://github.com/reswitched/CageTheUnicorn">CageTheUnicorn</a> emulator on an intel computer, however.</p>
+<p>An additional important thing to note, is that as of this time of writing there is no method to execute these binaries on the Switch. They can be executed using the <a href="https://github.com/reswitched/CageTheUnicorn">CageTheUnicorn</a> emulator on an intel computer, however.</p>
 <h3>Compiling</h3>
 <ol>
 <li>Clone the <a href="https://github.com/switchbrew/switch-examples">switch-examples</a> project</li>
