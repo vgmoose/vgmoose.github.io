@@ -75,6 +75,7 @@ all_posts = {
     "7522942824": "/blog/introducing-leaderboards-7522942824/",
     "7860290502": "/blog/sunday-update-629-7860290502/",
     "7871405254": "/blog/my-daily-computer-7871405254/",
+    "7951774518": "/blog/creating-a-flashable-disk-image-from-a-folder-7951774518/",
     "8084507045": "/blog/retrospective-nintendo-switch-and-inspiration-8084507045/",
     "8234849224": "/blog/new-pokemon-hack-8234849224/",
     "8260353750": "/blog/bloggity-blog-blog-8260353750/",

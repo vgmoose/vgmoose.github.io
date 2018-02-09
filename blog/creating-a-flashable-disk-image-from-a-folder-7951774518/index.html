@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
-    <title>Chromebook Screen Dimming Tip</title>
+    <title>Creating a flash-able disk image from a folder</title>
 	<!-- entry_group
 	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 	<script>
@@ -34,40 +34,46 @@
     
     
     <div id="sidebar">
-        Date: 2015-03-15 16:37:47<br />
-        Tags: chromebook, linux, bash<br />
+        Date: 2018-02-09 00:20:24<br />
+        Tags: linux, dd<br />
 		<br />
 		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:240px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="2990858106"></ins>
+		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
 		<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>
     </div>
     <div id="content">
-        <h2>Chromebook Screen Dimming Tip</h2>
-        <p>I was looking for an alternative to f.lux / screen filter (android) / shades (mac) to keep the screen more dim at night, and couldn't find one that I liked. A lot of them would just dim the webpage and not the whole system. However, on linux there's a trick you can do to write the brightness value directly from the terminal, and I wondered if the same trick would work on chromeos.</p>
-<p>With developer mode on, from crosh (ctrl+alt+T):</p>
-<pre class="highlight"><code>shell
-sudo su
-cd $(dirname $(find /sys -name brightness))</code></pre>
+        <h2>Creating a flash-able disk image from a folder</h2>
+        <p>First, create an empty file of the desired size that the disk image will be, using <code>dd</code>. The below will create a 1GB file (count*bs)</p>
+<pre class="highlight"><code>dd if=/dev/zero of=disk.img bs=512M count=2</code></pre>
 
 
-<p>This will bring you to a directory with brightness information. On my Samsung chromebook this was <code>/sys/devices/backlight.12/backlight/backlight.12/</code></p>
-<p>From here, you can use the following commands to check the max brightness, current brightness, and then set your own.</p>
-<p>This will display the current brightness value:</p>
-<pre class="highlight"><code>cat actual_brightness</code></pre>
+<p>Then, use <code>losetup</code> and the -P flag to use the newly created image as a loopback device.</p>
+<pre class="highlight"><code>losetup -P /dev/loop0 disk.img</code></pre>
 
 
-<p>This will display the maximum brightness value:</p>
-<pre class="highlight"><code>cat max_brightness</code></pre>
+<p>Once the loopback device is created, you should be able to create a partition map on it using <code>fdisk</code>. (If you don't want to use fdisk, another disk partitioning program should work)</p>
+<pre class="highlight"><code>fdisk /dev/loop0</code></pre>
 
 
-<p>This will set the brightness value to whatever number you put there (in this case, 7):</p>
-<pre class="highlight"><code>echo 7 &gt; brightness</code></pre>
+<p>Inside of fdisk, you can now create your partitions. For instance, <code>g</code> will create a GPT map, and <code>n</code> will add a new partition to it. When you are done, type <code>write</code>.</p>
+<p>Once the partition map is created, the system will reload the partitions, and you should now at least have a <code>/dev/loop0p1</code> device, representing the first partition. We can run whichever <code>mkfs</code> we want on this partition now:</p>
+<pre class="highlight"><code>mkfs.ext4 /dev/loop0p1</code></pre>
 
 
-<p>My chromebook, using just the buttons would allow me to go as low as 18, and so using this trick I was able to make it 1/3 as the dimmest settings the buttons would go!</p>
-<p>This may have gotten a little technical, but it isn't using crouton or any other linux things, just out of the box developer mode. I was very impressed to see this linux trick still work on chromeos.</p>
+<p>Once the filesystem is created, it can be mounted into an empty folder as if it were a real device.</p>
+<pre class="highlight"><code>mkdir /mnt/diskimage
+mount /dev/loop0p1 /mnt/diskimage</code></pre>
+
+
+<p>You can put files or folders inside of the mount point now, and they will be written to the <code>disk.img</code> file as you write to the folder. When you're done, you can unmount the filesystem, and disconnect the loopback device.</p>
+<pre class="highlight"><code>umount /mnt/diskimage
+losetup -d /dev/loop0</code></pre>
+
+
+<p>Now the <code>disk.img</code> file should contain the exact desired filesystem, and can be flashed to one or more target devices using <code>dd</code> on unix/linux or a program like <a href="https://sourceforge.net/projects/win32diskimager/">win32diskimager</a> for windows.</p>
+<pre class="highlight"><code>dd if=disk.img of=/dev/sdX bs=500M</code></pre>
     </div>
     
     
@@ -99,7 +105,7 @@ cd $(dirname $(find /sys -name brightness))</code></pre>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
             var disqus_shortname = 'vgmoose';
-            var disqus_identifier = 2405391604;
+            var disqus_identifier = 7951774518;
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {
