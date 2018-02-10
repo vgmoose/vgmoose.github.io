@@ -70,7 +70,7 @@ class Content:
         # adjust folder filename if necessary
         newfilename = str((int(time.mktime(time.strptime(self.prop['date'], '%Y-%m-%d %H:%M:%S'))))/60)+" - "+self.prop['title']+".post"
         
-        newfilename = unidecode.unidecode(newfilename.decode("utf-8"))
+        newfilename = unidecode.unidecode(newfilename.decode("utf-8")).replace("?","")
         self.prop["title"] = unidecode.unidecode(self.prop["title"].decode("utf-8"))
         
         if newfilename != foldername:
