@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
-    <title>Chromebook Screen Dimming Tip</title>
+    <title>Extracting iOS Voicemails (and other data) with OpenBackupTool</title>
 	<!-- entry_group
 	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 	<script>
@@ -34,44 +34,26 @@
     
     
     <div id="sidebar">
-        Date: 2015-03-15 16:37:47<br />
-        Tags: chromebook, linux, bash<br />
+        Date: 2018-03-17 00:00:26<br />
+        Tags: ios, voicemails, macos, itunes backup<br />
 		<br />
 		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:240px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="2990858106"></ins>
+		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
 		<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>
     </div>
     <div id="content">
-        <h2>Chromebook Screen Dimming Tip</h2>
-        <p>I was looking for an alternative to f.lux / screen filter (android) / shades (mac) to keep the screen more dim at night, and couldn't find one that I liked. A lot of them would just dim the webpage and not the whole system. However, on linux there's a trick you can do to write the brightness value directly from the terminal, and I wondered if the same trick would work on chromeos.</p>
-<p>With developer mode on, from crosh (ctrl+alt+T):</p>
-<div class="highlight"><pre><span></span>shell
-sudo su
-cd $(dirname $(find /sys -name brightness))
-</pre></div>
-
-
-<p>This will bring you to a directory with brightness information. On my Samsung chromebook this was <code>/sys/devices/backlight.12/backlight/backlight.12/</code></p>
-<p>From here, you can use the following commands to check the max brightness, current brightness, and then set your own.</p>
-<p>This will display the current brightness value:</p>
-<div class="highlight"><pre><span></span>cat actual_brightness
-</pre></div>
-
-
-<p>This will display the maximum brightness value:</p>
-<div class="highlight"><pre><span></span>cat max_brightness
-</pre></div>
-
-
-<p>This will set the brightness value to whatever number you put there (in this case, 7):</p>
-<div class="highlight"><pre><span></span>echo 7 &gt; brightness
-</pre></div>
-
-
-<p>My chromebook, using just the buttons would allow me to go as low as 18, and so using this trick I was able to make it 1/3 as the dimmest settings the buttons would go!</p>
-<p>This may have gotten a little technical, but it isn't using crouton or any other linux things, just out of the box developer mode. I was very impressed to see this linux trick still work on chromeos.</p>
+        <h2>Extracting iOS Voicemails (and other data) with OpenBackupTool</h2>
+        <p>Recently, I got into the situation of needing to extract some old voicemails from an iTunes backup. iTunes does keep track of a lot of old voicemails but it doesn't provide a way to browse these documents.</p>
+<p>And then I felt like I entered a parallel universe-- I couldn't find any programs that would allow be to simply extract all the voicemails from an iTunes backup that were completely free! </p>
+<p>This is especially irritating, as some programs would bring you to what appeared to be the final export screen, and then prompt for a credit card for a few bucks to use the program. I'm sure the average person who's trying to use such a tool has an urgent need to get the information (such as an important business call, time-sensitive information, or even loss of a loved one) so dangling the export utility in front of them appears to really be trying to feed off their desperation.</p>
+<p>After looking into it, the iTunes backups are just folders that contain the different types of files. It's possible to extract this data only by going through the files and pulling out files that are of the desired type.</p>
+<p>It's not a pretty tool, and the method I use to check for file types is a little slow, but it does get the job done and allow you to export any voicemails, images, and other types of documents.</p>
+<p>OpenBackupTool is available for <a href="https://github.com/vgmoose/OpenBackupExtractor/releases">download here</a>, and is open source so I would welcome any enhancements that anybody can think of / offer. I stopped working on this once I was able to get the files out of the backup that I was looking for, but it would be nice to see a community led effort to try to lower the bar for people that are in need of listening to old voicemails or recovering documents that may lay hidden in an iPhone backup.</p>
+<p>Screen shots below:<br />
+<img alt="screen shot 1" src="../../posts/25354320 - Extracting iOS Voicemails (and other data) with OpenBackupTool.post/backup1.png" /><br />
+<img alt="screen shot 2" src="../../posts/25354320 - Extracting iOS Voicemails (and other data) with OpenBackupTool.post/backup2.png" /></p>
     </div>
     
     
@@ -103,7 +85,7 @@ cd $(dirname $(find /sys -name brightness))
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES * * */
             var disqus_shortname = 'vgmoose';
-            var disqus_identifier = 2405391604;
+            var disqus_identifier = 2425971492;
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {

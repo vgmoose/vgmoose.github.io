@@ -16,7 +16,8 @@
 - Imagemagick<br />
 - Preview</p>
 <p>Downloading and mirroring the Eelslap site is easy with wget. The following command will save the entire site and all referenced images/scripts to a folder named "eelslap.com":</p>
-<pre class="highlight"><code>wget -mk http://eelslap.com</code></pre>
+<div class="highlight"><pre><span></span>wget -mk http://eelslap.com
+</pre></div>
 
 
 <p>Once the site was downloaded, I replaced all instances of the word "Eel" with "Octopus". I removed the Facebook button, but left the Twitter one. Now I needed to download the actual video to begin working with it.</p>
@@ -33,10 +34,11 @@
 <p><img alt="Render video in photoshop" src="photoshop.png" /><br />
 This is the most expensive part of the tutorial. Using Adobe Photoshop CC, I opened the .mp4 file, and chose File -&gt; Export -&gt; Render Video. I played around with the settings above to produce a folder that contained each frame of the video. The result was a bunch of single images for each frame in the octoslap folder.</p>
 <p>After I had single frames, converting them into strips was done with Imagemagick using the following commands:</p>
-<pre class="highlight"><code>convert photostill00{00..23}.png +append output1.jpg
+<div class="highlight"><pre><span></span>convert photostill00{00..23}.png +append output1.jpg
 convert photostill00{24..46}.png +append output2.jpg
 convert photostill00{47..70}.png +append output3.jpg
-convert photostill00{71..93}.png +append output4.jpg</code></pre>
+convert photostill00{71..93}.png +append output4.jpg
+</pre></div>
 
 
 <p>The +append option tells Imagemagick to stitch the images horizontally, whereas -append would do it vertically. I had to do some math as well, as my frames were a different dimension than the original eelslap ones were.</p>
