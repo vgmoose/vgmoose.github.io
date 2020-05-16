@@ -1,0 +1,56 @@
+<h3>What's New?</h3>
+<p>This update should address a lot of the slowness and crashing that people have experienced. We have other infrastructure-related changes that we're still working on, but are publishing this now to make sure these client bugfixes are out there!</p>
+<p>In July 2019, we passed our <em>third year</em> of hosting the Homebrew App Store service since starting on the Wii U! Thank you to everyone who has used the App Store or otherwise shown support for this project. You're the reason we keep doing this.</p>
+<p>The App Store team is: <a href="https://github.com/pwsincd">pwsincd</a>, <a href="https://github.com/rw-r-r-0644">rw-r-r_0644</a>, <a href="https://compucat.me">CompuCat</a>, <a href="https://crc32.dev">crc32</a>, <a href="https://vgmoose.com">vgmoose</a>, <a href="https://heyquark.com">quarky</a>, <a href="https://cybre.space/@Whovian9369">Whovian9369</a><br />
+Our homepage: <a href="https://fortheusers.org">https://fortheusers.org</a><br />
+Chat with us on Discord: <a href="https://discord.fortheusers.org">https://discord.fortheusers.org</a></p>
+<h3>Download</h3>
+<p>For downloads, see the release on <a href="https://gitlab.com/4TU/hb-appstore/-/releases">Gitlab</a></p>
+<h3>Changelog</h3>
+<p><strong>Wii U + Switch App Client</strong><br />
+Download: <a href="https://gitlab.com/4TU/hb-appstore/releases">https://gitlab.com/4TU/hb-appstore/releases</a></p>
+<ul>
+<li>No more loading screen! Images and metadata are now downloaded on-the-fly, and you are dropped immediately into the app listing (by rw-r-r_0644!)</li>
+<li>Abstracted UI components into the standalone library <a href="https://gitlab.com/4TU/chesto">Chesto</a><ul>
+<li>Chesto is a declarative, element-based library for creating lightweight user interfaces in SDL2. Along with the App Store console client, it also powers <a href="https://github.com/vgmoose/vgedit">vgedit</a>.</li>
+<li>Chesto uses <a href="https://gitlab.com/4TU/resinfs">resinfs</a> rather than switch/wiiu romfs for storing and loading compressed assets from memory (by rw-r-r_0644)</li>
+<li>Want to give it a try? Have a peek at CompuCat's example, <a href="https://gitlab.com/4TU/chestotesto">ChestoTesto</a>!</li>
+</ul>
+</li>
+<li>Shows progress while extracting files from the zip package</li>
+<li>Detailed Credits page to fairly highlight importance of people's contributions in the scene</li>
+<li>Recovery mode added, accessed by pressing repeatedly L/R immediately after launching<ul>
+<li>Can be used to clear all cached/config data, and install/remove packages without a GUI</li>
+</ul>
+</li>
+<li>Bugfixes and Oversights<ul>
+<li>Fixes issues when package structure totally changes (libget#8)</li>
+<li>Sorting button no longer occasionally crashes</li>
+<li>Files download to disk to avoid being stored in memory (Thanks TotalJustice!)</li>
+<li>Onscreen quit button added (Thanks jacquesCedric!)</li>
+</ul>
+</li>
+<li>Platform Specific<ul>
+<li>Switch: Uses https for default Switch repo (sorry for dragging feet on this!)</li>
+<li>Switch: Themes are now excluded from the "All Apps" category</li>
+<li>Switch: If launched in applet mode, uses Wii U style banners</li>
+<li>Wii U: Fix crackling/popping during music playback (by Quarktheawesome)</li>
+<li>Wii U: Fix bug that duplicates appstore entries in HBL upon upgrading... (see Notice*)<ul>
+<li>TL;DR: after updating  on Wii U there will be <em>two</em> appstore apps in HBL. Launching either one will work, and it will clean up the extra one</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Move primary development from GitHub to GitLab<ul>
+<li>We’ll continue to upload releases to GitHub for the moment, but that repo will eventually be deprecated and direct users to GitLab. ↩︎</li>
+</ul>
+</li>
+</ul>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://gitlab.com/4TU/hb-appstore">https://gitlab.com/4TU/hb-appstore</a></li>
+<li><a href="https://gitlab.com/4TU/libget">https://gitlab.com/4TU/libget</a></li>
+<li><a href="https://gitlab.com/4TU/chesto">https://gitlab.com/4TU/chesto</a></li>
+<li><a href="https://gitlab.com/4TU/resinfs">https://gitlab.com/4TU/resinfs</a></li>
+</ul>
+<p><em>Wii U Notice: The duplicate appstore entries in HBL was an oversight, but should resolve itself after launching </em>either* HBL app after the update. It has to do with old users migrating from .elf to .rpx, and me trying to consolidate it for each platform. After updating, the issue should not occur again in the future due to libget#8 being fixed.</p>
