@@ -1,5 +1,5 @@
 import sys, os, time, random, re, shutil, json
-
+import unicodedata
 
 try:
     import unidecode
@@ -7,12 +7,12 @@ try:
     import gfm
     from progressbar import *
 except:
-    print "[ERROR] Some python modules are missing. Check requirements.txt and ensure all modules are installed."
+    print("[ERROR] Some python modules are missing. Check requirements.txt and ensure all modules are installed.")
     exit()
 
 def usage():
-    print "usage: python blog.py compile"
-    print "                      new [post title]"
+    print("usage: python blog.py compile")
+    print("                      new [post title]")
     
     
 try:
@@ -20,10 +20,12 @@ try:
 except:
     usage()
     exit()
+
+def ascii(words):
+    return unicodedata.normalize('NFD', words).encode('ascii', 'ignore').decode("utf-8")
     
 def dash_phrase(phrase):
-    phrase = phrase.lower()
-    phrase = unidecode.unidecode(phrase.decode("utf-8"))
+    phrase = ascii(phrase.lower())
     words = pattern.sub('', phrase)
     words = words.split()
     return '-'.join(words)
@@ -68,18 +70,18 @@ class Content:
 #        print "\tproperties: "+str(self.prop)
         
         # adjust folder filename if necessary
-        newfilename = str((int(time.mktime(time.strptime(self.prop['date'], '%Y-%m-%d %H:%M:%S'))))/60)+" - "+self.prop['title']+".post"
+        newfilename = str((int(time.mktime(time.strptime(self.prop['date'], '%Y-%m-%d %H:%M:%S'))))//60)+" - "+self.prop['title']+".post"
         
-        newfilename = unidecode.unidecode(newfilename.decode("utf-8")).replace("?","")
-        self.prop["title"] = unidecode.unidecode(self.prop["title"].decode("utf-8"))
+        newfilename = ascii(newfilename.replace("?",""))
+        self.prop["title"] = ascii(self.prop["title"])
         
         if newfilename != foldername:
-            print "[INFO] Renaming \""+foldername+"\" to\""+newfilename+"\""
+            print("[INFO] Renaming \""+foldername+"\" to\""+newfilename+"\"")
             try:
                 os.rename("posts/"+foldername, "posts/"+newfilename)
                 self.folder = newfilename
             except:
-                print "[WARNING] Could not rename \""+foldername+"\"! Skipping..."
+                print("[WARNING] Could not rename \""+foldername+"\"! Skipping...")
                 self.prop["hidden"] = "true"
                         
     def buildHTML(self):
@@ -201,7 +203,7 @@ if action == "compile":
         pbar.update(cur_count+1)
         cur_count+=1
     
-    print "All Done!"
+    print("All Done!")
 #    print json.dumps(vocab, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': '))
     
     # build the category pages
@@ -261,7 +263,7 @@ if action == "new":
         postname = "Untitled Post"
         
     # set the post full name with the time offset
-    filename = str(int(init_time)/60)+" - "+postname+".post"
+    filename = str(int(init_time)//60)+" - "+postname+".post"
         
     # make the directory of this post
     os.mkdir("posts/"+filename)
@@ -270,7 +272,7 @@ if action == "new":
     f = open("posts/"+filename+"/content.md", "w")
     
     # print out the path to the created file
-    print "posts/"+filename+"/content.md"
+    print("posts/"+filename+"/content.md")
     
     f.write("---\n")
     f.write("layout: post\n")
@@ -283,4 +285,4 @@ if action == "new":
     f.close()
     
     # open it in the specified Editor
-    os.system("open -a Brackets \""+"posts/"+filename+"/content.md\"")
+    os.system("open -a Visual\\ Studio\\ Code \""+"posts/"+filename+"/content.md\"")

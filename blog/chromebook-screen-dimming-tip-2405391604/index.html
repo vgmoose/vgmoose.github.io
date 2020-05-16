@@ -47,27 +47,23 @@
         <h2>Chromebook Screen Dimming Tip</h2>
         <p>I was looking for an alternative to f.lux / screen filter (android) / shades (mac) to keep the screen more dim at night, and couldn't find one that I liked. A lot of them would just dim the webpage and not the whole system. However, on linux there's a trick you can do to write the brightness value directly from the terminal, and I wondered if the same trick would work on chromeos.</p>
 <p>With developer mode on, from crosh (ctrl+alt+T):</p>
-<div class="highlight"><pre><span></span>shell
+<pre class="highlight"><code>shell
 sudo su
-cd $(dirname $(find /sys -name brightness))
-</pre></div>
+cd $(dirname $(find /sys -name brightness))</code></pre>
 
 
 <p>This will bring you to a directory with brightness information. On my Samsung chromebook this was <code>/sys/devices/backlight.12/backlight/backlight.12/</code></p>
 <p>From here, you can use the following commands to check the max brightness, current brightness, and then set your own.</p>
 <p>This will display the current brightness value:</p>
-<div class="highlight"><pre><span></span>cat actual_brightness
-</pre></div>
+<pre class="highlight"><code>cat actual_brightness</code></pre>
 
 
 <p>This will display the maximum brightness value:</p>
-<div class="highlight"><pre><span></span>cat max_brightness
-</pre></div>
+<pre class="highlight"><code>cat max_brightness</code></pre>
 
 
 <p>This will set the brightness value to whatever number you put there (in this case, 7):</p>
-<div class="highlight"><pre><span></span>echo 7 &gt; brightness
-</pre></div>
+<pre class="highlight"><code>echo 7 &gt; brightness</code></pre>
 
 
 <p>My chromebook, using just the buttons would allow me to go as low as 18, and so using this trick I was able to make it 1/3 as the dimmest settings the buttons would go!</p>
@@ -116,7 +112,7 @@ cd $(dirname $(find /sys -name brightness))
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2017 VGMoose</div>
+		<div class="right">&copy; 2005-2020 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
 	<!-- home_page

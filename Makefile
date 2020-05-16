@@ -1,2 +1,2 @@
 build:	blog
-	python blog.py compile
+	python3 blog.py compile

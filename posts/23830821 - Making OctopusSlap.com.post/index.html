@@ -4,7 +4,7 @@
 <h2>Introduction</h2>
 <p>I happened to catch the Good Mythical Morning episode early, about a half hour after it went up. During the video, Rhett and Link parody the existing <a href="http://eelslap.com">EelSlap.com</a>, with an octopus instead. Before being slapped, Rhett exclaims "You've heard of EelSlap.com... But have you heard of OctopusSlap.com?" </p>
 <p>I hope I'm not making this more dramatic than it actually is, but I'm the type of person who tries to visit URLs that are offhandedly mentioned in videos and stuff. Usually, someone else has already registered them. In this case, however, the domain OctopusSlap.com was available!</p>
-<p>Now you have to understand, this NEVER happens. The opportunity was too perfect- Additionally, my friend <a href="http://cciollaro.github.io">Chris</a> has previously owned the domain <a href="http://octopus8.cc">Octopus8.cc</a>, and I've hosted stuff there before, so the concept of octopus-based domains was not entirely foreign to me.</p>
+<p>Now you have to understand, this NEVER happens. The opportunity was too perfect– Additionally, my friend <a href="http://cciollaro.github.io">Chris</a> has previously owned the domain <a href="http://octopus8.cc">Octopus8.cc</a>, and I've hosted stuff there before, so the concept of octopus-based domains was not entirely foreign to me.</p>
 <p>I already have one domain registered with <a href="http://godaddy.com">Godaddy</a>, so I registered OctopusSlap.com with them as well. Incidentally, Rhett and Link actually plug GoDaddy as a sponsor in their next week's video.</p>
 <h2>The Process</h2>
 <p>After buying the domain, I knew I had to work quickly to get my parody site up and running. Most people watch the show on a daily basis, so the sooner it was up the more people I'd potentially reach. </p>
@@ -16,8 +16,7 @@
 - Imagemagick<br />
 - Preview</p>
 <p>Downloading and mirroring the Eelslap site is easy with wget. The following command will save the entire site and all referenced images/scripts to a folder named "eelslap.com":</p>
-<div class="highlight"><pre><span></span>wget -mk http://eelslap.com
-</pre></div>
+<pre class="highlight"><code>wget -mk http://eelslap.com</code></pre>
 
 
 <p>Once the site was downloaded, I replaced all instances of the word "Eel" with "Octopus". I removed the Facebook button, but left the Twitter one. Now I needed to download the actual video to begin working with it.</p>
@@ -34,11 +33,10 @@
 <p><img alt="Render video in photoshop" src="photoshop.png" /><br />
 This is the most expensive part of the tutorial. Using Adobe Photoshop CC, I opened the .mp4 file, and chose File -&gt; Export -&gt; Render Video. I played around with the settings above to produce a folder that contained each frame of the video. The result was a bunch of single images for each frame in the octoslap folder.</p>
 <p>After I had single frames, converting them into strips was done with Imagemagick using the following commands:</p>
-<div class="highlight"><pre><span></span>convert photostill00{00..23}.png +append output1.jpg
+<pre class="highlight"><code>convert photostill00{00..23}.png +append output1.jpg
 convert photostill00{24..46}.png +append output2.jpg
 convert photostill00{47..70}.png +append output3.jpg
-convert photostill00{71..93}.png +append output4.jpg
-</pre></div>
+convert photostill00{71..93}.png +append output4.jpg</code></pre>
 
 
 <p>The +append option tells Imagemagick to stitch the images horizontally, whereas -append would do it vertically. I had to do some math as well, as my frames were a different dimension than the original eelslap ones were.</p>

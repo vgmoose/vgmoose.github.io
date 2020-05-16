@@ -59,13 +59,11 @@
 6. <strong>Leave everything else blank</strong> (Router, DNS, Search Domains). This tells it to route traffic over the cellular network.</p>
 <p>As for (1), most PC operating systems have some variation of this built-in. Gnome3 network-manager has an option that straight up says "Host wifi hotspot".</p>
 <p>At this point, your computer is able to access your iPhone directly, and your iPhone is able to access its network directly, despite being connected over wifi. So for example, you can do the following:</p>
-<div class="highlight"><pre><span></span>ssh mobile@10.42.0.40
-</pre></div>
+<pre class="highlight"><code>ssh mobile@10.42.0.40</code></pre>
 
 
 <p>And then:</p>
-<div class="highlight"><pre><span></span>wget google.com
-</pre></div>
+<pre class="highlight"><code>wget google.com</code></pre>
 
 
 <p>And get whatever files you need. In this case, I am taking advantage of the fact that my iPhone is jailbroken and is running an sshd server. In theory though, the same can be done with any App Store apps that allow you to download and host files, such as <a href="https://itunes.apple.com/us/app/downloader/id835382053?mt=8">this one</a>. Using xcode tools, someone could make something to host an sshd server on a nonjailbroken iPhone or even host an http proxy, which could be done completely without root.</p>
@@ -114,7 +112,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2017 VGMoose</div>
+		<div class="right">&copy; 2005-2020 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
 	<!-- home_page

@@ -46,41 +46,34 @@
     <div id="content">
         <h2>Creating a flash-able disk image from a folder</h2>
         <p>First, create an empty file of the desired size that the disk image will be, using <code>dd</code>. The below will create a 1GB file (count*bs)</p>
-<div class="highlight"><pre><span></span>dd if=/dev/zero of=disk.img bs=512M count=2
-</pre></div>
+<pre class="highlight"><code>dd if=/dev/zero of=disk.img bs=512M count=2</code></pre>
 
 
 <p>Then, use <code>losetup</code> and the -P flag to use the newly created image as a loopback device.</p>
-<div class="highlight"><pre><span></span>losetup -P /dev/loop0 disk.img
-</pre></div>
+<pre class="highlight"><code>losetup -P /dev/loop0 disk.img</code></pre>
 
 
 <p>Once the loopback device is created, you should be able to create a partition map on it using <code>fdisk</code>. (If you don't want to use fdisk, another disk partitioning program should work)</p>
-<div class="highlight"><pre><span></span>fdisk /dev/loop0
-</pre></div>
+<pre class="highlight"><code>fdisk /dev/loop0</code></pre>
 
 
 <p>Inside of fdisk, you can now create your partitions. For instance, <code>g</code> will create a GPT map, and <code>n</code> will add a new partition to it. When you are done, type <code>write</code>.</p>
 <p>Once the partition map is created, the system will reload the partitions, and you should now at least have a <code>/dev/loop0p1</code> device, representing the first partition. We can run whichever <code>mkfs</code> we want on this partition now:</p>
-<div class="highlight"><pre><span></span>mkfs.ext4 /dev/loop0p1
-</pre></div>
+<pre class="highlight"><code>mkfs.ext4 /dev/loop0p1</code></pre>
 
 
 <p>Once the filesystem is created, it can be mounted into an empty folder as if it were a real device.</p>
-<div class="highlight"><pre><span></span>mkdir /mnt/diskimage
-mount /dev/loop0p1 /mnt/diskimage
-</pre></div>
+<pre class="highlight"><code>mkdir /mnt/diskimage
+mount /dev/loop0p1 /mnt/diskimage</code></pre>
 
 
 <p>You can put files or folders inside of the mount point now, and they will be written to the <code>disk.img</code> file as you write to the folder. When you're done, you can unmount the filesystem, and disconnect the loopback device.</p>
-<div class="highlight"><pre><span></span>umount /mnt/diskimage
-losetup -d /dev/loop0
-</pre></div>
+<pre class="highlight"><code>umount /mnt/diskimage
+losetup -d /dev/loop0</code></pre>
 
 
 <p>Now the <code>disk.img</code> file should contain the exact desired filesystem, and can be flashed to one or more target devices using <code>dd</code> on unix/linux or a program like <a href="https://sourceforge.net/projects/win32diskimager/">win32diskimager</a> for windows.</p>
-<div class="highlight"><pre><span></span>dd if=disk.img of=/dev/sdX bs=500M
-</pre></div>
+<pre class="highlight"><code>dd if=disk.img of=/dev/sdX bs=500M</code></pre>
     </div>
     
     
@@ -125,7 +118,7 @@ losetup -d /dev/loop0
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2017 VGMoose</div>
+		<div class="right">&copy; 2005-2020 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
 	<!-- home_page

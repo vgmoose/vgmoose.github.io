@@ -1,6 +1,6 @@
 ---
 layout: post
-title: I’m Not Dead!
+title: I'm Not Dead!
 date: 2010-10-10 00:00:00
 comments: true
 categories: old days

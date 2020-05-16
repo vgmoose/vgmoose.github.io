@@ -5,7 +5,6 @@ date: 2017-09-13 20:21:57
 comments: true
 categories: pokemon, pokemon bank, youtube
 id: 6446734174
-hidden: true
 ---
 
 I uploaded two videos to YouTube a few months ago describing the transfer algorithm in the 1.2 version of Pokémon Bank for the 3DS. The process was upsetting as it was not a consistent, deterministic algorithm, and instead generates completely random numbers at the time of transfer to create the Gen 7 Pokémon from Gen 1 ones.
