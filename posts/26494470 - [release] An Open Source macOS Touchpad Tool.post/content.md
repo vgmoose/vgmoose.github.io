@@ -11,7 +11,7 @@ Here's a pre-release of a tool I've been working on for a while, which I'm now c
 
 It's available for [download here](https://github.com/vgmoose/GlassController/releases), and it looks like this:
 
-![touchpad](https://camo.githubusercontent.com/5e5b3ea93626f51384681405002a279d2988a2ef/68747470733a2f2f692e696d6775722e636f6d2f436b6f473048492e706e67)
+![touchpad](custom1.png)
 
 More information on what this tool can do is available in the [readme](https://github.com/vgmoose/GlassController), and it's available under the GPLv3 license.
 
@@ -74,7 +74,7 @@ Ideally, and as was my desire from the start, I should be able to move the chara
 
 To solve this, it would use a similar layout to my last two "versions" of the tool, but using the actual touch position _on the touchpad itself_ rather than moving the mouse over a region. Doing it like this means that I don't have to worry about positioning over a game either, just enable the app from the menu bar and I can start moving my finger to the appropriate region.
 
-![fpad setup](https://camo.githubusercontent.com/9707c3ec1ecea8121cc5e084301f52a9a9bfd23e/68747470733a2f2f692e696d6775722e636f6d2f4a6531633541322e706e67)
+![fpad setup](fpad2.png)
 
 The above setup uses the "Region" activator to define four regions of the touchpad, one for each arrow key direction. This is byfar the best setup I've had for a touchpad-based arrow-key alternative! The above JSON config is [available here](https://github.com/vgmoose/GlassController/blob/master/examples/GlassConPrefs_Fingerpad.json).
 

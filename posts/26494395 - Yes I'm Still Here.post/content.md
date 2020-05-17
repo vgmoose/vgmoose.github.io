@@ -81,7 +81,7 @@ I'd like to make something like the [PiBoy SP](https://granthaack.com/piboy-sp/)
 ## What else?
 That's really all I have for now. I had to dig up this blog cause I barely remembered how to update it. As such, the blog.py generation script has been updated to python3, which is what you gotta use nowadays if you want any cred amongst other python devs.
 
-The earliest blog post on this site is from 2005, and it came off a small website that I made for the other kids in my neighborhood when I was growing up. It was the first (and only...) issue of a quarterly online magazine (which was also available in a Powerpoint format). Comparing it later blog posts is really strange. I don't exactly know how I feel about it... 15 years is a long time!
+The earliest blog post on this site is from [2005](https://vgmoose.com/0661862430), and it came off a small website that I made for the other kids in my neighborhood when I was growing up. It was the first (and only...) issue of a quarterly online magazine (which was also available in a Powerpoint format). Comparing it later blog posts is really strange. I don't exactly know how I feel about it... 15 years is a long time!
 
 Believe it or not, I'm trying to give this impromptu blog post a thread of organization, and this paragraph is my stunning conclusion. New computer, new year, mild quaratine setbacks, but hopefully I can put a satisfying "end" to the projects outlined here.
 
