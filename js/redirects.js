@@ -84,6 +84,7 @@ all_posts = {
     "8260353750": "/blog/bloggity-blog-blog-8260353750/",
     "8378492338": "/blog/release-homebrew-app-store-22-8378492338/",
     "8856490363": "/blog/privacy-policy-8856490363/",
+    "8874339395": "/blog/release-vgedit-text-editor-for-video-game-consoles-8874339395/",
     "8888858920": "/blog/day-09-ram-disks-and-write-speeds-8888858920/",
     "8930798782": "/blog/its-only-a-matter-of-time-8930798782/",
     "9029169910": "/blog/ohai-9029169910/",
