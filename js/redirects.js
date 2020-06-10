@@ -69,6 +69,7 @@ all_posts = {
     "6547939220": "/blog/experiment-6547939220/",
     "6627877368": "/blog/mario-face-6627877368/",
     "6629164446": "/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/",
+    "6826443561": "/blog/how-to-fix-macos-flakey-screensharing-6826443561/",
     "7124395985": "/blog/death-sharp-site-launched-7124395985/",
     "7139299468": "/blog/dude-progress-update-7139299468/",
     "7243994775": "/blog/mini-ipod-iphone-browser-project-7243994775/",
