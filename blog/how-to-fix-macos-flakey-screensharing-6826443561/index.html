@@ -46,37 +46,23 @@
     <div id="content">
         <h2>How to fix macOS Flakey Screensharing</h2>
         <p><strong>TLDR:</strong> for flakiness in Messages screen sharing, run the command at the bottom of this post</p>
-<p>The screen sharing functionality in macOS is really good!... When it works! I've been using it for a really long time<br />
-now, and they seem to continuously change how you access/use it. In the early days, it could be accessed through<br />
-AIM and iChat, if both parties had a Mac. In the buddy list, this would be denoted with a video chat icon that<br />
-showed little screens behind it.</p>
-<p>As Apple upgraded the operating system, Messages replaced iChat, and they slowly ripped out the support for<br />
-other non-iMessage accounts. The screen sharing functionality however, is still there!</p>
+<p>The screen sharing functionality in macOS is really good!... When it works! I've been using it for a really long time now, and they seem to continuously change how you access/use it. In the early days, it could be accessed through AIM and iChat, if both parties had a Mac. In the buddy list, this would be denoted with a video chat icon that showed little screens behind it.</p>
+<p>As Apple upgraded the operating system, Messages replaced iChat, and they slowly ripped out the support for other non-iMessage accounts. The screen sharing functionality however, is still there!</p>
 <p>In order to screen share with someone else on macOS, it seems that all of the following needs to be true:<br />
 1. You are both signed into an iMessage-capable apple ID in the following places: System Preferences (under Account), FaceTime, and Messages (yes all three)<br />
 2. You both add each other as a contact (Can be done in Messages)<br />
 3. One person initiates it via the far-left icon in the  "Details" menu in the upper right in the Conversation in Messages</p>
-<p>If the option is presented, there are two choices: "Invite to Share My Screen" and "Ask to Share Screen". These are great!<br />
-Very often, you'll want to screen share with someone who doesn't really know the feature exists, and "Ask to Share Screen" is a great<br />
-way to get connected faster without them worrying about finding the setting. The problem, however, is what happens <em>after</em> that.</p>
-<p>Oftentimes, after choosing one of the two selections, there is no visible indicator of the pending invitation. Sometimes there is, but<br />
-soemtimes there isn't. Then, if they don't answer the call in a specific amount of time, the pending invitation disappears, and neither<br />
-party has any idea what the status of the invite is. Despite this though, trying to re-invite won't work.</p>
-<p>There are seemingly a number of reasons it can get stuck like this. The ultimate result is one party never sees the invitation and subsequent<br />
-invites don't work. Then <em>no matter what you do</em> you can't enter a screen sharing session anymore. Usually both people have to end up rebooting<br />
-to fix this problem.</p>
-<p>I know this all sounds strange and specific, but having used many different Macs with many different people throughout the years, this has been<br />
-a consistent issue. It's very frustrating, especially because of how <em>good</em> the screen sharing functionality is when it works! It's byfar<br />
-better than Hangouts, Zoom, or Skype screen sharing.</p>
+<p>If the option is presented, there are two choices: "Invite to Share My Screen" and "Ask to Share Screen". These are great! Very often, you'll want to screen share with someone who doesn't really know the feature exists, and "Ask to Share Screen" is a great way to get connected faster without them worrying about finding the setting. The problem, however, is what happens <em>after</em> that.</p>
+<p>Oftentimes, after choosing one of the two selections, there is no visible indicator of the pending invitation. Sometimes there is, but sometimes there isn't. Then, if they don't answer the call in a specific amount of time, the pending invitation disappears, and neither party has any idea what the status of the invite is. Despite this though, trying to re-invite won't work.</p>
+<p>There are seemingly a number of reasons it can get stuck like this. The ultimate result is one party never sees the invitation and subsequent invites don't work. Then <em>no matter what you do</em> you can't enter a screen sharing session anymore. Usually both people have to end up rebooting to fix this problem.</p>
+<p>I know this all sounds strange and specific, but having used many different Macs with many different people throughout the years, this has been a consistent issue. It's very frustrating, especially because of how <em>good</em> the screen sharing functionality is when it works! It's byfar better than Hangouts, Zoom, or Skype screen sharing.</p>
 <p>So, this brings me to the "solution", which is more of a "Let's restart everything that might have even a little to do with screen sharing".</p>
 <p>Executing this command as follows, and entering the password, in the Terminal app:</p>
 <pre class="highlight"><code>sudo killall SSInvitationAgent imagent VDCAssistant &quot;Screen Sharing&quot; Messages   </code></pre>
 
 
 <p>It probably kills more than it has to, but in my experience, if screen sharing flakiness is experienced, and both parties run the above, things magically resume working!</p>
-<p>I wish Apple would advertise more this screen sharing feature, and iron out any issues/bugs with the connection. It could be a really cool<br />
-selling point of Macs to get screen sharing up and running so quickly via iMessage! They have all the pieces, and it's sad that it's<br />
-not seen as a more user-friendly/appealing feature. Instead it's tucked away inside Messages which has already become a shell of what it was when it was branded as iChat.</p>
+<p>I wish Apple would advertise more this screen sharing feature, and iron out any issues/bugs with the connection. It could be a really cool selling point of Macs to get screen sharing up and running so quickly via iMessage! They have all the pieces, and it's sad that it's not seen as a more user-friendly/appealing feature. Instead it's tucked away inside Messages which has already become a shell of what it was when it was branded as iChat.</p>
 <p>Final ranting point: Now that iTunes is split up into three apps: Music, TV, and Podcasts, it's sad that playing content in one doesn't pause the other. There are strange "design" choices like this all over the OS that I hope they can figure out! Maybe eventual integration with iOS will fix some of this (for instance, on iOS no issues with pausing other media when another one starts playing!)</p>
     </div>
     
