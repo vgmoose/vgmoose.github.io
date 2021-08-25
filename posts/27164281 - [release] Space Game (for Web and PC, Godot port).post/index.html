@@ -1,0 +1,37 @@
+<p>Space Game was originally a Wii U homebrew <a href="https://vgmoose.com/blog/release-space-game-for-wii-u-9950630850/">released in 2016</a> that was my first real designed-for-consoles app/game.</p>
+<p>This new version is playable in a browser at <a href="https://vgmoose.com/space-game/">vgmoose.com/space-game/</a>, or can be downloaded for Linux/Mac/Windows from these <a href="https://github.com/vgmoose/space-game/actions">pipelines</a>. I actually wasn't intending to make a web version, but adding in these <a href="https://github.com/vgmoose/space-game/blob/main/.github/workflows/main.yml">Godot Github Actions</a> included a gh-pages/Github Pages deploy, and I am happy with the results!</p>
+<p><img alt="space game screenshot" src="space1.png" /> <img alt="space game screenshot" src="space2.png" /></p>
+<p>I ported this game to Java in 2017, and again to SDL in 2018. The Java port was a lot more "creative" than the SDL port, and this Godot port I would classify along those same lines. To compare the different versions:</p>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Language</th>
+<th>Drawing code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Space Game (Wii U)</td>
+<td>C</td>
+<td><a href="https://github.com/vgmoose/wiiu-space/blob/hbl_elf/src/draw.c">draw.c</a></td>
+</tr>
+<tr>
+<td>JSpaceGame</td>
+<td>Java</td>
+<td><a href="https://github.com/vgmoose/JSpaceGame/blob/master/src/Draw.java">Draw.java</a></td>
+</tr>
+<tr>
+<td>Space Game NX</td>
+<td>C (SDL)</td>
+<td><a href="https://github.com/vgmoose/space-nx/blob/master/draw.c">draw.c</a></td>
+</tr>
+<tr>
+<td>Space Game (2021)</td>
+<td>GDScript</td>
+<td><a href="https://github.com/vgmoose/space-game/blob/main/Classic/draw.gd">draw.gd</a></td>
+</tr>
+</tbody>
+</table>
+<p>The Java/GDScript ports basically take the C code and via find/replace and going line by line translate some of the syntax differences and concepts. The new readme goes into more detail on some of the substitutions that had to be made. This is not a good example of how to make a 2D Godot game! However, it is faithful to the original math and behavior of the game.</p>
+<p>Entering the code <code>11111</code> on the Password screen toggles between UI changes that were made in Space Game NX (primarily the font) to allow this version to be the more "definitive" game. My primary drive for porting this yet again is to make it more accessible. Very often when I talk about having made this game, the person I am talking to is unable to play it due to the nicheness of homebrew scenes.</p>
