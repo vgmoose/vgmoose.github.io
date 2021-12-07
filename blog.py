@@ -200,7 +200,7 @@ if action == "compile":
             h404.write(temp_template)
             h404.close()
         
-        pbar.update(cur_count+1)
+        pbar.update(cur_count)
         cur_count+=1
     
     print("All Done!")

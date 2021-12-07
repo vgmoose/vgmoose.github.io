@@ -54,6 +54,7 @@ all_posts = {
     "4699962392": "/blog/fourth-and-fifth-gen-etiquette-4699962392/",
     "4825678835": "/blog/playing-with-php-4825678835/",
     "5067427085": "/blog/long-awaited-blog-post-5067427085/",
+    "5254778456": "/blog/another-new-laptop-5254778456/",
     "5495631835": "/blog/release-underscore-5495631835/",
     "5522555225": "/blog/first-post-5522555225/",
     "5574192608": "/blog/leaving-ubuntu-for-fedora-5574192608/",
