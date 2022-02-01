@@ -72,6 +72,7 @@ all_posts = {
     "6629164446": "/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/",
     "6720087730": "/blog/release-space-game-for-web-and-pc-godot-port-6720087730/",
     "6826443561": "/blog/how-to-fix-macos-flakey-screensharing-6826443561/",
+    "6898118583": "/blog/how-to-crop-landscape-169-videos-to-vertical-916-using-ffmpeg-for-youtube-shorts-or-tiktok-6898118583/",
     "7124395985": "/blog/death-sharp-site-launched-7124395985/",
     "7139299468": "/blog/dude-progress-update-7139299468/",
     "7243994775": "/blog/mini-ipod-iphone-browser-project-7243994775/",
