@@ -1,0 +1,100 @@
+<p>I have been installing Windows for a long time. Does it get easier? I want to say it gets easier, but it seems like there's always some new wrinkle! These instructions are as much a note to my future self as they may be useful to anyone else.</p>
+<p>For me, I was not able to get any exfat-based installs, or even any of the GUI helpers to make this process any more straightforward. Maybe on your target Windows / host OS those helpers will work, but the below process (as of current year) is consistent, and not overly complicated.</p>
+<p>Overview:<br />
+  1. Downloading an official ISO image from MS:<br />
+     - <a href="https://www.microsoft.com/software-download/windows11">https://www.microsoft.com/software-download/windows11</a><br />
+  2. Formatting the drive (at least 8GB) as GPT, and one <strong>FAT-format</strong> partition (aka <strong>MS-DOS</strong>)<br />
+     - Can use <a href="https://www.ubuntubuzz.com/2020/02/how-to-format-disk-drive-as-gpt-on-ubuntu.html">Disks</a> or <a href="https://support.apple.com/guide/disk-utility/format-a-disk-for-windows-computers-dskutl1010/mac">Disk Utilty</a> for this <br />
+  3. Mounting the ISO either in a file browser (eg. Files or Finder)<br />
+  4. Copying over all the files <em>except</em> <code>sources/install.wim</code><br />
+  5. Using <a href="https://wimlib.net/man1/wimsplit.html">wimsplit</a> from wimtools to split the <code>install.wim</code> file onto the destination drive<br />
+     - FAT-format filesystems have a limitation of 4GB per file, wimsplit creates two files in a format the Windows installer understands</p>
+<h2>Commands</h2>
+<h3>Prereqs</h3>
+<p>Format the the target drive, as mentioned above. It should be at least 8GB, FAT/MS-DOS-formatted, and GPT partitioning scheme.</p>
+<p>Install wimsplit on Ubuntu:</p>
+<div class="highlight"><pre><span></span>sudo apt install wimtools
+</pre></div>
+
+
+<p>On macOS (needs <a href="https://brew.sh/">brew</a> first</p>
+<div class="highlight"><pre><span></span>brew install wimlib
+</pre></div>
+
+
+<h3>Usage</h3>
+<ul>
+<li>Let's say <code>Downloads/Win11_22H2_English_x64.iso</code> is the Windows ISO.</li>
+<li>Double click or right-click Open this file with "Disk Image Mounter" to mount it</li>
+<li>The USB drive is (FAT/MS-DOS formatted) mounted at <code>/Volumes/TheUSB</code></li>
+<li>(on Ubuntu, it's likely in <code>/media/&lt;name&gt;/&lt;usb&gt;</code>)</li>
+<li>The mounted Windows ISO is at <code>/Volumes/CCCOMA_X64FRE_EN-US_DV9</code> (say that 10 times fast)</li>
+<li>(Ubuntu: <code>/media/&lt;name&gt;/CCCOMA_X64FRE_EN-US_DV9</code>)</li>
+</ul>
+<p>The following command copies over all files except <code>install.wim</code>:</p>
+<div class="highlight"><pre><span></span>rsync -avP --exclude sources/install.wim /Volumes/CCCOMA_X64FRE_EN-US_DV9/* /Volumes/TheUSB
+</pre></div>
+
+
+<p>Then, this command splits and copies <code>install.wim</code> at 3000MB (Just under the FAT limit):</p>
+<div class="highlight"><pre><span></span>wimsplit /Volumes/CCCOMA_X64FRE_EN-US_DV9/sources/install.wim /Volumes/TheUSB/sources/install.swm 3000
+</pre></div>
+
+
+<p>Make sure to replace <code>/Volumes</code> with the path to where the files/drives are mounted in the above commands.</p>
+<h3>Result</h3>
+<p>If successful, you should see <code>/Volumes/TheUSB</code> (your target USB) looks very similar to <code>/Volumes/CCCOMA_X64FRE_EN-US_DV9</code> (the mounted ISO), except that in the <code>sources</code> folder, the USB has <code>install.swm</code> and <code>install2.swm</code>. Again, these will be presented to the Windows installation environment as one file.</p>
+<p>After this, put the USB in your target device, and boot off it from the boot menu.</p>
+<p>Since we're using UEFI boot, it should <em>just appear</em> in the boot menu of the computer.</p>
+<p>If your computer hardwaare does not support UEFI boot, you can try reformatting the drive using MBR instead of GPT (But still using FAT). I can't vouch for this, but according to sources online it should Also Work.</p>
+<h2>Bonus (Unsupported OS Workaround)</h2>
+<p>If you get the error "Unsupported OS" in Windows, this has to do with a deliberate attempt to make Windows 11 harder to install on platforms that Microsoft has not deemed worthy. Or something like that. And, to make this very clear, if you see this error, your platform is NOT worthy. (Again, according to the publicly traded company MSFT).</p>
+<p>This worthiness is not an issue at this time, but if MS and Amazon merge or partner down the road, you could imagine you need the right hardware or you can't buy groceries (Or... something)</p>
+<p>To fix it, you can follow <a href="https://pureinfotech.com/install-windows-11-unsupported-pc/">these steps</a>, to summarize:<br />
+1. At the install screen (Before you click Install) press <strong>Shift+F10</strong> to bring up a cmd prompt<br />
+   - (I hope you have F1 through F12 keys, otherwise you will need to get creative)<br />
+2. In cmd, type <code>regedit</code>, and press enter<br />
+   - This is the Windows Registry Editor. It's an old program that allows you to modify different system and user config files. This is kind of similar to editing <code>plist</code> files in <code>~/Library</code> on macOS.<br />
+3. On the left, navigate to <code>HKEY_LOCAL_MACHINE</code> then <code>SYSTEM</code> then <code>Setup</code><br />
+   - Inside that <code>Setup</code> folder should be these three "Keys": <code>AllowStart</code>, <code>Pid</code>, <code>SETUPCL</code><br />
+4. Right click the <code>Setup</code> folder, and create a new Key, named: <code>LabConfig</code><br />
+5. Enter the <code>LabConfig</code> key, and on the right-hand-side, right click to create a new <code>DWORD (32-bit)</code> value. Do this three times, with the following names:<br />
+   - <code>BypassTPMCheck</code><br />
+   - <code>BypassSecureBootCheck</code><br />
+   - <code>BypassRAMCheck</code><br />
+6. After creating each of those, double click or right-click -&gt; Modify them, so that each of their values is <code>1</code>.<br />
+7. Now continue with the installation</p>
+<p>Note: If you are using Virtualbox (AKA, you probbaly aren't on this page?) You should use <a href="https://blogs.oracle.com/virtualization/post/install-microsoft-windows-11-on-virtualbox">these settings</a> for Windows 11.</p>
+<h2>Bonus 2 (UNMOUNTABLE_BOOT_VOLUME)</h2>
+<p>If, after installing, you get a bluescreen that occurs quickly with the code UNMOUNTABLE_BOOT_VOLUME, there are tutorials online that will have you run variations of the following commands:</p>
+<div class="highlight"><pre><span></span>bootrec /fixmbr
+bootrec /fixboot
+bootsect /nt60 sys
+bootrec /fixboot (yes, again, after the bootsec)
+bcdedit /rebuildbcd
+</pre></div>
+
+
+<p>If you mess around with those commands, but still nothing seems to fix it, I would suggest just completely deleting the EFI partition. Leave that space as unallocated, and allow the Windows installer to recreate it all on its own. I used to have a 1GB EFI partition manually created (FAT format) that housed both ubuntu and Windows boot folders. As of Windows 11, however, no matter what I did, the Windows bootloader refused to boot with this partition.</p>
+<p>After deleting the partition, however (And backing up <code>EFI/ubuntu</code>), the Windows installer recreated the EFI partition as a 100MB partition, alongside 2 other recovery/unused partitions. I believe there's some issue with the boot logic where it expects these partitions to be present during UEFI boot, and if Linux created the EFI partition, it ends up in an unexpected state.</p>
+<p>Once Windows 11 recreated them during the install, and boot normally, I just copied back the <code>EFI/ubuntu</code> folder, and was able to boot back into Linux. If you aren't able to back up this folder, you should be able to re-create the entries needed for Linux <a href="https://unix.stackexchange.com/a/169461">like this</a>:</p>
+<p>(With the EFI partition mounted at <code>/boot/efi</code>):</p>
+<div class="highlight"><pre><span></span>grub-install --efi-directory=/boot/efi
+</pre></div>
+
+
+<p>UEFI booting is supposed to be simpler: just manage an entry on the EFI partition. The UNMOUNTABLE_BOOT_ERROR makes it seem more complicated, but I would mentally file this under "Microsoft just requiring some special sauce" category of issues. Copying and moving around the <code>/boot/efi/ubuntu</code> folder back and forth to the EFI partition, whether Windows create it or not, on my machine allowed me to consistently boot back into Linux.</p>
+<p>As an aside, this is why some tutorials will suggest for dual boots to install Windows first, let it set up the partitions how it wants them, and then after that, install Ubuntu/Linux.</p>
+<p>In case you are in a similar situation to me, here are some rough CMD analogues to some common unix commands:<br />
+- <code>cp [targ] [dest]</code> -&gt; <code>xcopy [targ] [dest] /E /H /C /I</code><br />
+- <code>mv [targ] [dest]</code> -&gt; <code>ren [targ] [dest]</code> or <code>move [targ] [dest]</code><br />
+- <code>rm [targ]</code> -&gt; <code>del [targ]</code><br />
+- <code>rm -rf [targ]</code> -&gt; <code>rmdir /s [targ]</code></p>
+<p>And next time someone tells you DOS commands being arcane isn't an issue because Powershell or WSL exists, kindly remind them that these won't help you when it's 2am and you can't get your OS to boot.</p>
+<h2>Bonus 3 (Offline install)</h2>
+<p>Wow, I did not expect to run into Yet Another problem before the OS is fully set up, but here we are. This one is a little more straightforwards, but if you don't want to sign into a Microsoft account during the initial Windows 11 setup, hit Shift+F10 and enter the following command:</p>
+<div class="highlight"><pre><span></span>oobe\bypassnro
+</pre></div>
+
+
+<p>All one command like that, no spaces. This will restart the computer but set the "Out of Box Experience" to allow you to configure it without connecting to the network. If you already entered your networking info and connected, expecting not to be held hostage to use a MS account, you can use <code>ipconfig /release</code> to disconnect first.</p>

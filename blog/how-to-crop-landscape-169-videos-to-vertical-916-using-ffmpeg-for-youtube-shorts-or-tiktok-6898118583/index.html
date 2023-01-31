@@ -50,13 +50,15 @@
 <p>But with YouTube Shorts, I've been understanding more the appeal of quick and dismissable videos. It's much more of a "feed" where videos come to you for judgement, to be viewed or scrolled past, rather than selected or competing for your attention with clickbait. Then again, the alternative is now the algorithm is in even more control of what you see, and it's even more short-attention focused... Uh, anyway.</p>
 <p>Let's say your source video file is <code>input.mp4</code>, and has the dimensions of <code>1280x720</code> (width x height). This is the default resolution for the Nintendo Switch 30 second gameplay recordings.</p>
 <p>The below command will turn it into a 720x1280 video named <code>output.mp4</code>, cropping out from the center:</p>
-<pre class="highlight"><code>ffmpeg -i input.mp4 -vf &quot;crop=405:720:437:0,scale=720:1280&quot; output.mp4</code></pre>
+<div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -vf &quot;crop=405:720:437:0,scale=720:1280&quot; output.mp4
+</pre></div>
 
 
 <p>It will turn a fullscreen source video <a href="https://www.youtube.com/watch?v=iPUCb-0gd8E">like this</a> into a vertical one <a href="https://www.youtube.com/watch?v=EAY7-8dcjBs">like this</a>.</p>
 <p>There are two main arguments of interest in the command, and those are crop and scale. For crop:</p>
-<pre class="highlight"><code>crop=405:720:437:0
-crop=crop_width:crop_height:origin_x:origin_y</code></pre>
+<div class="highlight"><pre><span></span>crop=405:720:437:0
+crop=crop_width:crop_height:origin_x:origin_y
+</pre></div>
 
 
 <p>In this case, my source video was 1280x720. I want to keep the height the same (720), but change the width for 9:16 format. This means multiplying <code>720*(9/16) = 405</code>. So crop_width is 405, crop_height is 720.</p>
@@ -65,8 +67,9 @@ crop=crop_width:crop_height:origin_x:origin_y</code></pre>
 <img alt="9:16 crop area" src="../../posts/27394526 - How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok.post/crop_ratio.png" /></p>
 <p>The result of the crop operation is going to be a 405x720 video. But wait, we want 720x1280! Well, this is as high quality as this type of crop is going to be, but we can upscale the video. I did this step as I read online that 600x600 are the minimum bounds for a YT short.</p>
 <p>The scale arguments:</p>
-<pre class="highlight"><code>scale=720:1280
-scale=new_width:new_height</code></pre>
+<div class="highlight"><pre><span></span>scale=720:1280
+scale=new_width:new_height
+</pre></div>
 
 
 <p>So this will then scale the result of the crop into the desired resolution. Then, to upload this video to YouTube, include <code>#Shorts</code> in the title or description, as of this time of writing.</p>

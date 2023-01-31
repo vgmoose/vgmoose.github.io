@@ -54,6 +54,7 @@ all_posts = {
     "4699962392": "/blog/fourth-and-fifth-gen-etiquette-4699962392/",
     "4825678835": "/blog/playing-with-php-4825678835/",
     "5067427085": "/blog/long-awaited-blog-post-5067427085/",
+    "5071914005": "/blog/creating-a-windows-11-install-usb-in-2022-5071914005/",
     "5254778456": "/blog/another-new-laptop-5254778456/",
     "5495631835": "/blog/release-underscore-5495631835/",
     "5522555225": "/blog/first-post-5522555225/",

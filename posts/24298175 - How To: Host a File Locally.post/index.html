@@ -9,8 +9,9 @@
 <p>The host will require a server. There are many different types of http servers for many various operating systems. For this guide, I will be demonstrating how to host it using a built-in module in <a href="https://www.python.org/">python</a>.</p>
 <p>Python is included on most modern operating systems, but not on some of the most <em>popular</em> operating systems. Open up a terminal (or CMD on Windows) and run: <code>python --version</code> If you get back "no command found" or something similar, you will have to <a href="https://www.python.org/downloads/">install python</a>. This guide uses the 2.7.x version. Also if on Windows, you'll want to add the python binaries to your path, <a href="https://docs.python.org/2/using/windows.html#configuring-python">instructions here</a>.</p>
 <p>When it's all setup and configured properly, you should get output like this from your terminal:</p>
-<pre class="highlight"><code>&gt;&gt; python --version
-Python 2.7.6</code></pre>
+<div class="highlight"><pre><span></span>&gt;&gt; python --version
+Python 2.7.6
+</pre></div>
 
 
 <h3>Finding your local IP</h3>
@@ -18,14 +19,16 @@ Python 2.7.6</code></pre>
 <p>It's very common for your local IP to be one of the following formats: 192.168.x.x or 10.x.x.x, so you can expect it to look lke that.</p>
 <h3>Getting the files to host</h3>
 <p>Now that we are ready to run the server, we need files to actually host. cd into the folder (<a href="http://ss64.com/nt/cd.html">Windows</a>) (<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/3/html/Step_by_Step_Guide/s1-navigating-cd.html">Other</a>) with the files you want to host, and run the folliowing:</p>
-<pre class="highlight"><code>&gt;&gt; python -m SimpleHTTPServer
-Serving HTTP on 0.0.0.0 port 8000 ...</code></pre>
+<div class="highlight"><pre><span></span>&gt;&gt; python -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 ...
+</pre></div>
 
 
 <p>This command will run until you hit Ctrl+C. While it's running, you should be able to go to <a href="http://YOUR_IP:8000/">http://YOUR_IP:8000/</a> in your browser <strong>on any computer on your network</strong>. Upon visiting, you should see a list of files in the current directory. If you put html files in this folder, you will also be able to see them rendered on screen.</p>
 <p>If you are using python 3, the command is as follows:</p>
-<pre class="highlight"><code>&gt;&gt; python3 -m http.server
-Serving HTTP on 0.0.0.0 port 8000 ...</code></pre>
+<div class="highlight"><pre><span></span>&gt;&gt; python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 ...
+</pre></div>
 
 
 <p>At this point you can now go to another machine and check it to make sure it works!</p>
