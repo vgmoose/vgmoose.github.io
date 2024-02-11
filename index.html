@@ -51,11 +51,13 @@
     
     
     <div id="content">
-        2022: <a href="blog/debunking-criticisms-about-the-switch-browser-4535319561">Debunking Criticisms About the Switch Browser</a> <div class='minidescription'>This post responds to some pretty negative comments about the Switch browser on this reddit thread on r/NintendoSwitch. Before I get into it, I want to lead with this change.org petition, which already has almost 14,000 signatures from other people who also want a standalone browser app on the Switch.
-
-It's a lot of development work that they won't maintain
-
-Actually, the development work is already done. The Switch already internally includes a webkit-based browser, and it is updated frequently...</div><br>2022: <a href="blog/pokemon-red-and-blue-rom-patches-with-slowed-down-music-6347114672">Pokemon Red and Blue ROM Patches with Slowed Down Music</a> <div class='minidescription'>These are patches for Red/Blue that are built with their music tempo slowed down 2x and 4x. This is done by changing this line in the decompilation (to HIGH(\1 * 2), LOW(\1 * 2) or HIGH(\1 * 4), LOW(\1) * 4).
+        2024: <a href="blog/pokemon-picross-and-crystal-clear-custom-game-boy-labels-4099938666">Pokemon Picross and Crystal Clear Custom Game Boy Labels</a> <div class='minidescription'>Hi! It's 2024! Ahh!
+Just a quick post sharing some custom labels for https://bulbapedia.bulbagarden.net/wiki/Pokémon_Picross_(GBC) and Crystal Clear.
+ 
+Resize these to 42mm x 37mm (or 4.2cm x 3.7cm) and print on sticker paper.
+The Picross label is made using edited assets from Pokémon Picross Adventure, which itself is using the 3DS version's logo.
+The Crystal Clear label is edited from IGDB.
+There are a few game boy cartridge labels for these that are available online, but I prefer the more pix...</div><br>2022: <a href="blog/pokemon-red-and-blue-rom-patches-with-slowed-down-music-6347114672">Pokemon Red and Blue ROM Patches with Slowed Down Music</a> <div class='minidescription'>These are patches for Red/Blue that are built with their music tempo slowed down 2x and 4x. This is done by changing this line in the decompilation (to HIGH(\1 * 2), LOW(\1 * 2) or HIGH(\1 * 4), LOW(\1) * 4).
 This creates a slightly better experience if you use 2x or 4x speed up / fast forwarding in an emulator, so that the sound isn't just a cacophony of sped up noises. It's not perfect though!
 Downloads
 
@@ -64,7 +66,11 @@ Downloads
 
 How to Patch
 Use https://www.marcrobledo.com/Ro...</div><br>2022: <a href="blog/creating-a-windows-11-install-usb-in-2022-5071914005">Creating a Windows 11 Install USB in 2022</a> <div class='minidescription'>I have been installing Windows for a long time. Does it get easier? I want to say it gets easier, but it seems like there's always some new wrinkle! These instructions are as much a note to my future self as they may be useful to anyone else.
-For me, I was not able to get any exfat-based installs, or even any of the GUI helpers to make this process any more straightforward. Maybe on your target Windows / host OS those helpers will work, but the below process (as of current year) is consistent, a...</div><br>2022: <a href="blog/how-to-crop-landscape-169-videos-to-vertical-916-using-ffmpeg-for-youtube-shorts-or-tiktok-6898118583">How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok</a> <div class='minidescription'>It's another new year! Still feels like 2020! Noooo!!
+For me, I was not able to get any exfat-based installs, or even any of the GUI helpers to make this process any more straightforward. Maybe on your target Windows / host OS those helpers will work, but the below process (as of current year) is consistent, a...</div><br>2022: <a href="blog/debunking-criticisms-about-the-switch-browser-4535319561">Debunking Criticisms About the Switch Browser</a> <div class='minidescription'>This post responds to some pretty negative comments about the Switch browser on this reddit thread on r/NintendoSwitch. Before I get into it, I want to lead with this change.org petition, which already has almost 14,000 signatures from other people who also want a standalone browser app on the Switch.
+
+It's a lot of development work that they won't maintain
+
+Actually, the development work is already done. The Switch already internally includes a webkit-based browser, and it is updated frequently...</div><br>2022: <a href="blog/how-to-crop-landscape-169-videos-to-vertical-916-using-ffmpeg-for-youtube-shorts-or-tiktok-6898118583">How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok</a> <div class='minidescription'>It's another new year! Still feels like 2020! Noooo!!
 In this post, I will be showing some ffmpeg commands that can be used to convert 720p or 1080p 16:9 video into a 9:16 format that will allow it to work in YouTube Shorts. I'm a long time Youtuber, but I'm also someone who thought up until yesterday that "TikTok" had a space between Tik and Tok. That'd be like writing "You Tube"! Jeez.
 But with YouTube Shorts, I've been understanding more the appeal of quick and dismissable videos. It's much m...</div><br>2021: <a href="blog/another-new-laptop-5254778456">Another New Laptop</a> <div class='minidescription'>I find myself with another new laptop, this time only 1.5 years later. It turns out I bought previous one at basically the worst possible time. This is now "officially" my fourth Macbook in 12 years, further solidfying my ties to the Apple ecosystem. Although, the Asahi Linux project looks very promising for running linux here in the future!
 The 2020 MBP I got towards "the start" of the pandemic (which is weird to say, considering it was May 2020 which felt deep-pandemic at the time). I got it a...</div><br>2021: <a href="blog/release-space-game-for-web-and-pc-godot-port-6720087730">[release] Space Game (for Web and PC, Godot port)</a> <div class='minidescription'>Space Game was originally a Wii U homebrew released in 2016 that was my first real designed-for-consoles app/game.
@@ -91,18 +97,15 @@ This is especially irritating, as some programs would bring you to what appeared
 dd if=/dev/zero of=disk.img bs=512M count=2
 
 
-
 Then, use losetup and the -P flag to use the newly created image as a loopback device.
 losetup -P /dev/loop0 disk.img
-
 
 
 Once the loopback device is created, you should be able to create a partition map on it using fdisk. (If you don't want to use fdisk, another disk partitioning program should work)
 fdisk /dev/loop0
 
 
-
-...</div><br>2017: <a href="blog/on-the-pokemon-bank-transfer-algorithm-6446734174">On the Pokemon Bank transfer algorithm</a> <div class='minidescription'>I uploaded two videos to YouTube a few months ago describing the transfer algorithm in the 1.2 version of Pokémon Bank for the 3DS. The process was upsetting as it was not a consistent, deterministic algorithm, and instead generates completely random numbers at the time of transfer to create the Gen 7 Pokémon from Gen 1 ones.
+Ins...</div><br>2017: <a href="blog/on-the-pokemon-bank-transfer-algorithm-6446734174">On the Pokemon Bank transfer algorithm</a> <div class='minidescription'>I uploaded two videos to YouTube a few months ago describing the transfer algorithm in the 1.2 version of Pokémon Bank for the 3DS. The process was upsetting as it was not a consistent, deterministic algorithm, and instead generates completely random numbers at the time of transfer to create the Gen 7 Pokémon from Gen 1 ones.
 
 First video explaining the algorithm and what values it discards/randomizes
 Second video showing the transfer process on some cloned Pikachu.
@@ -179,8 +182,7 @@ sudo su
 cd $(dirname $(find /sys -name brightness))
 
 
-
-This w...</div><br>2014: <a href="blog/game-boy-color-frontscreen-mod-6084689264">Game Boy Color Frontscreen Mod</a> <div class='minidescription'>Final Product
+This wi...</div><br>2014: <a href="blog/game-boy-color-frontscreen-mod-6084689264">Game Boy Color Frontscreen Mod</a> <div class='minidescription'>Final Product
 
 I wanted to frontlight my gbc, as modern screens have spoiled me to the point where the original gameboy color screen appears almost unreadable. There are a lot of cool mods on /r/gameboy, so after doing some research I finally bought an SP and started on the mod. I was pretty nervous after looking at all the tutorials, but I'm surprised (and happy) to say that it worked out!
 The method I ended up using takes the front light from an AGS-001, cuts it so that it fits horizontally, a...</div><br>2014: <a href="blog/day-13-the-slicer-7435303567">Day 13 - The Slicer</a> <div class='minidescription'>Another Monday. My documentation work is slowly making progress. Although there are still some confusing things, they seem to stem from the fact that I’ve been mixing and mashing different versions of lvmthin. Things are stable again, for the moment.
@@ -189,8 +191,7 @@ The Slicer is a utility that is not provided to the employees, so I am responsib
 uname -r 
 
 
-
-The above command reports information about the kernel. I was running 3.11, which does not have dm-cache support. The README...</div><br>2014: <a href="blog/day-11-triple-threat-3764917904">Day 11 - Triple Threat</a> <div class='minidescription'>Much of my job consists of taking my computers... and destroying them. Well, I'm not supposed to be destroying them, and I'm not necessarily trying to either, but usually in testing LVM I manage to find one way or another to make the machines unbootable. Thankfully, due to the wealth of LVM information out there, more often than not I am capable of fixing the problems that develop on my laptop, but for the desktops it's usually just less effort to reformat them and try something different.
+The above command reports information about the kernel. I was running 3.11, which does not have dm-cache support. The README ...</div><br>2014: <a href="blog/day-11-triple-threat-3764917904">Day 11 - Triple Threat</a> <div class='minidescription'>Much of my job consists of taking my computers... and destroying them. Well, I'm not supposed to be destroying them, and I'm not necessarily trying to either, but usually in testing LVM I manage to find one way or another to make the machines unbootable. Thankfully, due to the wealth of LVM information out there, more often than not I am capable of fixing the problems that develop on my laptop, but for the desktops it's usually just less effort to reformat them and try something different.
 
 I wa...</div><br>2014: <a href="blog/day-10-snapshot-restore-aftermath-9847859423">Day 10 - Snapshot Restore Aftermath</a> <div class='minidescription'>So today I thought I'd through caution to the wind and just restore one of the daily snapshots that I had lying around from the cron job. This turned out to be not such a great idea... Despite being in charge of reviewing the documentation, it was not so obvious to me that upon merging one of the snapshots from my "Time Machine" the other ones would be de-linked as snapshots, and simply exist as thin volumes within the pool. This is pretty upsetting, as the inability to merge the snapshots that ...</div><br>2014: <a href="blog/day-09-ram-disks-and-write-speeds-8888858920">Day 09 - RAM Disks and Write Speeds</a> <div class='minidescription'>As discussed in yesterday's post, caching is beneficial when a large slow volume is assisted by a fast small one. While it isn't a practical use for production, my manager suggested I could emulate this faster behavior by using a ramdisk, as 2/3 of my machines don't have flash storage. A RAM disk, (which, from this point on, I shall continue going back and forth between "RAM disk" and "ramdisk" spellings) allows a piece of memory to be sectioned off and mounted like a disk would. This means it n...</div><br>2014: <a href="blog/day-08-enter-the-cache-0936093496">Day 08 - Enter the Cache</a> <div class='minidescription'>Logical volumes are very unique in the sense that you can inject some higher level logic into something as low level as the bytes on your disk. Flash disks are very fast, but large ones are also still very expensive. This obviously creates an interesting problem for server maintainers, as ideally large amount of content would be served as fast as possible which would require the best of both worlds. 
 

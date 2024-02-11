@@ -43,6 +43,7 @@ all_posts = {
     "3841162130": "/blog/first-entry-3841162130/",
     "3904971533": "/blog/mamamia-3904971533/",
     "3972771157": "/blog/launching-of-the-blag-3972771157/",
+    "4099938666": "/blog/pokemon-picross-and-crystal-clear-custom-game-boy-labels-4099938666/",
     "4154581713": "/blog/day-03-cubicle-sweet-cubicle-4154581713/",
     "4314069407": "/blog/day-02-orientation-part-2-4314069407/",
     "4370481922": "/blog/how-to-host-a-file-locally-4370481922/",
