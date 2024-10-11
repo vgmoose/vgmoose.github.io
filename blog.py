@@ -31,7 +31,7 @@ def dash_phrase(phrase):
     return '-'.join(words)
     
 # match all non-whitespace and non-alphanumeric
-pattern = re.compile('([^\s\w]|_)+')
+pattern = re.compile(r'([^\s\w]|_)+')
 
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -61,7 +61,7 @@ class Content:
         outfile.close()
         
         self.buildHTML()
-        self.minicontent = re.sub('<[^<]+?>', '', self.gfm)
+        self.minicontent = re.sub(r'<[^<]+?>', '', self.gfm)
         
         if len(self.minicontent) > 500:
             self.minicontent = self.minicontent[:500] + "..."
@@ -151,9 +151,9 @@ if action == "compile":
         index.write(content.gfm)
         index.close()
         		
-        nopunc = re.sub('[?! -.:/]', ' ', content.gfm.lower()).replace("\n", " ")
+        nopunc = re.sub(r'[?! -.:/]', ' ', content.gfm.lower()).replace("\n", " ")
 
-        words = re.sub('<[^<]+?>', '', nopunc).split(" ")
+        words = re.sub(r'<[^<]+?>', '', nopunc).split(" ")
         for word in words:
 #            word = re.sub('[?! -.]', '', word.lower()).replace("\n",'')
             if not word in vocab:
@@ -162,6 +162,7 @@ if action == "compile":
                 
         tcontent = content.gfm
         tcontent = tcontent.replace("src=\"", "src=\"../../posts/"+e+"/")
+        tcontent = tcontent.replace("href=\"./", "href=\"../../posts/"+e+"/")
         temp_template = template.replace("$content", tcontent)
             
         tdate = content.prop["date"]
