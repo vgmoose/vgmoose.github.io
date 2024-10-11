@@ -161,13 +161,19 @@ if action == "compile":
             vocab[word].add(content.prop["id"])
                 
         tcontent = content.gfm
-        tcontent = tcontent.replace("src=\"", "src=\"../../posts/"+e+"/")
-        tcontent = tcontent.replace("href=\"./", "href=\"../../posts/"+e+"/")
-        temp_template = template.replace("$content", tcontent)
-            
+
         tdate = content.prop["date"]
         if (tdate.endswith(" 00:00:00")):
             tdate = tdate[:-9]
+
+        # for posts before 2024, we do a hackier way of replacing the src and href
+        if (int(tdate[:4]) < 2024):
+            tcontent = tcontent.replace("src=\"", "src=\"../../posts/"+e+"/")
+        else:
+            tcontent = tcontent.replace("src=\"./", "src=\"../../posts/"+e+"/")
+        tcontent = tcontent.replace("href=\"./", "href=\"../../posts/"+e+"/")
+        temp_template = template.replace("$content", tcontent)
+            
         temp_template = temp_template.replace("$date", tdate)
         
         # get appropriately sized ad based on how long this entry is
