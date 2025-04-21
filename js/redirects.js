@@ -86,6 +86,7 @@ all_posts = {
     "7518960906": "/blog/day-12-kernel-upgrading-and-reinstallation-7518960906/",
     "7522942824": "/blog/introducing-leaderboards-7522942824/",
     "7860290502": "/blog/sunday-update-629-7860290502/",
+    "7866335191": "/blog/yellow-version-glitch-no-poison-damage-in-overworld-skip-fainting-checks-7866335191/",
     "7871405254": "/blog/my-daily-computer-7871405254/",
     "7951774518": "/blog/creating-a-flashable-disk-image-from-a-folder-7951774518/",
     "8084507045": "/blog/retrospective-nintendo-switch-and-inspiration-8084507045/",
