@@ -108,5 +108,6 @@ all_posts = {
     "9832105200": "/blog/im-not-dead-9832105200/",
     "9847859423": "/blog/day-10-snapshot-restore-aftermath-9847859423/",
     "9909702342": "/blog/jwiiload-9909702342/",
-    "9950630850": "/blog/release-space-game-for-wii-u-9950630850/"
+    "9950630850": "/blog/release-space-game-for-wii-u-9950630850/",
+    "9998756653": "/blog/how-to-create-static-302-redirects-using-gitlab-pages-9998756653/"
 };

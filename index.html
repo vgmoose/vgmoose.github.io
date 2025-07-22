@@ -3,19 +3,13 @@
     <link rel="stylesheet" href="layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>VGMoose's Blog</title>
-	
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="VGMoose's Blog" />
+    <!-- single_entry <meta property="og:type" content="article" /> single_entry -->
+     <meta property="og:type" content="website" /> 
+    <meta property="og:url" content="https://vgmoose.dev" />
+    <meta property="og:description" content="Musings from the individual known as VGMoose" />
+    <meta property="og:image" content="/layout/titleblog.png" />
 </head>
 
 <div id="all">
@@ -51,7 +45,11 @@
     
     
     <div id="content">
-        2025: <a href="blog/yellow-version-glitch-no-poison-damage-in-overworld-skip-fainting-checks-7866335191">Yellow version glitch: no poison damage in overworld, skip fainting checks</a> <div class='minidescription'>This post looks into some behavior related to poison damage not being applied in certain areas in Yellow. The special state where these checks are skipped can be stored, which will allow visiting other areas without taking poison damage or fainting while walking. This mode also persists across saving/resetting, effectively removing these overworld checks for the rest of the game.
+        2025: <a href="blog/how-to-create-static-302-redirects-using-gitlab-pages-9998756653">How to create static 302 redirects using Gitlab Pages</a> <div class='minidescription'>Website redirects can be annoying! The best thing to do is often a 302 (or 301) HTTP redirect, without having to use meta refresh tags or requiring the user to run JavaScript on the page.
+Gitlab provides an extremely convenient offering with Gitlab Pages and also allows you to set up a single yml config file with some limited dynamic capabilities. See their docs page on redirects.
+In short, create a .gitlab-ci.yml in the root of your repo, and all that needs to be filled is:
+variables:
+  REDIREC...</div><br>2025: <a href="blog/yellow-version-glitch-no-poison-damage-in-overworld-skip-fainting-checks-7866335191">Yellow version glitch: no poison damage in overworld, skip fainting checks</a> <div class='minidescription'>This post looks into some behavior related to poison damage not being applied in certain areas in Yellow. The special state where these checks are skipped can be stored, which will allow visiting other areas without taking poison damage or fainting while walking. This mode also persists across saving/resetting, effectively removing these overworld checks for the rest of the game.
 Background info
 In Pokemon Yellow there are a few special added events that involve the player's Pikachu. During all ...</div><br>2024: <a href="blog/oras-missingno-retrospective-3d-model-files-0357867364">ORAS Missingno Retrospective & 3D Model Files</a> <div class='minidescription'>In 2016, I made a video where I modded a Missingno model and short event into Omega Ruby. This was actually itself a much-later sequel to a 2007 video where I did something similar in the original Ruby version!
 This is both a post to reflect on that, but also to upload those models that I made back then. They can be downloaded here: missingno_model_files.zip.

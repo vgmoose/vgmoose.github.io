@@ -1,0 +1,23 @@
+<p>Website redirects can be annoying! The best thing to do is often a 302 (or 301) HTTP redirect, without having to use meta refresh tags or requiring the user to run JavaScript on the page.</p>
+<p>Gitlab provides an extremely convenient offering with Gitlab Pages and also allows you to set up a single yml config file with some limited dynamic capabilities. See their <a href="https://docs.gitlab.com/user/project/pages/redirects/">docs page on redirects</a>.</p>
+<p>In short, create a <code>.gitlab-ci.yml</code> in the root of your repo, and all that needs to be filled is:</p>
+<pre class="highlight"><code>variables:
+  REDIRECT_DOMAIN: &quot;example.com&quot;
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - echo &quot;/* https://$REDIRECT_DOMAIN/:splat 302&quot; &gt; public/_redirects
+
+  artifacts:
+    paths:
+      - public
+
+  only:
+    - main
+    - master</code></pre>
+
+
+<p>This will cover both main/master branches (depending on which your git client defaults too), and 302 redirect any requsts to the REDIRECT_DOMAIN. All that has to be changed is the 2nd line of the file.</p>
+<p>The <code>:splat</code> component preserves the full path during the redirect! This is a great option for static sites and serverless environments, and it's one less thing that you have to worry about as a website maintainer.</p>
