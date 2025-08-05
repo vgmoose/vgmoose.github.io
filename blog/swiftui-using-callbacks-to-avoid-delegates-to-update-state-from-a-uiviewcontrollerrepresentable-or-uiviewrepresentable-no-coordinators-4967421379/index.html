@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="../../layout/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+    <title>SwiftUI - Using callbacks to avoid delegates to update state from a UIViewControllerRepresentable or UIViewRepresentable (No Coordinators)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="SwiftUI - Using callbacks to avoid delegates to update state from a UIViewControllerRepresentable or UIViewRepresentable (No Coordinators)" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="That is a mouthful of a post title! There are some (really good!) articles on the Internet about how to communicate with a traditional UIView or UIViewController from a parent SwiftUI view. Like this one, or this one. I have the impression though that they're coming at the problem from a UIKit perspective though, which makes sense given that a traditional UIView is being used. But if you find yourself unable to follow the way the Coordinator interacts with the delegate, and bridges the UIView &l..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+</head>
+
+<div id="all">
+    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="nav">
+        <ul>
+            <li><a href="../../">Blog</a></li>
+            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
+            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
+            <li><a href="https://github.com/vgmoose/">Github</a></li>
+            <li><a href="../../blog/about-me-1036709243/">About</a></li>
+            <li><a href="../../search/">Search</a></li>
+        </ul>
+    </div>
+    <br>
+    
+    
+    <div id="sidebar">
+        Date: 2025-08-05 02:57:02<br />
+        Tags: swift, coding, swiftui, callbacks<br />
+		<br />
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+    </div>
+    <div id="content">
+        <h2>SwiftUI - Using callbacks to avoid delegates to update state from a UIViewControllerRepresentable or UIViewRepresentable (No Coordinators)</h2>
+        <p>That is a mouthful of a post title!</p>
+<p>There are some (really good!) articles on the Internet about how to communicate with a traditional UIView or UIViewController from a parent SwiftUI view. Like <a href="https://www.hackingwithswift.com/books/ios-swiftui/using-coordinators-to-manage-swiftui-view-controllers">this one</a>, or <a href="https://www.avanderlee.com/swiftui/integrating-swiftui-with-uikit/">this one</a>.</p>
+<p>I have the impression though that they're coming at the problem from a UIKit perspective though, which makes sense given that a traditional UIView <em>is</em> being used.</p>
+<p>But if you find yourself unable to follow the way the Coordinator interacts with the delegate, and bridges the UIView &lt;-&gt; SwiftUI state variable (for example, the author of <a href="https://www.reddit.com/r/SwiftUI/comments/i7paes/immense_confusion_and_despair_using_coordinators/">this reddit post</a>) try this!</p>
+<pre class="highlight"><code class="language-swift">// your parent SwiftUI view, and the state you want to update
+struct ParentView: View {
+    @State var myState = &quot;&quot;
+    var body: some View {
+        WrappedUIView(callback: { newValue in
+            myState = newValue // this works!
+        })
+    }
+    // ...rest of your view
+}
+
+// the wrapping view (aka the bridge) which hooks up the callback
+// replace YourViewControllerClass with your target UIViewController
+struct WrappedUIView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = YourViewControllerClass
+
+    let callback: (String) -&gt; Void // replace with your desired actual args/types
+
+    func makeUIViewController(context: Context) -&gt; YourViewControllerClass {
+        let vc = YourViewControllerClass()
+        vc.updateMyState = callback
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: YourViewControllerClass, context: Context) {
+        // for moving in the other direction
+    }
+}
+
+// then your UIViewController needs the callback defined as well
+class YourViewControllerClass: UIViewController {
+    // ...
+    var updateMyState: (String) -&gt; Void = { _ in } // replace with desired args/type
+    // ...
+}</code></pre>
+
+
+<p>I found doing it this way to be a lot easier to follow. You can then call it like a normal method, from YourViewControllerClass:</p>
+<pre class="highlight"><code class="language-swift">self.updateMyState(&quot;hello&quot;)</code></pre>
+
+
+<p>Will properly update the <code>myState</code> variable. So it both behaves how you <em>want</em> it to behave, and properly interacts with the SwiftUI lifecycle.</p>
+<p>The process is similar and also works for <code>UIViewRepresentable</code>, if you replace all occurrences of <code>UIViewControllerRepresentable</code> with it, and then use a <code>UIView</code> instead of a <code>UIViewController</code>. SwiftUI provides both.</p>
+<p>Upon closer inspection, the Coordinator / delegate system <em>does</em> make sense, but hopefully this code helps the process click for someone else. It's not as special as it seems! Callbacks work the way that you'd expect them.</p>
+<p>And by initializing <code>YourViewControllerClass</code>'s <code>updateMyState</code> to <code>{ _ in }</code> you can avoid an optional as well. Be warned though, you might want to put a print there to ensure it's actually getting properly overriden.</p>
+<p>The type <code>(String) -&gt; Void</code>  can be changed to whatever you want (or <code>() -&gt; Void</code> for no arguments).</p>
+    </div>
+    
+    
+    <!-- entry_group
+    <div id="content">
+        $entry_group
+    </div>
+<div style="clear: both"></div>
+<br /><br />
+    entry_group -->
+    
+    <!-- search_group
+    <div id="content">
+        <h2>Search vgmoose.com</h2>
+        <p class="hideme">Search is loading...</p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script>lookup = $search_lookup;</script>
+        <script>vocab = $search_vocab;</script>
+        <script src="../../js/search.js"></script>
+        <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
+        <div id="results"></div>
+        <br>
+    </div>
+    search_group -->
+    
+    <br>
+    
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = 4967421379;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <div id="footer">
+		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div style="clear: both"></div>
+	</div>
+	<!-- home_page
+	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
+	home_page -->
+</div>

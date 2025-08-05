@@ -1,0 +1,50 @@
+<p>That is a mouthful of a post title!</p>
+<p>There are some (really good!) articles on the Internet about how to communicate with a traditional UIView or UIViewController from a parent SwiftUI view. Like <a href="https://www.hackingwithswift.com/books/ios-swiftui/using-coordinators-to-manage-swiftui-view-controllers">this one</a>, or <a href="https://www.avanderlee.com/swiftui/integrating-swiftui-with-uikit/">this one</a>.</p>
+<p>I have the impression though that they're coming at the problem from a UIKit perspective though, which makes sense given that a traditional UIView <em>is</em> being used.</p>
+<p>But if you find yourself unable to follow the way the Coordinator interacts with the delegate, and bridges the UIView &lt;-&gt; SwiftUI state variable (for example, the author of <a href="https://www.reddit.com/r/SwiftUI/comments/i7paes/immense_confusion_and_despair_using_coordinators/">this reddit post</a>) try this!</p>
+<pre class="highlight"><code class="language-swift">// your parent SwiftUI view, and the state you want to update
+struct ParentView: View {
+    @State var myState = &quot;&quot;
+    var body: some View {
+        WrappedUIView(callback: { newValue in
+            myState = newValue // this works!
+        })
+    }
+    // ...rest of your view
+}
+
+// the wrapping view (aka the bridge) which hooks up the callback
+// replace YourViewControllerClass with your target UIViewController
+struct WrappedUIView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = YourViewControllerClass
+
+    let callback: (String) -&gt; Void // replace with your desired actual args/types
+
+    func makeUIViewController(context: Context) -&gt; YourViewControllerClass {
+        let vc = YourViewControllerClass()
+        vc.updateMyState = callback
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: YourViewControllerClass, context: Context) {
+        // for moving in the other direction
+    }
+}
+
+// then your UIViewController needs the callback defined as well
+class YourViewControllerClass: UIViewController {
+    // ...
+    var updateMyState: (String) -&gt; Void = { _ in } // replace with desired args/type
+    // ...
+}</code></pre>
+
+
+<p>I found doing it this way to be a lot easier to follow. You can then call it like a normal method, from YourViewControllerClass:</p>
+<pre class="highlight"><code class="language-swift">self.updateMyState(&quot;hello&quot;)</code></pre>
+
+
+<p>Will properly update the <code>myState</code> variable. So it both behaves how you <em>want</em> it to behave, and properly interacts with the SwiftUI lifecycle.</p>
+<p>The process is similar and also works for <code>UIViewRepresentable</code>, if you replace all occurrences of <code>UIViewControllerRepresentable</code> with it, and then use a <code>UIView</code> instead of a <code>UIViewController</code>. SwiftUI provides both.</p>
+<p>Upon closer inspection, the Coordinator / delegate system <em>does</em> make sense, but hopefully this code helps the process click for someone else. It's not as special as it seems! Callbacks work the way that you'd expect them.</p>
+<p>And by initializing <code>YourViewControllerClass</code>'s <code>updateMyState</code> to <code>{ _ in }</code> you can avoid an optional as well. Be warned though, you might want to put a print there to ensure it's actually getting properly overriden.</p>
+<p>The type <code>(String) -&gt; Void</code>  can be changed to whatever you want (or <code>() -&gt; Void</code> for no arguments).</p>

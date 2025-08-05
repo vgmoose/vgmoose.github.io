@@ -45,7 +45,10 @@
     
     
     <div id="content">
-        2025: <a href="blog/how-to-create-static-302-redirects-using-gitlab-pages-9998756653">How to create static 302 redirects using Gitlab Pages</a> <div class='minidescription'>Website redirects can be annoying! The best thing to do is often a 302 (or 301) HTTP redirect, without having to use meta refresh tags or requiring the user to run JavaScript on the page.
+        2025: <a href="blog/swiftui-using-callbacks-to-avoid-delegates-to-update-state-from-a-uiviewcontrollerrepresentable-or-uiviewrepresentable-no-coordinators-4967421379">SwiftUI - Using callbacks to avoid delegates to update state from a UIViewControllerRepresentable or UIViewRepresentable (No Coordinators)</a> <div class='minidescription'>That is a mouthful of a post title!
+There are some (really good!) articles on the Internet about how to communicate with a traditional UIView or UIViewController from a parent SwiftUI view. Like this one, or this one.
+I have the impression though that they're coming at the problem from a UIKit perspective though, which makes sense given that a traditional UIView is being used.
+But if you find yourself unable to follow the way the Coordinator interacts with the delegate, and bridges the UIView &l...</div><br>2025: <a href="blog/how-to-create-static-302-redirects-using-gitlab-pages-9998756653">How to create static 302 redirects using Gitlab Pages</a> <div class='minidescription'>Website redirects can be annoying! The best thing to do is often a 302 (or 301) HTTP redirect, without having to use meta refresh tags or requiring the user to run JavaScript on the page.
 Gitlab provides an extremely convenient offering with Gitlab Pages and also allows you to set up a single yml config file with some limited dynamic capabilities. See their docs page on redirects.
 In short, create a .gitlab-ci.yml in the root of your repo, and all that needs to be filled is:
 variables:

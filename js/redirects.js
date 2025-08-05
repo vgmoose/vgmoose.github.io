@@ -56,6 +56,7 @@ all_posts = {
     "4665154176": "/blog/the-best-kind-of-pizza-4665154176/",
     "4699962392": "/blog/fourth-and-fifth-gen-etiquette-4699962392/",
     "4825678835": "/blog/playing-with-php-4825678835/",
+    "4967421379": "/blog/swiftui-using-callbacks-to-avoid-delegates-to-update-state-from-a-uiviewcontrollerrepresentable-or-uiviewrepresentable-no-coordinators-4967421379/",
     "5067427085": "/blog/long-awaited-blog-post-5067427085/",
     "5071914005": "/blog/creating-a-windows-11-install-usb-in-2022-5071914005/",
     "5254778456": "/blog/another-new-laptop-5254778456/",
