@@ -1,5 +1,6 @@
 import sys, os, time, random, re, shutil, json
 import unicodedata
+import urllib
 
 try:
     import unidecode
@@ -87,9 +88,9 @@ class Content:
     def buildHTML(self):
         # parse gfm to html
         try:
-            self.gfm = markdown.markdown(self.content, ['gfm'])
+            self.gfm = markdown.markdown(self.content, extensions=['gfm'], output_format='html5', safe_mode=False)
         except UnicodeDecodeError:
-            self.gfm = markdown.markdown(unidecode.unidecode(self.content.decode("utf-8")), ['gfm'])
+            self.gfm = markdown.markdown(unidecode.unidecode(self.content.decode("utf-8")), extensions=['gfm'], output_format='html5', safe_mode=False)
         
 if action == "compile":
     
@@ -181,10 +182,19 @@ if action == "compile":
             appropriate_ad = '<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>'
         else:
             appropriate_ad = '<ins class="adsbygoogle" style="display:inline-block;width:120px;height:240px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="2990858106"></ins>'
+        
+        previewUrl = "/layout/titleblog.png" # default icon if there's no applicable image in the folder
+        for f in os.listdir("posts/"+e):
+            if f.endswith(".jpg") or f.endswith(".png") or f.endswith(".gif") or f.endswith(".jpeg"):
+                print(f)
+                previewUrl = "posts/"+e+"/"+f
+                break # just take the first one TODO: allow specifying one
             
         temp_template = temp_template.replace("$categories", content.prop["categories"])
         temp_template = temp_template.replace("$id", content.prop["id"])
         temp_template = temp_template.replace("$title", content.prop["title"])
+        temp_template = temp_template.replace("$description", content.minicontent.replace("\n", " ").replace("\"", "\\\""))
+        temp_template = temp_template.replace("$previewUrl", urllib.parse.quote(previewUrl))
         temp_template = temp_template.replace("$adcode", appropriate_ad)
 
         dirname = dash_phrase(content.prop["title"]) + "-" + content.prop["id"]
@@ -225,6 +235,9 @@ if action == "compile":
     template = template.replace("<!-- home_page", "")
     template = template.replace("home_page -->", "")
     template = template.replace("$title", "VGMoose's Blog")
+    template = template.replace("$description", "Musings from the individual known as VGMoose")
+    template = template.replace("$url", "https://vgmoose.dev")
+    template = template.replace("$previewUrl", "/layout/titleblog.png")
     template = template.replace("$entry_group", '<br>'.join([(groups[x].prop["date"][:4]+": <a href=\"blog/"+groups[x].dirname+"\">"+groups[x].prop["title"]+"</a> <div class='minidescription'>")+groups[x].minicontent+"</div>" for x in range(0, len(groups))]))
     main = open("index.html", "w")
     main.write(template)

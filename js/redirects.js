@@ -23,6 +23,7 @@ all_posts = {
     "2007493297": "/blog/wiiload-for-android-2007493297/",
     "2008820336": "/blog/update-on-project-stick-2008820336/",
     "2091900798": "/blog/im-back-2091900798/",
+    "2307083881": "/blog/extracting-and-colorizing-pokewalker-sprites-2307083881/",
     "2383586894": "/blog/moving-from-github-pages-to-netlify-2383586894/",
     "2405391604": "/blog/chromebook-screen-dimming-tip-2405391604/",
     "2425971492": "/blog/extracting-ios-voicemails-and-other-data-with-openbackuptool-2425971492/",
