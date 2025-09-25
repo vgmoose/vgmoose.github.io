@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../layout/style.css" />
+    <link rel="stylesheet" href="/layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Using a Swapfile to Prevent OutOfMemoryError in Android</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,17 @@
 
 <div id="all">
     <div id="banner">
-        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <img src="/layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
         <span>vgmoose.dev</span>
     </div>
     <div id="nav">
         <ul>
-            <li><a href="../..//">Home</a></li>
-            <li><a href="../..//projects/">Projects</a></li>
-            <li><a href="../..//blog/">Blog</a></li>
-            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
-            <li><a href="../..//search/">Search</a></li>
-            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="opt-nav"><a href="/archive/">Archive</a></li>
+            <li><a href="/search/">Search</a></li>
+            <li class="opt-nav"><a href="/socials/">Socials</a></li>
             <div class="nav-socials">
                 <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
                 <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
@@ -45,7 +45,7 @@
         </div>
         <p>I have an old <a href="https://en.wikipedia.org/wiki/Motorola_Droid">OG Motorola Droid</a>, which originally came with Eclair. It's a nice device to develop and debug Android apps on, as it provides a more-or-less accurate representation of what an underpowered device will look like when seeing how well your app performs. This is, in my opinion, an important but often neglected aspect of app development that often goes ignored. And when performance is ignored, apps get bloated and compete for resources, which is something that you rarely want to happen to your phone.</p>
 <p>However, as times change and Android as a platform evolves, my old Motorola Droid has been unable to be useful as a test device in this manner. This is largely in part to <a href="http://www.droid-life.com/2017/03/07/android-distribution-updated-march-2017-whoa-settle-nougat/">Ice Cream Sandwich and up accounting for 99% of all Android users</a>. Which I think either says something to Google doing a good job rolling out Ice Cream Sandwich, or just provides some perspective as to how quickly time can fly. Either way though, with custom ROMs the OG Droid can actually get to Ice Cream Sandwich and run it somewhat smoothly.</p>
-<p><img alt="screenie.png" src="../../posts/24856971 - Using a Swapfile to Prevent OutOfMemoryError in Android.post/screenie.png"></p>
+<p><img alt="screenie.png" src="/posts/24856971 - Using a Swapfile to Prevent OutOfMemoryError in Android.post/screenie.png"></p>
 <p>The issue that gets hit very quickly, however, is RAM/memory consumption. The Motorola Droid only shipped with 256MB of RAM! That's ridiculously low by today's standards, and it shows in the above screenshot. Just running ICS prevents the Droid from being able to run a large number of apps, even if they would otherwise support it.</p>
 <p>Normally when I make an Android app, I try to target as low of an API as possible. Since the apps I've made up until now haven't been too complicated, this hasn't been difficult to do. As I grow as a programmer and app developer, however, and as less and less Android users have Gingerbread or below, I find myself starting to take advantage of newer APIs that were introduced in Ice Cream Sandwich. And this puts me in an unfortunate position, as even though my Droid can run ICS, it still can't be used to debug the app I'm working on without crashing with out of memory errors.</p>
 <p>Unlike my Galaxy Nexus, my Droid is still kicking. In addition to this, the more underpowered it is, the better a candidate it is to test performance on! If only it had a bit more RAM!</p>
@@ -68,7 +68,7 @@ swapon /dev/block/loop0</code></pre>
 <p>At this point, the Android device is now able to use more memory! Unfortunately, the swap doesn't show up in Settings under the Apps Memory section, but it can be verified by running <code>free</code>  before and after running <code>swapon</code>.</p>
 <p>It seems Android will still be quick to kill backgrounded applications (as if it is still starved for memory), but the app that I was debugging is now able to run without crashing, which is all that I had set out to do with this task. </p>
 <p>I was pleased to see that this wasn't any more complicated than it would be on a computer, and while it is a corner case, is just another reason why it's nice to be able to root your Android device.</p>
-<p><img alt="Old droid" src="../../posts/24856971 - Using a Swapfile to Prevent OutOfMemoryError in Android.post/olddroid.png"></p>
+<p><img alt="Old droid" src="/posts/24856971 - Using a Swapfile to Prevent OutOfMemoryError in Android.post/olddroid.png"></p>
 <p>A keyboard! How dated!</p>
     </div>
     
@@ -87,7 +87,7 @@ swapon /dev/block/loop0</code></pre>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
         <script>postmeta = $search_postmeta;</script>
-        <script src="../../js/search.js"></script>
+        <script src="/js/search.js"></script>
         <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
@@ -116,7 +116,7 @@ swapon /dev/block/loop0</code></pre>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">
-		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="left"><a href="/blog/privacy-policy-8856490363/">Privacy Policy</a></div>
 		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>

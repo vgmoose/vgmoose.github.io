@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../layout/style.css" />
+    <link rel="stylesheet" href="/layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Day 05 - Thinly Provisioned Snapshots</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,17 @@
 
 <div id="all">
     <div id="banner">
-        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <img src="/layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
         <span>vgmoose.dev</span>
     </div>
     <div id="nav">
         <ul>
-            <li><a href="../..//">Home</a></li>
-            <li><a href="../..//projects/">Projects</a></li>
-            <li><a href="../..//blog/">Blog</a></li>
-            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
-            <li><a href="../..//search/">Search</a></li>
-            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="opt-nav"><a href="/archive/">Archive</a></li>
+            <li><a href="/search/">Search</a></li>
+            <li class="opt-nav"><a href="/socials/">Socials</a></li>
             <div class="nav-socials">
                 <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
                 <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
@@ -45,7 +45,7 @@
         </div>
         <p>In yesterday's post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of commands. To recap, snapshots <em>physically</em> store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created.</p>
 <p>That, of course, is really cool, but let's say you want to take a TON of snapshots (like we're talking daily ones). The daily snaps would allow you to easily revert to what the filesystem looked like on a given day without using much more space. Of course, if they were just regular LVM snapshots, you'd need to decide on a size to give them. Taking daily snapshots in this manner would fill up in no time.</p>
-<p><img alt="Blog Image" src="../../posts/23355534 - Day 05 - Thinly Provisioned Snapshots.post/uglydiagram.png"></p>
+<p><img alt="Blog Image" src="/posts/23355534 - Day 05 - Thinly Provisioned Snapshots.post/uglydiagram.png"></p>
 <p>A thin pool is a logical volume. You give it a set size, and it is that size, much like a logical volume. The total amount of bytes cannot exceed that size ever, and if it does you'll have to resize it. Making one is as follows:</p>
 <pre class="highlight"><code>lvcreate --thinpool vg/thin_pool --size 30G</code></pre>
 
@@ -86,7 +86,7 @@
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
         <script>postmeta = $search_postmeta;</script>
-        <script src="../../js/search.js"></script>
+        <script src="/js/search.js"></script>
         <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
@@ -115,7 +115,7 @@
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">
-		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="left"><a href="/blog/privacy-policy-8856490363/">Privacy Policy</a></div>
 		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../layout/style.css" />
+    <link rel="stylesheet" href="/layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Moving from Github Pages to Netlify</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,17 @@
 
 <div id="all">
     <div id="banner">
-        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <img src="/layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
         <span>vgmoose.dev</span>
     </div>
     <div id="nav">
         <ul>
-            <li><a href="../..//">Home</a></li>
-            <li><a href="../..//projects/">Projects</a></li>
-            <li><a href="../..//blog/">Blog</a></li>
-            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
-            <li><a href="../..//search/">Search</a></li>
-            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="opt-nav"><a href="/archive/">Archive</a></li>
+            <li><a href="/search/">Search</a></li>
+            <li class="opt-nav"><a href="/socials/">Socials</a></li>
             <div class="nav-socials">
                 <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
                 <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
@@ -46,18 +46,18 @@
         <p><a href="https://pages.github.com">Github Pages</a> is an incredibly useful service that makes deploying a static website very free and very easy. I used Github for a long time to host this website (<a href="https://vgmoose.com/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">discussed here</a>) and others. Since the websites are purely static content, there isn't much to maintain besides the actual html/css/js files that are pushed to the Github repo. There are two very cool features provided by the service. One, free TLS encryption is automatically provided to to those that use its service, simply by changing the http:// to an https:// in the URL. Another is the ability to use a custom domain by providing a CNAME file in the respository. While being able to do these two things for free is incredibly useful, a notable shortcoming is that you cannot use both <em>at the same time</em>.</p>
 <p>The <a href="https://github.com/isaacs/github/issues/156">feature has been highly requested</a> by Github Pages users for quite some time. It's a complicated area as an SSL certificate is tied to the domain name, Github would be entering into the territory of becoming a <a href="https://github.com/isaacs/github/issues/156#issuecomment-46923874">Certificate Authority</a>, unless it did some workarounds. And even with those workarounds, an automated management of SSL certificates across a CDN could still get complicated.</p>
 <p><a href="https://www.netlify.com/blog/2016/01/15/free-ssl-on-custom-domains">Netlify</a> offers completely free SSL with custom domains, issued by <a href="https://letsencrypt.org">Let's Encrypt</a> through a service called Netlify Pages. Looking over the blog post (and the name of the service), it seems to be directly aimed at solving the problem where Github Pages falls short. </p>
-<p><img alt="netlify plans" src="../../posts/24542116 - Moving from Github Pages to Netlify.post/plans.png"></p>
+<p><img alt="netlify plans" src="/posts/24542116 - Moving from Github Pages to Netlify.post/plans.png"></p>
 <p>Now, this isn't the compromise solution of Client -&gt; SSL -&gt; CloudFlare -&gt; ClearText/Unverified SSL -&gt; Github, it's a complete Client -&gt; SSL -&gt; Netlify with a real SSL certificate. And it's free!.. or so it says. There is an element of trust that still applies here, but without having to enter any credit card information or anything to sign up, I am given quite a bit of confidence in the quality of their service.</p>
 <p>Switching to Netlify also was made very easy by their sign up process:</p>
-<p><img alt="Netlify Signup" src="../../posts/24542116 - Moving from Github Pages to Netlify.post/signup.png"></p>
+<p><img alt="Netlify Signup" src="/posts/24542116 - Moving from Github Pages to Netlify.post/signup.png"></p>
 <p>The projects can be imported directly to Github, by logging in with your Github account. It requires only public information for permissions, and after choosing the project to deploy, telling Netlify your domain name, and updating the your custom domain's DNS servers to <a href="https://www.netlify.com/docs/custom-domains">point to Netlify</a>, everything is ready to be moved (and the CNAME file can safely be deleted from your Github repo). </p>
 <p>And as an added bonus, it will even stay in sync with every push you make to your "Github pages" project, so the old workflow doesn't have to change at all.</p>
 <p>Heading over to the HTTPS tab allows a full SSL certificate for your domain to be requested via Let's Encrypt with one click. It will automatically setup this certificate and then allow your site to be visited at both http:// and https:// addresses.</p>
-<p><img alt="SSL enabling" src="../../posts/24542116 - Moving from Github Pages to Netlify.post/ssl.png"></p>
+<p><img alt="SSL enabling" src="/posts/24542116 - Moving from Github Pages to Netlify.post/ssl.png"></p>
 <p>It also provides an option to force the http:// connections to go to https://, which is incredibly useful. I had to make a few small changes to some of my repos to make them compatible over the https protocol, but that was mostly my fault.</p>
 <p>In a world where <a href="http://searchengineland.com/google-starts-giving-ranking-boost-secure-httpsssl-sites-199446">Google gives a boost to SSL sites</a>, and security is more important than ever, I was always upset that my simple website hosted on Github with a custom domain couldn't benefit from such modern technologies. Now, however, my problem looks to be completely solved! I get to have my cake and eat it too.</p>
 <p>It's only been one day, but so far I am thoroughly impressed by Netlify's service. I mean this geniunely, even though re-reading this post a lot of it kinda sounds like an ad. Hopefully I don't come across any hidden "jk you do have to pay" in a week or so. Although, even if I did, switching back to Github Pages would be relatively easy. I'm also thrilled that I didn't have to compromise with the half-https approach with a CloudFlare-Github link.</p>
-<p><img alt="domain" src="../../posts/24542116 - Moving from Github Pages to Netlify.post/domain.png"></p>
+<p><img alt="domain" src="/posts/24542116 - Moving from Github Pages to Netlify.post/domain.png"></p>
 <p>In all honesty, my little blogging site doesn't absolutely need to be delivered over HTTPS, but it's exciting to finally join the ranks of the green lock!</p>
     </div>
     
@@ -76,7 +76,7 @@
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
         <script>postmeta = $search_postmeta;</script>
-        <script src="../../js/search.js"></script>
+        <script src="/js/search.js"></script>
         <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
@@ -105,7 +105,7 @@
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">
-		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="left"><a href="/blog/privacy-policy-8856490363/">Privacy Policy</a></div>
 		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../layout/style.css" />
+    <link rel="stylesheet" href="/layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Yellow version glitch: no poison damage in overworld, skip fainting checks</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,17 @@
 
 <div id="all">
     <div id="banner">
-        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <img src="/layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
         <span>vgmoose.dev</span>
     </div>
     <div id="nav">
         <ul>
-            <li><a href="../..//">Home</a></li>
-            <li><a href="../..//projects/">Projects</a></li>
-            <li><a href="../..//blog/">Blog</a></li>
-            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
-            <li><a href="../..//search/">Search</a></li>
-            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="opt-nav"><a href="/archive/">Archive</a></li>
+            <li><a href="/search/">Search</a></li>
+            <li class="opt-nav"><a href="/socials/">Socials</a></li>
             <div class="nav-socials">
                 <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
                 <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
@@ -50,13 +50,13 @@
 - Pewter City: The Jigglypuff in the Pokemon Center will put the player's Pikachu to sleep<br>
 - Route 25: Pikachu will run to Bill and be confused until he turns back into a human<br>
 - Vermillion City: The Clefairy in the Fan Club will cause Pikachu to display hearts</p>
-<p><img alt="pewter1.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/pewter1.png" width=180> <img alt="pewter2.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/pewter2.png" width=180> <img alt="bill1.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/bill1.png" width=180></p>
-<p><img alt="bill2.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/bill2.png" width=180> <img alt="vermillion1.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/vermillion1.png" width=180> <img alt="vermillion2.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/vermillion2.png" width=180></p>
+<p><img alt="pewter1.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/pewter1.png" width=180> <img alt="pewter2.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/pewter2.png" width=180> <img alt="bill1.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/bill1.png" width=180></p>
+<p><img alt="bill2.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/bill2.png" width=180> <img alt="vermillion1.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/vermillion1.png" width=180> <img alt="vermillion2.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/vermillion2.png" width=180></p>
 <p>The player's Pikachu will resume following when each of these events finish, or if the player leaves the area. During the event however, the player can freely move around the interior map, and even talk to other NPCs. There are some failsafes in place likely to ensure that during overworld movement these events aren't interrupted. Poison damage, for instance, could result in Pikachu fainting and disappearing from the overworld before the event can properly end.</p>
 <h3>Newly added flag &amp; checks</h3>
 <p>In order to stop poison damage from applying in these interior locations, the game sets <a href="https://github.com/pret/pokeyellow/blob/7f78fed85a8c8b0ba83ff982f35d2db01ba58aad/engine/events/poison.asm#L6-L8">a flag</a> that prevents poison damage from applying every few steps! This flag does not exist in Red or Blue. The flag is set upon entering each of the interiors (Pewter Center, Bill's House, Fan Club) and unset upon returning to each of the exteriors (Pewter City, Route 25, Vermillion City).</p>
 <p>What's interesting is, this poison-supressing flag is set immediately upon entering the interior, whether an event has played or not, and is only unset on each of the three specific corresponding exterior maps (highlighted orange below). If it were possible to go directly from one of the inside locations, to a different (non-orange) location, it would be possible to skip the re-enabling of this flag. Or in other words, you could walk around the rest of the game without ever taking any poison damage!</p>
-<p><a href="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/map_areas.png"><img alt="map_areas.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/map_areas.png" width=500></a></p>
+<p><a href="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/map_areas.png"><img alt="map_areas.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/map_areas.png" width=500></a></p>
 <p>The flag also supresses a few other walking-based events, such as gaining day care experience, and checking to ensure that the Player's party has fainted. You can prove this to yourself too, by just entering the Pewter City Pokemon Center, and depositing all your Pokemon except one that's fainted. The game will allow you to freely walk around, and only black out after exiting back to the overworld map. This doesn't happen in other Pokemon Centers, where you'll faint after depositing and taking one step.</p>
 <p>Yellow version has <em>another</em> change related to two of these locations. Bill's House and the Fan Club both use the Silph Co tileset, which in Red and Blue versions allows an escape rope or dig to be used to return back to the overworld. In Yellow though, these two specific maps have <a href="https://github.com/pret/pokeyellow/blob/7f78fed85a8c8b0ba83ff982f35d2db01ba58aad/engine/items/item_effects.asm#L1634-L1640">an additional check</a> that prevents escaping in this manner. (Compare to <a href="https://github.com/pret/pokered/blob/master/engine/items/item_effects.asm#L1496-L1497">Red/Blue</a>)</p>
 <p>This is a bug fix, as those two locations aren't dungeons. However! It also fixes a potential new issue that would have arisen-- if you were in Bill's House or the Fan Club, an escape rope would bypass visiting the exterior map, which could skip disabling the Poison-supressing flag. By fixing the escape rope issue, the player is instead forced to exit these event areas directly through the door to the outer map. This ensures the flag is properly unset and that poison damage / fainting checks will continue to apply.</p>
@@ -68,12 +68,12 @@
 4. Walk 500 steps within the area, without exiting<br>
 5. Get returned to the Safari Zone, and use an escape rope or fly (This avoids returning to the right exterior map)</p>
 <p>Then, we'll return to Fuchsia city with the flag set, and observe that we can now walk around the overworld without taking any poison damage. Similarly, if we deposit all of our party besides fainted Pokemon, we can explore most of the map without blacking out. (Pictured below, at Lavendar tower with only one fainted Pokemon).</p>
-<p><img alt="zone1.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/zone1.png" width=240> <img alt="zone2.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/zone2.png" width=240><br>
-<img alt="faint1.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/faint1.png" width=240> <img alt="faint2.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/faint2.png" width=240></p>
+<p><img alt="zone1.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/zone1.png" width=240> <img alt="zone2.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/zone2.png" width=240><br>
+<img alt="faint1.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/faint1.png" width=240> <img alt="faint2.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/faint2.png" width=240></p>
 <p>If we enter any battles, we'll instantly lose before even sending out another Pokemon. I'm not sure if there's anything else interesting that can be done at this point, but the flag will persist across saving and resetting, and you can effectively permanently disable poison damage using this method.</p>
 <p>If you walk into (or fly into) any of the three exterior locations that unset the flag, with a fainted team, you will instantly faint upon one step after the map transition. This is only three locations, however, so it's relatively easy to avoid them.</p>
-<p><img alt="rival1.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/rival1.png" width=240> <img alt="rival2.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/rival2.png" width=240><br>
-<img alt="fainted1.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/fainted1.png" width=240> <img alt="fainted2.png" src="../../posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/fainted2.png" width=240></p>
+<p><img alt="rival1.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/rival1.png" width=240> <img alt="rival2.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/rival2.png" width=240><br>
+<img alt="fainted1.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/fainted1.png" width=240> <img alt="fainted2.png" src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/fainted2.png" width=240></p>
 <p>In Red and Blue, there is a similar bug (<a href="https://glitchcity.wiki/wiki/Poison_step_avoidance_glitch">Poison step avoidance</a>) that allows you to explore the overworld with a fainted party, by walking 3 steps, save/quitting, and reloading, then taking another 3 steps, etc. Yellow fixes this by making the fainted party check apply every single step. However, with the introduction of this <a href="https://github.com/pret/pokeyellow/blob/7f78fed85a8c8b0ba83ff982f35d2db01ba58aad/engine/events/poison.asm#L6-L8">poison/fainting supression flag</a>, this makes it much easier and less tedious to use Yellow to see what side-effects a fainted party has in the overworld.</p>
 <p>What's suprising to me is not just that this flag is only used on these three maps, but even if the flag didn't exist at all, I don't think it'd be a big deal if the events were allowed to be interrupted. You'd just see Pikachu fainting in the overworld, and the event being interrupted, as if you left normally. And each of the events verifies that the Pikachu is healthy and not-fainted anyway. It makes me more wonder about an older build of the game, and what other side-effects might have been associated with these overworld events.</p>
 <!--Also, this is only tangentially related, but if you have two Pikachu's with the Player's OT in Yellow, whichever Pikachu is first in the party will be the one whose status is reflected in the overworld when talking to Pikachu. Both of them will disappear from the menu during the Pikachu events.-->
@@ -94,7 +94,7 @@
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
         <script>postmeta = $search_postmeta;</script>
-        <script src="../../js/search.js"></script>
+        <script src="/js/search.js"></script>
         <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
@@ -123,7 +123,7 @@
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">
-		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="left"><a href="/blog/privacy-policy-8856490363/">Privacy Policy</a></div>
 		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>

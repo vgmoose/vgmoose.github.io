@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../layout/style.css" />
+    <link rel="stylesheet" href="/layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Day 08 - Enter the Cache</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,17 @@
 
 <div id="all">
     <div id="banner">
-        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <img src="/layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
         <span>vgmoose.dev</span>
     </div>
     <div id="nav">
         <ul>
-            <li><a href="../..//">Home</a></li>
-            <li><a href="../..//projects/">Projects</a></li>
-            <li><a href="../..//blog/">Blog</a></li>
-            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
-            <li><a href="../..//search/">Search</a></li>
-            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="opt-nav"><a href="/archive/">Archive</a></li>
+            <li><a href="/search/">Search</a></li>
+            <li class="opt-nav"><a href="/socials/">Socials</a></li>
             <div class="nav-socials">
                 <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
                 <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
@@ -44,7 +44,7 @@
             <span class="post-tags">Tags: red hat, internship, cache, lvm, lvmcache</span>
         </div>
         <p>Logical volumes are very unique in the sense that you can inject some higher level logic into something as low level as the bytes on your disk. Flash disks are very fast, but large ones are also still very expensive. This obviously creates an interesting problem for server maintainers, as ideally large amount of content would be served as fast as possible which would require the best of both worlds. </p>
-<p><img alt="Image" src="../../posts/23362464 - Day 08 - Enter the Cache.post/cash.gif"></p>
+<p><img alt="Image" src="/posts/23362464 - Day 08 - Enter the Cache.post/cash.gif"></p>
 <p>Not.. that kind of cash. Ha. HA HA. <a href="http://en.wikipedia.org/wiki/Dm-cache">dm-cache</a> was a proprosed kernel module solution to allow quick access to frequently used blocks from a large slow disk using a quick fast disk. As of <a href="https://www.kernel.org/doc/Documentation/device-mapper/cache.txt">April 28, 2013</a> it is now officially a part of the Linux kernel. The Wiki article does a better job of explaining, as usual, but dm-cache helps speed up a slow device by storing only the modified blocks to the fast device and marking the slow device as dirty, allowing full reads and writes to occur solely off the cache. For this reason, it is recommended that the caching device be <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_1">mirrored</a>.</p>
 <p>LVM cache, from my understanding, provides an easy approach to allow the user to configure this through LVM by making use of the dm-cache module. At its heart, lvmcache requires an original, large and slow logical volume, and then a smaller but fast logical volume. A third logical volume is also utilized for metadata storage, not unlike how a thinpool stores its metadata.</p>
 <p>An odd tidbit about lvmcache, though, is that the logical volumes that are utilized must all be within the same volume group. To review, a physical volume (like an actual primary partition of a device or another device entirely) can only be within one volume group at a time, and the volume group provides an abstraction over those physical devices to the logical volumes. Or at least that's what I thought.</p>
@@ -74,7 +74,7 @@
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
         <script>postmeta = $search_postmeta;</script>
-        <script src="../../js/search.js"></script>
+        <script src="/js/search.js"></script>
         <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
@@ -103,7 +103,7 @@
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">
-		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="left"><a href="/blog/privacy-policy-8856490363/">Privacy Policy</a></div>
 		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>

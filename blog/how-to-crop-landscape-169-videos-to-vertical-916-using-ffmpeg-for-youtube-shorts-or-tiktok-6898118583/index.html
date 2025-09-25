@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../layout/style.css" />
+    <link rel="stylesheet" href="/layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,17 @@
 
 <div id="all">
     <div id="banner">
-        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <img src="/layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
         <span>vgmoose.dev</span>
     </div>
     <div id="nav">
         <ul>
-            <li><a href="../..//">Home</a></li>
-            <li><a href="../..//projects/">Projects</a></li>
-            <li><a href="../..//blog/">Blog</a></li>
-            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
-            <li><a href="../..//search/">Search</a></li>
-            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="opt-nav"><a href="/archive/">Archive</a></li>
+            <li><a href="/search/">Search</a></li>
+            <li class="opt-nav"><a href="/socials/">Socials</a></li>
             <div class="nav-socials">
                 <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
                 <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
@@ -60,7 +60,7 @@ crop=crop_width:crop_height:origin_x:origin_y</code></pre>
 <p>In this case, my source video was 1280x720. I want to keep the height the same (720), but change the width for 9:16 format. This means multiplying <code>720*(9/16) = 405</code>. So crop_width is 405, crop_height is 720.</p>
 <p>Then for the origin offsets, origin_x is set to allow a width of 405 to be centered within the original 1280 canvas. This requires <code>orig_width/2 - crop_width/2</code>, or <code>1280/2 - 405/2 = 437.5</code>, or 437. origin_y is 0 as we are going to keep the full height.</p>
 <p>The red area in the below photo is the centered 405x720 region within the source 1280x720 video:<br>
-<img alt="9:16 crop area" src="../../posts/27394526 - How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok.post/crop_ratio.png"></p>
+<img alt="9:16 crop area" src="/posts/27394526 - How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok.post/crop_ratio.png"></p>
 <p>The result of the crop operation is going to be a 405x720 video. But wait, we want 720x1280! Well, this is as high quality as this type of crop is going to be, but we can upscale the video. I did this step as I read online that 600x600 are the minimum bounds for a YT short.</p>
 <p>The scale arguments:</p>
 <pre class="highlight"><code>scale=720:1280
@@ -71,7 +71,7 @@ scale=new_width:new_height</code></pre>
 <p>You can modify the crop and scale commands here to make square or other dimensions of videos as well. ffmpeg can also do more things, like <a href="https://stackoverflow.com/a/42257415">merging two videos into one</a>, or <a href="https://stackoverflow.com/a/58710803">applying blur effects</a>. These will usually use complex-filter argument however, and need to be used instead of the above crops (replacing them with complex-filter syntax) or chaining the output of the above crops into the new merges/blurs.</p>
 <p>For simply turning recorded gameplay into a vertical format however, using only the crop and scale filter commands detailed on this page get you a lot of mileage out of not a lot of tinkering.</p>
 <p>The above video was my first 9:16 video. You can confirm it did actually become a "Short" by opening your YT channel in the iOS or Android app and viewing it.</p>
-<p><img alt="Side by side performance - 1000 views on Shorts, 50 views on fullscreen" src="../../posts/27394526 - How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok.post/side_by_side.png"></p>
+<p><img alt="Side by side performance - 1000 views on Shorts, 50 views on fullscreen" src="/posts/27394526 - How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok.post/side_by_side.png"></p>
 <p>As seen here, the Shorts-style video gets out to a lot more people a lot quicker than the landscape style video is able to. This "kind of" can help level the playing field for small creators to get their content discovered quicker.</p>
 <p>For the traffic for the video on the left, &gt;90% of views came from "Shorts feed", which is another indication that the vertical video is being considered a short.</p>
 <p>Final convenience note: In the above, given a <code>1280x720</code> source video, a <code>405x720</code> vertical one was cropped out of it. If the video were instead <code>1920x1080</code>, the equivalent crop would be <code>607x1080</code>. Likewise, for a <code>2560x1440</code> source, the 9:16 crop wouold be <code>810x1440</code>. These are calculated by multiplying the source height by <code>(9/16)</code>.</p>
@@ -92,7 +92,7 @@ scale=new_width:new_height</code></pre>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
         <script>postmeta = $search_postmeta;</script>
-        <script src="../../js/search.js"></script>
+        <script src="/js/search.js"></script>
         <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
@@ -121,7 +121,7 @@ scale=new_width:new_height</code></pre>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <div id="footer">
-		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="left"><a href="/blog/privacy-policy-8856490363/">Privacy Policy</a></div>
 		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>

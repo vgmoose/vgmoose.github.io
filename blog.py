@@ -104,12 +104,12 @@ def generate_page(page_type, template_path, output_path, replacements, subdirect
         template = f.read()
     
     # maually adjust some paths based on subdirectory level
-    if (subdirectory_level > 0):
-        prefix = "../" * subdirectory_level
-        template = template.replace("href=\"", f"href=\"{prefix}")
-        template = template.replace("src=\"", f"src=\"{prefix}")
-        template = template.replace(f"href=\"{prefix}http", "href=\"http")
-        template = template.replace(f"src=\"{prefix}http", "src=\"http")
+    # if (subdirectory_level > 0):
+    #     prefix = "../" * subdirectory_level
+    #     template = template.replace("href=\"", f"href=\"{prefix}")
+    #     template = template.replace("src=\"", f"src=\"{prefix}")
+    #     template = template.replace(f"href=\"{prefix}http", "href=\"http")
+    #     template = template.replace(f"src=\"{prefix}http", "src=\"http")
     
     conditional_comments = [
         # ("<!-- entry_group", "entry_group -->"),
@@ -143,10 +143,10 @@ if action == "compile":
     template = tfile.read()
     tfile.close()
     
-    template = template.replace("href=\"", "href=\"../../")
-    template = template.replace("src=\"", "src=\"../../")
-    template = template.replace("href=\"../../http", "href=\"http")
-    template = template.replace("src=\"../../http", "src=\"http")
+    # template = template.replace("href=\"", "href=\"/")
+    # template = template.replace("src=\"", "src=\"/")
+    # template = template.replace("href=\"/http", "href=\"http")
+    # template = template.replace("src=\"/http", "src=\"http")
     template = template.replace("<!-- single_entry", "")
     template = template.replace("single_entry -->", "")
     
@@ -189,7 +189,7 @@ if action == "compile":
         
         if "hidden" not in content.prop or content.prop["hidden"] != "true":
             # store post metadata for search
-            preview_img = "/layout/titleblog.png"
+            preview_img = "/layout/logo.png"
             has_image = False
             post_folder = "posts/" + content.folder
             if os.path.exists(post_folder):
@@ -239,10 +239,10 @@ if action == "compile":
 
         # for posts before 2024, we do a hackier way of replacing the src and href
         if (int(tdate[:4]) < 2024):
-            tcontent = tcontent.replace("src=\"", "src=\"../../posts/"+e+"/")
+            tcontent = tcontent.replace("src=\"", "src=\"/posts/"+e+"/")
         else:
-            tcontent = tcontent.replace("src=\"./", "src=\"../../posts/"+e+"/")
-        tcontent = tcontent.replace("href=\"./", "href=\"../../posts/"+e+"/")
+            tcontent = tcontent.replace("src=\"./", "src=\"/posts/"+e+"/")
+        tcontent = tcontent.replace("href=\"./", "href=\"/posts/"+e+"/")
         temp_template = template.replace("$content", tcontent)
             
         temp_template = temp_template.replace("$date", tdate)
@@ -253,7 +253,7 @@ if action == "compile":
         else:
             appropriate_ad = '<ins class="adsbygoogle" style="display:inline-block;width:120px;height:240px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="2990858106"></ins>'
         
-        previewUrl = "/layout/titleblog.png" # default icon if there's no applicable image in the folder
+        previewUrl = "/layout/logo.png" # default icon if there's no applicable image in the folder
         for f in os.listdir("posts/"+e):
             f = f.lower()
             if f.endswith(".jpg") or f.endswith(".png") or f.endswith(".gif") or f.endswith(".jpeg"):
@@ -290,7 +290,7 @@ if action == "compile":
         if (content.prop["id"] == "9298654889"):
             h404 = open("404.html", "w")
             h404.write(open("layout/404.html", "r").read())
-            temp_template.replace("../../", "https://vgmoose.com/")
+            # temp_template.replace("../../", "https://vgmoose.com/")
             h404.write(temp_template)
             h404.close()
         
@@ -314,7 +314,7 @@ if action == "compile":
     template = template.replace("$title", "VGMoose's Blog")
     template = template.replace("$description", "Musings from the individual known as VGMoose")
     template = template.replace("$url", "https://vgmoose.dev")
-    template = template.replace("$previewUrl", "/layout/titleblog.png")
+    template = template.replace("$previewUrl", "/layout/logo.png")
     
     # build entry (homepage) group with thumbnails
     entry_html = []
@@ -400,7 +400,7 @@ if action == "compile":
             <img src="{preview_img}" alt="Preview" class="blog-thumbnail-small">
             <div class="blog-content-small">
                 <div class="blog-header-small">
-                    <a href="blog/{post.dirname}">{post.prop["title"]}</a>
+                    <a href="/blog/{post.dirname}">{post.prop["title"]}</a>
                     <span class="blog-date-small">{stripTime(post.prop["date"])}</span>
                 </div>
                 <div class="minidescription-small">{post.minicontent[:150]}...</div>
@@ -433,23 +433,23 @@ if action == "compile":
     ]
     home_content_parts.extend(featured_projects_html)
     home_content_parts.extend([
-        '<div class="view-all-link"><a href="projects/">View all projects →</a></div>',
+        '<div class="view-all-link"><a href="/projects">View all projects →</a></div>',
         '</div>',
         '<div class="home-right">',
         '<h3>Latest Blog Posts</h3>'
     ])
     home_content_parts.extend(latest_posts_html)
     home_content_parts.extend([
-        '<div class="view-all-link"><a href="blog/">View all blog posts →</a></div>',
+        '<div class="view-all-link"><a href="/blog">View all blog posts →</a></div>',
         '</div>',
         '</div>'
     ])
 
     home_replacements = {
         "$title": "VGMoose - Home",
-        "$description": "Software engineer and open-source developer", 
+        "$description": "Open-source developer and software engineer", 
         "$url": "https://vgmoose.dev",
-        "$previewUrl": "/layout/titleblog.png",
+        "$previewUrl": "/layout/logo.png",
         "$entry_group": ''.join(home_content_parts)
     }
     generate_page("entry_group", "layout/template.html", "index.html", home_replacements, subdirectory_level=0)
@@ -458,7 +458,7 @@ if action == "compile":
         "$title": "VGMoose's Blog",
         "$description": "Musings from the individual known as VGMoose",
         "$url": "https://vgmoose.dev/blog",
-        "$previewUrl": "/layout/titleblog.png", 
+        "$previewUrl": "/layout/logo.png", 
         "$entry_group": "<h2>Blog Posts</h2>" + ''.join(entry_html)
     }
     generate_page("entry_group", "layout/template.html", "blog/index.html", blog_replacements, subdirectory_level=1)
@@ -467,12 +467,12 @@ if action == "compile":
         "$title": "VGMoose - Projects",
         "$description": "Open source projects and tools by VGMoose",
         "$url": "https://vgmoose.dev/projects", 
-        "$previewUrl": "/layout/titleblog.png",
+        "$previewUrl": "/layout/logo.png",
         "$entry_group": f'<h2>Projects Index</h2>{"".join(all_projects_html)}'
     }
     generate_page("entry_group", "layout/template.html", "projects/index.html", projects_replacements, subdirectory_level=1)
 
-    # nuild archived posts content
+    # build archived posts content
     archived_entry_html = []
     archived_groups = archived_groups[::-1]  # reverse chronological
     for post in archived_groups:
@@ -481,7 +481,7 @@ if action == "compile":
         if os.path.exists(post_folder):
             for f in os.listdir(post_folder):
                 if f.lower().endswith((".jpg", ".png", ".gif", ".jpeg")):
-                    preview_img = "../../" + post_folder + "/" + f
+                    preview_img = "/" + post_folder + "/" + f
                     break
         
         thumbnail_html = ""
@@ -491,7 +491,7 @@ if action == "compile":
             {thumbnail_html}
             <div class="blog-content">
                 <div class="blog-header">
-                    <a href="../../blog/{post.dirname}">{post.prop["title"]}</a>
+                    <a href="/blog/{post.dirname}">{post.prop["title"]}</a>
                     <span class="blog-date">{stripTime(post.prop["date"])} <span class="archived-tag">[ARCHIVED]</span></span>
                 </div>
                 <div class="minidescription">{post.minicontent}</div>
@@ -503,13 +503,13 @@ if action == "compile":
         "$title": "VGMoose - Archive",
         "$description": "Archive of older content and previous versions of this site",
         "$url": "https://vgmoose.dev/archive",
-        "$previewUrl": "/layout/titleblog.png",
+        "$previewUrl": "/layout/logo.png",
         "$entry_group": '''<h2>Archive</h2>
 <p>Links to older content and previous versions of this site:</p>
 
 <div class="archive-links">
     <h3>Blog Archive</h3>
-    <p><a href="archive-posts/">View all archived blog posts (pre-2016)</a></p>
+    <p><a href="/archive/archive-posts">View all archived blog posts (pre-2016)</a></p>
     
     <h3>Previous Sites</h3>
     <p><a href="https://backpack.vgmoose.com" target="_blank">VGMoose's Backpack</a></p>
@@ -522,7 +522,7 @@ if action == "compile":
         "$title": "VGMoose - Archived Posts",
         "$description": "Archived blog posts from before 2016",
         "$url": "https://vgmoose.dev/archive/archive-posts",
-        "$previewUrl": "/layout/titleblog.png",
+        "$previewUrl": "/layout/logo.png",
         "$entry_group": "<h2>Archived Posts</h2>" + ''.join(archived_entry_html)
     }
     generate_page("entry_group", "layout/template.html", "archive/archive-posts/index.html", archived_posts_replacements, subdirectory_level=2)
@@ -531,7 +531,7 @@ if action == "compile":
         "$title": "VGMoose - Socials",
         "$description": "Find VGMoose on various social platforms",
         "$url": "https://vgmoose.dev/socials",
-        "$previewUrl": "/layout/titleblog.png",
+        "$previewUrl": "/layout/logo.png",
         "$entry_group": '''<h2>Socials</h2>
 <p>Find me on these platforms:</p>
 
@@ -590,9 +590,9 @@ if action == "compile":
     template = template.replace("$search_vocab", json.dumps(vocab, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': ')))
     template = template.replace("$search_lookup", json.dumps(humanmap, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': ')))
     template = template.replace("$search_postmeta", json.dumps(postmeta, cls=SetEncoder, sort_keys=True, indent=4, separators=(',', ': ')))
-    template = template.replace("href=\"", "href=\"../")
-    template = template.replace("src=\"", "src=\"../")
-    template = template.replace("../http", "http")
+    # template = template.replace("href=\"", "href=\"../")
+    # template = template.replace("src=\"", "src=\"../")
+    # template = template.replace("../http", "http")
     
     # build the search page
     try:
