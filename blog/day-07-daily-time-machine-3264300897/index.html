@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Day 07 - Daily Time Machine</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Day 07 - Daily Time Machine" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="Happy Friday! I finally feel like I'm becoming well-versed with these LVM commands. I'm also starting to feel a lot more comfortable in general. It might just be because we're using Thinkpads, but this laptop has byfar been the most comfortable linux experience I've had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant...." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2014-05-30 22:17:38<br />
-        Tags: red hat, internship, lvm, cron, lvmthin, snapshot<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Day 07 - Daily Time Machine</h2>
+        <div class="post-meta">
+            <span class="post-date">2014-05-30</span>
+            <span class="post-tags">Tags: red hat, internship, lvm, cron, lvmthin, snapshot</span>
+        </div>
         <p>Happy Friday! I finally feel like I'm becoming well-versed with these LVM commands. I'm also starting to feel a lot more comfortable in general. It might just be because we're using Thinkpads, but this laptop has byfar been the most comfortable linux experience I've had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant. Maybe I'm being brainwashed by Red Hat, but I'm also probably gonna swap out my home server with Fedora instead of Debian.</p>
 <p>But that's ALL besides the point. Today I set up a cool thing which I shall now share with you now.</p>
-<div class="highlight"><pre><span></span># lvs
+<pre class="highlight"><code># lvs
 
   LV            VG    Attr       LSize  Pool    Origin Data%  Meta%
   homey         purin Vwi-aotz--  1.00t thinset          2.24     
@@ -55,30 +53,26 @@
   snap05.30.14e purin Vwi---tz-k  1.00t thinset homey             
   snap05.30.14m purin Vwi---tz-k  1.00t thinset homey             
   snap06.01.14e purin Vwi---tz-k  1.00t thinset homey             
-  thinset       purin twi-a-tz-- 50.00g                 47.15  25.06
-</pre></div>
+  thinset       purin twi-a-tz-- 50.00g                 47.15  25.06</code></pre>
 
 
 <p>Here you can see that I have a 50G lvm thin pool called "thinset" (at the bottom), and within this pool is a logical thin volume called "homey". Then there are three snapshots that use "homey" as their origin, meaning they are a snapshot of "homey," and will copy the required bytes on write to maintain their snapshot state.</p>
 <p>What ISN'T shown here is that I currently have the "homey" LV mounted at <code>/home</code></p>
-<div class="highlight"><pre><span></span># df -h
+<pre class="highlight"><code># df -h
 
 Filesystem               Size  Used Avail Use% Mounted on
-/dev/mapper/purin-homey 1008G  6.0G  951G   1% /home
-</pre></div>
+/dev/mapper/purin-homey 1008G  6.0G  951G   1% /home</code></pre>
 
 
 <p>There are the usual interesting things about lvmthin volumes that you can note here, such as <code>df</code> believing the filesystem only has 1% of its "1008G" used, when in reality the thin pool only has 50G that it is able to allocated. But you can also see that I have snapshots of the form <code>snapMM.DD.YY(e/m)</code>, which are taken daily on that date (with e for evening and m for morning). This was configured via <code>cron</code> by editing <code>/etc/crontab</code> to have the following new lines appended:</p>
-<div class="highlight"><pre><span></span>  0  10 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)m
-  0  17 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)e
-</pre></div>
+<pre class="highlight"><code>  0  10 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)m
+  0  17 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)e</code></pre>
 
 
 <p>Making my snapshot commands being run on the 10th (10AM) and 17th (5PM) hours of each day. It's also worth noting that <code>anacron</code> could be used if I wanted to queue up the snapshots for when the computer was powered down, but that isn't desired behavior, at least not for me.</p>
 <p>You might be thinking to yourself "Okay who cares about cron what does that really have to do with your internship?" To which I respond it's just cool, okay?! SHARING IS CARING.</p>
 <p>Some more things to note here is that I did have to create the "homey" LV from nothing and manually copy over my files from my old <code>/home</code>. This is due to the fact that I needed it to be within a thin pool, and you can only take thin snapshots of an external origin (LV that isn't within a thin pool) when that source is read-only. I thought I'd just start it all over.</p>
-<div class="highlight"><pre><span></span>lvconvert --merge purin/snapMM.DD.YYz
-</pre></div>
+<pre class="highlight"><code>lvconvert --merge purin/snapMM.DD.YYz</code></pre>
 
 
 <p>The above command can be run (when <code>/home</code> isn't mounted) to rollback to the given snapshot day. I've tested it a little bit so far and it has been successful, but it should get a lot more interesting once I have a bunch of snapshots to go off. If one tries to <code>lvconvert</code> while the origin is mounted, the merge will be queued until the next mount of the <strong>snapshot</strong>. This actually took me a while to learn. And don't forget, to activate a thin snapshot one needs to pass the <code>-K</code> flag as mentioned in an earlier blog post.</p>
@@ -91,23 +85,26 @@ Filesystem               Size  Used Avail Use% Mounted on
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -128,10 +125,7 @@ Filesystem               Size  Used Avail Use% Mounted on
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

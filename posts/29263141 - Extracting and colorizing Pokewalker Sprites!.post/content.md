@@ -36,6 +36,9 @@ I didn't yet go through all the alternate forms, but that might be a goal in the
 
 
 <style>
+  body {
+    overscroll-behavior-x: none;
+  }
 .compare {
   --mask-width: 50%;
   --handle-size: 16px;
@@ -81,6 +84,7 @@ I didn't yet go through all the alternate forms, but that might be a goal in the
 .compare__image-two {
   height: 100%;
   width: auto;
+  max-width: unset;
   pointer-events: auto; /* Allow interaction */
   user-drag: none;
   -webkit-user-drag: none;
@@ -91,6 +95,7 @@ I didn't yet go through all the alternate forms, but that might be a goal in the
 
 #content .compare__mask img {
     max-width: unset;
+    height: 100%;
 }
 
 .compare__input {
@@ -176,12 +181,19 @@ I didn't yet go through all the alternate forms, but that might be a goal in the
 
       // Handle mouse events directly on images
       img.addEventListener("mousedown", (e) => {
-        console.log("Image mousedown, button:", e.button);
         if (e.button === 0) { // Left mouse button only
           isDragging = true;
           updateSlider(e);
           e.preventDefault(); // Prevent text selection
           e.stopPropagation(); // Prevent event from bubbling
+        }
+      });
+
+      img.addEventListener("touchstart", (e) => {
+        if (!isDragging) {
+          isDragging = true;
+          let { touches: [ e ] } = event;
+          updateSlider(e);
         }
       });
 
@@ -200,25 +212,28 @@ I didn't yet go through all the alternate forms, but that might be a goal in the
       compare.style.setProperty("--mask-width", `${percent}%`);
     }
 
-    // Fallback: Handle mouse events on the entire compare container
-    compare.addEventListener("mousedown", (e) => {
-      console.log("Compare container mousedown, button:", e.button);
-      if (e.button === 0 && !isDragging) { // Left mouse button only
-        isDragging = true;
-        updateSlider(e);
-        e.preventDefault();
-      }
-    });
-
     document.addEventListener("mousemove", (e) => {
       if (isDragging) {
         updateSlider(e);
       }
     });
 
+    document.addEventListener("touchmove", (e) => {
+      if (isDragging) {
+        let { touches: [ e ] } = event;
+        updateSlider(e);
+        event.preventDefault();
+      }
+    });
+
     document.addEventListener("mouseup", (e) => {
       if (isDragging) {
-        console.log("Mouse up, stopping drag");
+        isDragging = false;
+      }
+    });
+
+    document.addEventListener("touchup", (e) => {
+      if (isDragging) {
         isDragging = false;
       }
     });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Extracting and colorizing Pokewalker Sprites!</title>
@@ -10,35 +11,38 @@
     <meta property="og:url" content="$url" />
     <meta property="og:description" content="The Pokewalker is a handheld pedometer that came bundled with HGSS, and it has a bunch of two-frame grayscale sprites. The sprites used on the walker are taken from Diamond/Pearl and positioned so that they'll fit on the small display, but lack any color information. Below are the original grayscale Pokewalker sprites (with transparency), and their now fully colorized counterparts. Drag the slider to see the difference, or click one of these direct links: Grayscale - Color (Slider code from this..." />
     <meta property="og:image" content="posts/29263141%20-%20Extracting%20and%20colorizing%20Pokewalker%20Sprites%21.post/pwalk_gray.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2025-08-21 11:01:00<br />
-        Tags: pokemon, reverse engineering, pokewalker, revamped, spriting<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Extracting and colorizing Pokewalker Sprites!</h2>
+        <div class="post-meta">
+            <span class="post-date">2025-08-21</span>
+            <span class="post-tags">Tags: pokemon, reverse engineering, pokewalker, revamped, spriting</span>
+        </div>
         <p>The <a href="https://bulbapedia.bulbagarden.net/wiki/Pokéwalker">Pokewalker</a> is a handheld pedometer that came bundled with HGSS, and it has a bunch of <a href="https://archives.bulbagarden.net/wiki/Category:Pokéwalker_Pokémon_sprites">two-frame grayscale sprites</a>. The sprites used on the walker are taken from Diamond/Pearl and positioned so that they'll fit on the small display, but lack any color information.</p>
 <p>Below are the original grayscale Pokewalker sprites (with transparency), and their now fully colorized counterparts. Drag the slider to see the difference, or click one of these direct links: <a href="../../posts/29263141 - Extracting and colorizing Pokewalker Sprites!.post/pwalk_gray.png">Grayscale</a> - <a href="../../posts/29263141 - Extracting and colorizing Pokewalker Sprites!.post/pwalk_color.png">Color</a> (Slider code from <a href="https://muffinman.io/blog/image-comparison-slider/">this post</a>):</p>
 <div class="comparison-slider" aria-label="Image comparison slider showing [image 1 description] and [image 2 description]. Use the slider to compare the images.">
@@ -61,6 +65,9 @@
 <p>Some code used in this effort is here: <a href="https://github.com/vgmoose/pypokescript">https://github.com/vgmoose/pypokescript</a></p>
 <p>I didn't yet go through all the alternate forms, but that might be a goal in the future. As for <em>why</em> do this with the sprites, maybe they could be useful in creating full-color recreation of the pokewalker. Or adding a color overlay to a Pokewalker emulator!</p>
 <style>
+  body {
+    overscroll-behavior-x: none;
+  }
 .compare {
   --mask-width: 50%;
   --handle-size: 16px;
@@ -106,6 +113,7 @@
 .compare__image-two {
   height: 100%;
   width: auto;
+  max-width: unset;
   pointer-events: auto; /* Allow interaction */
   user-drag: none;
   -webkit-user-drag: none;
@@ -116,6 +124,7 @@
 
 #content .compare__mask img {
     max-width: unset;
+    height: 100%;
 }
 
 .compare__input {
@@ -202,12 +211,19 @@
 
       // Handle mouse events directly on images
       img.addEventListener("mousedown", (e) => {
-        console.log("Image mousedown, button:", e.button);
         if (e.button === 0) { // Left mouse button only
           isDragging = true;
           updateSlider(e);
           e.preventDefault(); // Prevent text selection
           e.stopPropagation(); // Prevent event from bubbling
+        }
+      });
+
+      img.addEventListener("touchstart", (e) => {
+        if (!isDragging) {
+          isDragging = true;
+          let { touches: [ e ] } = event;
+          updateSlider(e);
         }
       });
 
@@ -226,25 +242,28 @@
       compare.style.setProperty("--mask-width", `${percent}%`);
     }
 
-    // Fallback: Handle mouse events on the entire compare container
-    compare.addEventListener("mousedown", (e) => {
-      console.log("Compare container mousedown, button:", e.button);
-      if (e.button === 0 && !isDragging) { // Left mouse button only
-        isDragging = true;
-        updateSlider(e);
-        e.preventDefault();
-      }
-    });
-
     document.addEventListener("mousemove", (e) => {
       if (isDragging) {
         updateSlider(e);
       }
     });
 
+    document.addEventListener("touchmove", (e) => {
+      if (isDragging) {
+        let { touches: [ e ] } = event;
+        updateSlider(e);
+        event.preventDefault();
+      }
+    });
+
     document.addEventListener("mouseup", (e) => {
       if (isDragging) {
-        console.log("Mouse up, stopping drag");
+        isDragging = false;
+      }
+    });
+
+    document.addEventListener("touchup", (e) => {
+      if (isDragging) {
         isDragging = false;
       }
     });
@@ -261,23 +280,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -298,10 +320,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

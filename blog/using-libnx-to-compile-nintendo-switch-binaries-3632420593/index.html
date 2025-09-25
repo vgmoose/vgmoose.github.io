@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Using libnx to Compile Nintendo Switch binaries</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Using libnx to Compile Nintendo Switch binaries" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="Notice: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then. Double Notice: The creator of devkitpro advises against these instructions in favor of using an automated installer, which as of 10/28/17 has not been released yet. Follow only as your own curiosity permits. Requirements  Devkit ARM64 for your OS unix-like environment git, make, 7zip lz4, lz4-d..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2017-09-20 18:23:02<br />
-        Tags: nintendo, switch, homebrew, libnx, linux<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Using libnx to Compile Nintendo Switch binaries</h2>
-        <p><em>Notice</em>: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.<br />
+        <div class="post-meta">
+            <span class="post-date">2017-09-20</span>
+            <span class="post-tags">Tags: nintendo, switch, homebrew, libnx, linux</span>
+        </div>
+        <p><em>Notice</em>: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.<br>
 <em>Double Notice</em>: The creator of devkitpro advises against these instructions in favor of using an automated installer, which as of 10/28/17 has not been released yet. Follow only as your own curiosity permits.</p>
 <h2>Requirements</h2>
 <ul>
@@ -58,36 +56,32 @@
 <ol>
 <li>Make a <code>devkitpro</code> folder (any directory is fine, but this guide will use <code>~</code>)</li>
 </ol>
-<div class="highlight"><pre><span></span>mkdir ~/devkitpro
-</pre></div>
+<pre class="highlight"><code>mkdir ~/devkitpro</code></pre>
 
 
 <ol>
 <li>Extract the contents of <a href="https://sourceforge.net/projects/devkitpro/files/devkitA64/">Devkit ARM64</a> to <code>~/devkitpro/devkitA64</code>  </li>
 <li>Clone the <a href="https://github.com/switchbrew/libnx">libnx</a> library from github</li>
 </ol>
-<div class="highlight"><pre><span></span>cd ~
-git clone https://github.com/switchbrew/libnx.git
-</pre></div>
+<pre class="highlight"><code>cd ~
+git clone https://github.com/switchbrew/libnx.git</code></pre>
 
 
 <ol>
 <li>Update the <code>DEVKITPRO</code>, <code>DEVKITA64</code>, and <code>PATH</code> environment variables</li>
 </ol>
-<div class="highlight"><pre><span></span>export DEVKITPRO=~/devkitpro
+<pre class="highlight"><code>export DEVKITPRO=~/devkitpro
 export DEVKITA64=$DEVKITPRO/devkitA64
 export PATH=$PATH:$DEVKITA64/bin
-export PATH=$PATH:~/libnx/tools
-</pre></div>
+export PATH=$PATH:~/libnx/tools</code></pre>
 
 
 <ol>
 <li>Compile libnx</li>
 </ol>
-<div class="highlight"><pre><span></span>cd ~/libnx
+<pre class="highlight"><code>cd ~/libnx
 make install
-make
-</pre></div>
+make</code></pre>
 
 
 <h2>Compiling example binary</h2>
@@ -98,28 +92,25 @@ make
 <ol>
 <li>Clone the <a href="https://github.com/switchbrew/switch-examples">switch-examples</a> project</li>
 </ol>
-<div class="highlight"><pre><span></span>cd ~
-git clone https://github.com/switchbrew/switch-examples
-</pre></div>
+<pre class="highlight"><code>cd ~
+git clone https://github.com/switchbrew/switch-examples</code></pre>
 
 
 <ol>
 <li>Compile the simple example by running make (if you hit a devkit error here, redo the exports from <strong>Setup</strong> step #3)</li>
 </ol>
-<div class="highlight"><pre><span></span>cd ~/switch-examples/templates/simple
+<pre class="highlight"><code>cd ~/switch-examples/templates/simple
 mkdir -p exefs_src/a
-make
-</pre></div>
+make</code></pre>
 
 
 <ol>
 <li>You should now have two files in the current folder, <code>simple.nso</code> and <code>simple.pfs0</code></li>
 </ol>
-<div class="highlight"><pre><span></span>hexdump -C simple.nso | head -20
-</pre></div>
+<pre class="highlight"><code>hexdump -C simple.nso | head -20</code></pre>
 
 
-<div class="highlight"><pre><span></span>00000000  4e 53 4f 30 00 00 00 00  00 00 00 00 3f 00 00 00  |NSO0........?...|
+<pre class="highlight"><code>00000000  4e 53 4f 30 00 00 00 00  00 00 00 00 3f 00 00 00  |NSO0........?...|
 00000010  00 01 00 00 00 00 00 00  60 04 00 00 01 00 00 00  |........`.......|
 00000020  1f 04 00 00 00 10 00 00  20 00 00 00 01 00 00 00  |........ .......|
 00000030  2a 04 00 00 00 20 00 00  48 00 00 00 10 01 02 00  |*.... ..H.......|
@@ -138,8 +129,7 @@ make
 00000110  00 d1 40 04 00 58 61 04  00 58 21 00 00 cb 21 1c  |..@..Xa..X!...!.|
 00000120  00 91 21 f0 7d 92 02 00  80 d2 00 00 1c 8b 02 84  |..!.}...........|
 00000130  00 f8 21 20 00 f1 c1 ff  ff 54 80 03 00 58 a1 03  |..! .....T...X..|
-00000140  28 00 01 24 00 47 00 40  f9 42 2c 00 f3 0e 81 ff  |(..$.G.@.B,.....|
-</pre></div>
+00000140  28 00 01 24 00 47 00 40  f9 42 2c 00 f3 0e 81 ff  |(..$.G.@.B,.....|</code></pre>
 
 
 <p>The <code>exefs_src</code> contains any files that should be copied to the executable filesystem. In the simple example, we don't need any files copied, so the <code>mkdir -p exefs_src/a</code> is just so that the <a href="https://github.com/switchbrew/switch-examples/blob/master/templates/simple/Makefile#L18">Makefile doesn't complain</a>.</p>
@@ -150,23 +140,26 @@ make
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -187,10 +180,7 @@ make
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

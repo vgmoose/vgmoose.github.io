@@ -1,71 +1,67 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Using iPhone Data Connection wth a Computer Hotspot (Reverse Tethering)</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Using iPhone Data Connection wth a Computer Hotspot (Reverse Tethering)" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="So recently I've stumbled upon a pretty neat \"one weird trick\" that can be done to access the iPhone's data connection from any wifi-enabled device. This is still important if your carrier doesn't allow tethering (of which, a surprising amount the US seem to not, despite some court rulings. The same trick can probably work on Android phones as well but I haven't tried anything. So the general idea is this: 1. Host a wifi-hostpot on your computer 2. Turn on wifi on your iPhone and connect to the ..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2016-11-26 11:20:16<br />
-        Tags: iphone, ssh, tethering, hotspot, ios<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Using iPhone Data Connection wth a Computer Hotspot (Reverse Tethering)</h2>
+        <div class="post-meta">
+            <span class="post-date">2016-11-26</span>
+            <span class="post-tags">Tags: iphone, ssh, tethering, hotspot, ios</span>
+        </div>
         <p>So recently I've stumbled upon a pretty neat "one weird trick" that can be done to access the iPhone's data connection from any wifi-enabled device. This is still important if your carrier doesn't allow tethering (of which, a surprising amount the US seem to not, <a href="https://en.wikipedia.org/wiki/Tethering#United_States">despite some court rulings</a>. The same trick can probably work on Android phones as well but I haven't tried anything.</p>
-<p>So the general idea is this:<br />
-1. Host a wifi-hostpot on your computer<br />
-2. Turn on wifi on your iPhone and connect to the hotspot<br />
+<p>So the general idea is this:<br>
+1. Host a wifi-hostpot on your computer<br>
+2. Turn on wifi on your iPhone and connect to the hotspot<br>
 3. Tell the iPhone to use its data connection despite being connected to Wifi</p>
-<p>I'm not sure if (3) is a networking trick, or a lesser known feature of iOS, but it's accomplished as follows:<br />
-1. Go to Settings -&gt; General -&gt; Wifi<br />
-2. Connect to the Hotspot that you hosted on your computer<br />
-3. Tap the blue arrow next to the name of the Wifi network to view more settings<br />
-4. Note the IP that you have been assigned from the Hotspot, then choose the "static" tab<br />
-5. Input the IP from earlier as the IP, and enter 255.255.0.0 as the subnet mask<br />
+<p>I'm not sure if (3) is a networking trick, or a lesser known feature of iOS, but it's accomplished as follows:<br>
+1. Go to Settings -&gt; General -&gt; Wifi<br>
+2. Connect to the Hotspot that you hosted on your computer<br>
+3. Tap the blue arrow next to the name of the Wifi network to view more settings<br>
+4. Note the IP that you have been assigned from the Hotspot, then choose the "static" tab<br>
+5. Input the IP from earlier as the IP, and enter 255.255.0.0 as the subnet mask<br>
 6. <strong>Leave everything else blank</strong> (Router, DNS, Search Domains). This tells it to route traffic over the cellular network.</p>
 <p>As for (1), most PC operating systems have some variation of this built-in. Gnome3 network-manager has an option that straight up says "Host wifi hotspot".</p>
 <p>At this point, your computer is able to access your iPhone directly, and your iPhone is able to access its network directly, despite being connected over wifi. So for example, you can do the following:</p>
-<div class="highlight"><pre><span></span>ssh mobile@10.42.0.40
-</pre></div>
+<pre class="highlight"><code>ssh mobile@10.42.0.40</code></pre>
 
 
 <p>And then:</p>
-<div class="highlight"><pre><span></span>wget google.com
-</pre></div>
+<pre class="highlight"><code>wget google.com</code></pre>
 
 
 <p>And get whatever files you need. In this case, I am taking advantage of the fact that my iPhone is jailbroken and is running an sshd server. In theory though, the same can be done with any App Store apps that allow you to download and host files, such as <a href="https://itunes.apple.com/us/app/downloader/id835382053?mt=8">this one</a>. Using xcode tools, someone could make something to host an sshd server on a nonjailbroken iPhone or even host an http proxy, which could be done completely without root.</p>
@@ -77,23 +73,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -114,10 +113,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

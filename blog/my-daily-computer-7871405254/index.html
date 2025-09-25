@@ -1,50 +1,48 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>My Daily Computer</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="My Daily Computer" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="On July 14, 2009, I received a Macbook Pro (13 inch, Mid-2009 model). This is the first unibody aluminum Macbook that was produced. I chose to get this computer, as I had been playing with iOS (then called iPhone OS) as well as Hackintoshes. I had grown fond of OS X (then Mac OS X). Despite this, however, I had my heart set on the HP Pavilion tx2000, as the idea of turning the screen around to make it into a \"tablet\" interested me. During the deciding process, though, I came across this video de..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2015-07-27 00:27:46<br />
-        Tags: apple, os x, macbook<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>My Daily Computer</h2>
+        <div class="post-meta">
+            <span class="post-date">2015-07-27</span>
+            <span class="post-tags">Tags: apple, os x, macbook</span>
+        </div>
         <p>On July 14, 2009, I received a Macbook Pro (13 inch, Mid-2009 model). This is the first unibody aluminum Macbook that was produced. I chose to get this computer, as I had been playing with iOS (then called iPhone OS) as well as Hackintoshes. I had grown fond of OS X (then Mac OS X).</p>
 <p>Despite this, however, I had my heart set on the <a href="http://www.notebookcheck.net/HP-Pavilion-tx2000-Series.10523.0.html">HP Pavilion tx2000</a>, as the idea of turning the screen around to make it into a "tablet" interested me. During the deciding process, though, I came across <a href="https://www.youtube.com/watch?v=lJx6cF-H__I">this video</a> detailing the design of the unibody Macbook Pro.</p>
 <p>I had been a fan of the operating system, but seeing that video made the dots connect. This was the computer for me. At least, that's the romanticized version of the story. The only problem was the classic problem that anti-Mac users have been toting for years: the price. </p>
@@ -103,23 +101,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -140,10 +141,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

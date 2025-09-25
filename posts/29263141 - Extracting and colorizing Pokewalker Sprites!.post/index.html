@@ -20,6 +20,9 @@
 <p>Some code used in this effort is here: <a href="https://github.com/vgmoose/pypokescript">https://github.com/vgmoose/pypokescript</a></p>
 <p>I didn't yet go through all the alternate forms, but that might be a goal in the future. As for <em>why</em> do this with the sprites, maybe they could be useful in creating full-color recreation of the pokewalker. Or adding a color overlay to a Pokewalker emulator!</p>
 <style>
+  body {
+    overscroll-behavior-x: none;
+  }
 .compare {
   --mask-width: 50%;
   --handle-size: 16px;
@@ -65,6 +68,7 @@
 .compare__image-two {
   height: 100%;
   width: auto;
+  max-width: unset;
   pointer-events: auto; /* Allow interaction */
   user-drag: none;
   -webkit-user-drag: none;
@@ -75,6 +79,7 @@
 
 #content .compare__mask img {
     max-width: unset;
+    height: 100%;
 }
 
 .compare__input {
@@ -161,12 +166,19 @@
 
       // Handle mouse events directly on images
       img.addEventListener("mousedown", (e) => {
-        console.log("Image mousedown, button:", e.button);
         if (e.button === 0) { // Left mouse button only
           isDragging = true;
           updateSlider(e);
           e.preventDefault(); // Prevent text selection
           e.stopPropagation(); // Prevent event from bubbling
+        }
+      });
+
+      img.addEventListener("touchstart", (e) => {
+        if (!isDragging) {
+          isDragging = true;
+          let { touches: [ e ] } = event;
+          updateSlider(e);
         }
       });
 
@@ -185,25 +197,28 @@
       compare.style.setProperty("--mask-width", `${percent}%`);
     }
 
-    // Fallback: Handle mouse events on the entire compare container
-    compare.addEventListener("mousedown", (e) => {
-      console.log("Compare container mousedown, button:", e.button);
-      if (e.button === 0 && !isDragging) { // Left mouse button only
-        isDragging = true;
-        updateSlider(e);
-        e.preventDefault();
-      }
-    });
-
     document.addEventListener("mousemove", (e) => {
       if (isDragging) {
         updateSlider(e);
       }
     });
 
+    document.addEventListener("touchmove", (e) => {
+      if (isDragging) {
+        let { touches: [ e ] } = event;
+        updateSlider(e);
+        event.preventDefault();
+      }
+    });
+
     document.addEventListener("mouseup", (e) => {
       if (isDragging) {
-        console.log("Mouse up, stopping drag");
+        isDragging = false;
+      }
+    });
+
+    document.addEventListener("touchup", (e) => {
+      if (isDragging) {
         isDragging = false;
       }
     });

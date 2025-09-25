@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../layout/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+    <title>VGMoose's Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="VGMoose's Blog" />
+    <!-- single_entry <meta property="og:type" content="article" /> single_entry -->
+     <meta property="og:type" content="website" /> 
+    <meta property="og:url" content="https://vgmoose.dev/blog" />
+    <meta property="og:description" content="Musings from the individual known as VGMoose" />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
+</head>
+
+<div id="all">
+    <div id="banner">
+        <img src="../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
+    <div id="nav">
+        <ul>
+            <li><a href="..//">Home</a></li>
+            <li><a href="..//projects/">Projects</a></li>
+            <li><a href="..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="..//archive/">Archive</a></li>
+            <li><a href="..//search/">Search</a></li>
+            <li class="opt-nav"><a href="..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
+        </ul>
+    </div>
+    
+    <!-- single_entry
+    <div id="content">
+        <h2>VGMoose's Blog</h2>
+        <div class="post-meta">
+            <span class="post-date">$date</span>
+            <span class="post-tags">Tags: $categories</span>
+        </div>
+        $content
+    </div>
+    single_entry -->
+    
+    
+    <div id="content">
+        <h2>Blog Posts</h2><div class="blog-entry">
+            <img src="/posts/29263141 - Extracting and colorizing Pokewalker Sprites!.post/pwalk_gray.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="extracting-and-colorizing-pokewalker-sprites-2307083881/">Extracting and colorizing Pokewalker Sprites!</a>
+                    <span class="blog-date">2025-08-21</span>
+                </div>
+                <div class="minidescription">The Pokewalker is a handheld pedometer that came bundled with HGSS, and it has a bunch of two-frame grayscale sprites. The sprites used on the walker are taken from Diamond/Pearl and positioned so that they'll fit on the small display, but lack any color information.
+Below are the original grayscale Pokewalker sprites (with transparency), and their now fully colorized counterparts. Drag the slider to see the difference, or click one of these direct links: Grayscale - Color (Slider code from this...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="swiftui-using-callbacks-to-avoid-delegates-to-update-state-from-a-uiviewcontrollerrepresentable-or-uiviewrepresentable-no-coordinators-4967421379/">SwiftUI - Using callbacks to avoid delegates to update state from a UIViewControllerRepresentable or UIViewRepresentable (No Coordinators)</a>
+                    <span class="blog-date">2025-08-05</span>
+                </div>
+                <div class="minidescription">That is a mouthful of a post title!
+There are some (really good!) articles on the Internet about how to communicate with a traditional UIView or UIViewController from a parent SwiftUI view. Like this one, or this one.
+I have the impression though that they're coming at the problem from a UIKit perspective though, which makes sense given that a traditional UIView is being used.
+But if you find yourself unable to follow the way the Coordinator interacts with the delegate, and bridges the UIView &l...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="how-to-create-static-302-redirects-using-gitlab-pages-9998756653/">How to create static 302 redirects using Gitlab Pages</a>
+                    <span class="blog-date">2025-07-21</span>
+                </div>
+                <div class="minidescription">Website redirects can be annoying! The best thing to do is often a 302 (or 301) HTTP redirect, without having to use meta refresh tags or requiring the user to run JavaScript on the page.
+Gitlab provides an extremely convenient offering with Gitlab Pages and also allows you to set up a single yml config file with some limited dynamic capabilities. See their docs page on redirects.
+In short, create a .gitlab-ci.yml in the root of your repo, and all that needs to be filled is:
+variables:
+  REDIREC...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/29083579 - Yellow version glitch: no poison damage in overworld, skip fainting checks.post/zone1.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="yellow-version-glitch-no-poison-damage-in-overworld-skip-fainting-checks-7866335191/">Yellow version glitch: no poison damage in overworld, skip fainting checks</a>
+                    <span class="blog-date">2025-04-18</span>
+                </div>
+                <div class="minidescription">This post looks into some behavior related to poison damage not being applied in certain areas in Yellow. The special state where these checks are skipped can be stored, which will allow visiting other areas without taking poison damage or fainting while walking. This mode also persists across saving/resetting, effectively removing these overworld checks for the rest of the game.
+Background info
+In Pokemon Yellow there are a few special added events that involve the player's Pikachu. During all ...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/28810453 - ORAS Missingno Retrospective & 3D Model Files.post/missingno_model.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="oras-missingno-retrospective-3d-model-files-0357867364/">ORAS Missingno Retrospective & 3D Model Files</a>
+                    <span class="blog-date">2024-10-11</span>
+                </div>
+                <div class="minidescription">In 2016, I made a video where I modded a Missingno model and short event into Omega Ruby. This was actually itself a much-later sequel to a 2007 video where I did something similar in the original Ruby version!
+This is both a post to reflect on that, but also to upload those models that I made back then. They can be downloaded here: missingno_model_files.zip.
+
+From what I remember, for 3DS modding, each face in the OBJ file cannot have more than 3 vertices (triangular faces only). Maybe it's chn...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/28460399 - Pokemon Picross and Crystal Clear Custom Game Boy Labels.post/crystalclear.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="pokemon-picross-and-crystal-clear-custom-game-boy-labels-4099938666/">Pokemon Picross and Crystal Clear Custom Game Boy Labels</a>
+                    <span class="blog-date">2024-02-10</span>
+                </div>
+                <div class="minidescription">Hi! It's 2024! Ahh!
+Just a quick post sharing some custom labels for Pokémon Picross (GBC) and Crystal Clear.
+Pokémon Picross
+
+Crystal Clear
+
+Usage
+Download and resize these to 42mm x 37mm (or 4.2cm x 3.7cm) and print on sticker paper.
+The Picross label is made using edited assets from Pokémon Picross Adventure, which itself is using the 3DS version's logo.
+The Crystal Clear label is edited from IGDB. Both were made using Dinierto's Cartridge label templates.
+There are a few game boy cartridge l...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="pokemon-red-and-blue-rom-patches-with-slowed-down-music-6347114672/">Pokemon Red and Blue ROM Patches with Slowed Down Music</a>
+                    <span class="blog-date">2022-12-30</span>
+                </div>
+                <div class="minidescription">These are patches for Red/Blue that are built with their music tempo slowed down 2x and 4x. This is done by changing this line in the decompilation (to HIGH(\1 * 2), LOW(\1 * 2) or HIGH(\1 * 4), LOW(\1) * 4).
+This creates a slightly better experience if you use 2x or 4x speed up / fast forwarding in an emulator, so that the sound isn't just a cacophony of sped up noises. It's not perfect though!
+Downloads
+
+2x Slowed: Red, Blue
+4x Slowed: Red, Blue
+
+How to Patch
+Use https://www.marcrobledo.com/Ro...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="creating-a-windows-11-install-usb-in-2022-5071914005/">Creating a Windows 11 Install USB in 2022</a>
+                    <span class="blog-date">2022-09-28</span>
+                </div>
+                <div class="minidescription">I have been installing Windows for a long time. Does it get easier? I want to say it gets easier, but it seems like there's always some new wrinkle! These instructions are as much a note to my future self as they may be useful to anyone else.
+For me, I was not able to get any exfat-based installs, or even any of the GUI helpers to make this process any more straightforward. Maybe on your target Windows / host OS those helpers will work, but the below process (as of current year) is consistent, a...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="debunking-criticisms-about-the-switch-browser-4535319561/">Debunking Criticisms About the Switch Browser</a>
+                    <span class="blog-date">2022-05-10</span>
+                </div>
+                <div class="minidescription">This post responds to some pretty negative comments about the Switch browser on this reddit thread on r/NintendoSwitch. Before I get into it, I want to lead with this change.org petition, which already has almost 14,000 signatures from other people who also want a standalone browser app on the Switch.
+
+It's a lot of development work that they won't maintain
+
+Actually, the development work is already done. The Switch already internally includes a webkit-based browser, and it is updated frequently...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/27394526 - How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok.post/sources.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="how-to-crop-landscape-169-videos-to-vertical-916-using-ffmpeg-for-youtube-shorts-or-tiktok-6898118583/">How to Crop Landscape 16:9 Videos to Vertical 9:16 using ffmpeg for YouTube Shorts or TikTok</a>
+                    <span class="blog-date">2022-01-31</span>
+                </div>
+                <div class="minidescription">It's another new year! Still feels like 2020! Noooo!!
+In this post, I will be showing some ffmpeg commands that can be used to convert 720p or 1080p 16:9 video into a 9:16 format that will allow it to work in YouTube Shorts. I'm a long time Youtuber, but I'm also someone who thought up until yesterday that "TikTok" had a space between Tik and Tok. That'd be like writing "You Tube"! Jeez.
+But with YouTube Shorts, I've been understanding more the appeal of quick and dismissable videos. It's much m...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="another-new-laptop-5254778456/">Another New Laptop</a>
+                    <span class="blog-date">2021-12-04</span>
+                </div>
+                <div class="minidescription">I find myself with another new laptop, this time only 1.5 years later. It turns out I bought previous one at basically the worst possible time. This is now "officially" my fourth Macbook in 12 years, further solidfying my ties to the Apple ecosystem. Although, the Asahi Linux project looks very promising for running linux here in the future!
+The 2020 MBP I got towards "the start" of the pandemic (which is weird to say, considering it was May 2020 which felt deep-pandemic at the time). I got it a...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/27164281 - [release] Space Game (for Web and PC, Godot port).post/space2.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="release-space-game-for-web-and-pc-godot-port-6720087730/">[release] Space Game (for Web and PC, Godot port)</a>
+                    <span class="blog-date">2021-08-24</span>
+                </div>
+                <div class="minidescription">Space Game was originally a Wii U homebrew released in 2016 that was my first real designed-for-consoles app/game.
+This new version is playable in a browser at vgmoose.com/space-game/, or can be downloaded for Linux/Mac/Windows from these pipelines. I actually wasn't intending to make a web version, but adding in these Godot Github Actions included a gh-pages/Github Pages deploy, and I am happy with the results!
+ 
+I ported this game to Java in 2017, and again to SDL in 2018. The Java port was a ...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="how-to-fix-macos-flakey-screensharing-6826443561/">How to fix macOS Flakey Screensharing</a>
+                    <span class="blog-date">2020-06-10</span>
+                </div>
+                <div class="minidescription">TLDR: for flakiness in Messages screen sharing, run the command at the bottom of this post
+The screen sharing functionality in macOS is really good!... When it works! I've been using it for a really long time now, and they seem to continuously change how you access/use it. In the early days, it could be accessed through AIM and iChat, if both parties had a Mac. In the buddy list, this would be denoted with a video chat icon that showed little screens behind it.
+As Apple upgraded the operating sy...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/26520908 - [release] vgedit - Text Editor for Video Game Consoles.post/screen1.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="release-vgedit-text-editor-for-video-game-consoles-8874339395/">[release] vgedit - Text Editor for Video Game Consoles</a>
+                    <span class="blog-date">2020-06-04</span>
+                </div>
+                <div class="minidescription">A little bit more than a year ago (oops somehow it's June?) I made a homebrew app for called vgedit, with the goal being the ability to edit text files directly on the Switch / Wii U.
+The app was made mostly for personal use cases, but I now have a major update to its functionality, which I will now tell you all about!
+Download: https://github.com/vgmoose/vgedit/releases
+Available under the GPLv3 license
+This update allows vgedit to handle much larger files, adds line number and  cursor fixes, u...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/26494470 - [release] An Open Source macOS Touchpad Tool.post/fpad2.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="release-an-open-source-macos-touchpad-tool-1730555559/">[release] An Open Source macOS Touchpad Tool</a>
+                    <span class="blog-date">2020-05-16</span>
+                </div>
+                <div class="minidescription">Here's a pre-release of a tool I've been working on for a while, which I'm now calling Glass Controller. It's macOS tool for setting up gestures and other shortcuts to be activated with the Macbook touchpad.
+It's available for download here, and it looks like this:
+
+More information on what this tool can do is available in the readme, and it's available under the GPLv3 license.
+At this time, I'm calling this a pre-release, as the GUI to configure the gestures/shortcuts is not fully realized or u...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/26494395 - Yes I'm Still Here.post/IMG_5463.jpeg" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="yes-im-still-here-5734290197/">Yes I'm Still Here</a>
+                    <span class="blog-date">2020-05-16</span>
+                </div>
+                <div class="minidescription">Hello! Like USUAL it feels like it's been forever since drafting a blog post. Apparently I felt like there was no point to post at all in all of 2019.
+Actually, I can probably scrounge up a Homebrew App Store release post that happened in 2019 and repurpose that as a blog post... Like most of the other older blog posts on here.
+So anyway, the year is apparently 2020 somehow, and there's a Literal Death Virus outdoors that turns all of reality into a poorly thought out NaNoWriMo premise. And we'r...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="release-homebrew-app-store-22-8378492338/">[release] Homebrew App Store 2.2</a>
+                    <span class="blog-date">2019-12-23</span>
+                </div>
+                <div class="minidescription">What's New?
+This update should address a lot of the slowness and crashing that people have experienced. We have other infrastructure-related changes that we're still working on, but are publishing this now to make sure these client bugfixes are out there!
+In July 2019, we passed our third year of hosting the Homebrew App Store service since starting on the Wii U! Thank you to everyone who has used the App Store or otherwise shown support for this project. You're the reason we keep doing this.
+Th...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/25354320 - Extracting iOS Voicemails (and other data) with OpenBackupTool.post/backup2.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="extracting-ios-voicemails-and-other-data-with-openbackuptool-2425971492/">Extracting iOS Voicemails (and other data) with OpenBackupTool</a>
+                    <span class="blog-date">2018-03-17</span>
+                </div>
+                <div class="minidescription">Recently, I got into the situation of needing to extract some old voicemails from an iTunes backup. iTunes does keep track of a lot of old voicemails but it doesn't provide a way to browse these documents.
+And then I felt like I entered a parallel universe-- I couldn't find any programs that would allow be to simply extract all the voicemails from an iTunes backup that were completely free! 
+This is especially irritating, as some programs would bring you to what appeared to be the final export s...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="creating-a-flashable-disk-image-from-a-folder-7951774518/">Creating a flash-able disk image from a folder</a>
+                    <span class="blog-date">2018-02-09</span>
+                </div>
+                <div class="minidescription">First, create an empty file of the desired size that the disk image will be, using dd. The below will create a 1GB file (count*bs)
+dd if=/dev/zero of=disk.img bs=512M count=2
+
+
+Then, use losetup and the -P flag to use the newly created image as a loopback device.
+losetup -P /dev/loop0 disk.img
+
+
+Once the loopback device is created, you should be able to create a partition map on it using fdisk. (If you don't want to use fdisk, another disk partitioning program should work)
+fdisk /dev/loop0
+
+
+Ins...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="on-the-pokemon-bank-transfer-algorithm-6446734174/">On the Pokemon Bank transfer algorithm</a>
+                    <span class="blog-date">2017-09-13</span>
+                </div>
+                <div class="minidescription">I uploaded two videos to YouTube a few months ago describing the transfer algorithm in the 1.2 version of Pokémon Bank for the 3DS. The process was upsetting as it was not a consistent, deterministic algorithm, and instead generates completely random numbers at the time of transfer to create the Gen 7 Pokémon from Gen 1 ones.
+
+First video explaining the algorithm and what values it discards/randomizes
+Second video showing the transfer process on some cloned Pikachu.
+
+What I describe in the video...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="fixing-a-suddenly-readonly-flash-drive-1847368734/">Fixing a Suddenly Read-only Flash Drive</a>
+                    <span class="blog-date">2017-08-07</span>
+                </div>
+                <div class="minidescription">A while back I purchased this Silicon Power 64G USB3 flash drive to put on my keychain. It was a great, durable flash drive for about 6 months... Then, it suddenly showed up as read-only on any device that I connected to it!
+It was not a permission error, or something wrong with the partition map. The physical device was flat-out refusing to be read. Even gparted -&gt; Create Partition Map would report back "/dev/sdb is read-only".
+After some googling, a common belief is that this may be a sign ...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/24856971 - Using a Swapfile to Prevent OutOfMemoryError in Android.post/screenie.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="using-a-swapfile-to-prevent-outofmemoryerror-in-android-0304645377/">Using a Swapfile to Prevent OutOfMemoryError in Android</a>
+                    <span class="blog-date">2017-04-05</span>
+                </div>
+                <div class="minidescription">I have an old OG Motorola Droid, which originally came with Eclair. It's a nice device to develop and debug Android apps on, as it provides a more-or-less accurate representation of what an underpowered device will look like when seeing how well your app performs. This is, in my opinion, an important but often neglected aspect of app development that often goes ignored. And when performance is ignored, apps get bloated and compete for resources, which is something that you rarely want to happen ...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/24700812 - [release] nc-client for iOS - Netcat on Device.post/IMG_0017.PNG" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="release-ncclient-for-ios-netcat-on-device-2588309463/">[release] nc-client for iOS - Netcat on Device</a>
+                    <span class="blog-date">2016-12-18</span>
+                </div>
+                <div class="minidescription">On December 15 2016, Ian Beer posted a kernel exploit for iOS &lt;= 10.1.1. The code exploits the OS and provides access to a root shell on port 4141.
+That's awesome! Upon seeing this, I updated from a full jailbreak 8.1 to 10.1.1, anticipating someone in the near future will tidy it up. Until then though, building the project at the link above and poking around the filesystem as root is interesting. 
+Something that I missed from my jailbreak was being able to access terminal on the go. In theor...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="using-iphone-data-connection-wth-a-computer-hotspot-reverse-tethering-4414683578/">Using iPhone Data Connection wth a Computer Hotspot (Reverse Tethering)</a>
+                    <span class="blog-date">2016-11-26</span>
+                </div>
+                <div class="minidescription">So recently I've stumbled upon a pretty neat "one weird trick" that can be done to access the iPhone's data connection from any wifi-enabled device. This is still important if your carrier doesn't allow tethering (of which, a surprising amount the US seem to not, despite some court rulings. The same trick can probably work on Android phones as well but I haven't tried anything.
+So the general idea is this:
+1. Host a wifi-hostpot on your computer
+2. Turn on wifi on your iPhone and connect to the ...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/24542116 - Moving from Github Pages to Netlify.post/domain.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="moving-from-github-pages-to-netlify-2383586894/">Moving from Github Pages to Netlify</a>
+                    <span class="blog-date">2016-08-29</span>
+                </div>
+                <div class="minidescription">Github Pages is an incredibly useful service that makes deploying a static website very free and very easy. I used Github for a long time to host this website (discussed here) and others. Since the websites are purely static content, there isn't much to maintain besides the actual html/css/js files that are pushed to the Github repo. There are two very cool features provided by the service. One, free TLS encryption is automatically provided to to those that use its service, simply by changing th...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="public-key-encryption-and-keybaseio-9660664784/">Public Key Encryption and Keybase.io</a>
+                    <span class="blog-date">2016-07-21</span>
+                </div>
+                <div class="minidescription">I have recently signed up for keybase.io, a website which addresses a long standing issue. I got into public key crypto a couple of years back after reading Cory Doctorow's Little Brother. Since then, I probably used it at most 4 times total, with two other people. Although it was designed to be easy to use, it just didn't seem to resonate with me well enough.
+Keybase.io, however, solves this problem (of not using it) beautifully, by putting what seems to be a totally modern spin on keyservers. ...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/24462737 - [release] Homebrew App Store (for Wii U).post/screenshot.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="release-homebrew-app-store-for-wii-u-6514140396/">[release] Homebrew App Store (for Wii U)</a>
+                    <span class="blog-date">2016-07-05</span>
+                </div>
+                <div class="minidescription">On July 4th, 2016, I released another homebrew app for the Wii U called the Homebrew App Store! Here's a video of me using it.
+Check out the thread here for information about on how to use it. The source code is available on my github.
+
+See the github readme for more information!</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/24457815 - Leaving Ubuntu for Fedora.post/desktop.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="leaving-ubuntu-for-fedora-5574192608/">Leaving Ubuntu for Fedora</a>
+                    <span class="blog-date">2016-07-02</span>
+                </div>
+                <div class="minidescription">Despite having literally worked at Red Hat, I've actually always been a Debian/Ubuntu guy. There are three common reasons that I would give for this preference: stability, ease-of-use, and support. I don't usually blog about personal computing either, but I feel like I need to vent some frustration here!
+
+Above: The default Fedora 24 gnome-3 desktop (larger)
+When I started my next job, I made the decision to install Ubuntu on the work laptop rather than Fedora. I believed that, since it was a la...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/24360930 - An Interesting Purchase.post/IMG_2563-1.JPG" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="an-interesting-purchase-1877256098/">An Interesting Purchase</a>
+                    <span class="blog-date">2016-04-26</span>
+                </div>
+                <div class="minidescription">Through some nontrivial sequence of events this past weekend I found myself purchasing the following:
+
+Yep, a brand "new" New Nintendo 3DS XL. Now, let me for the record say that it way bigger than anything I'd like. The screen does look nice, but I mean it literally doesn't fit in my pocket. 
+I got this thing about a year after it came out. I had been trying to get the Majora's Mask 3DS XL when that first came out, but I've long since given up on that dream. Anyway, my desire to own this N3DS X...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="how-to-host-a-file-locally-4370481922/">How To: Host a File Locally</a>
+                    <span class="blog-date">2016-03-13</span>
+                </div>
+                <div class="minidescription">Here's a quick guide on how to host a file over the network. 
+There are three basic parts to this:
+1. Knowing your local IP
+2. Knowing where the files to host are
+3. Running a server to serve it over HTTP
+Every single website that you see and visit in your browser is done over the HyperText Transfer Protocol. These websites are hosted on remote servers, which distribute content to you via this protocol. So to host a file, we will need to run a server on your machine, to be visited by the other m...</div>
+            </div>
+        </div><div class="blog-entry no-image">
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="implementing-a-static-blog-search-clientside-in-js-6629164446/">Implementing a Static Blog Search Clientside in JS</a>
+                    <span class="blog-date">2016-03-11</span>
+                </div>
+                <div class="minidescription">One of the primary features of the blog on this website is the fact that it is compiled offline with a python script and then served as a static site by a "dumb" server. The advantage of this is less overhead for me when hosting, as well as the ability to leverage Github Pages to act as a CDN. More info about the decisions behind the script are detailed in this post.
+However, there was something that the site had been lacking, and that was a way to go through and actually search through the post...</div>
+            </div>
+        </div><div class="blog-entry">
+            <img src="/posts/24261201 - [release] Space Game! (for Wii U).post/title.png" alt="Preview" class="blog-thumbnail">
+            <div class="blog-content">
+                <div class="blog-header">
+                    <a href="release-space-game-for-wii-u-9950630850/">[release] Space Game! (for Wii U)</a>
+                    <span class="blog-date">2016-02-16</span>
+                </div>
+                <div class="minidescription">On Feb 9 2016 I released a little homebrew app for the Wii U called Space Game! Here's a video of me playing it.
+You can play the game on the latest 5.5.0/5.5.1 Wii U firmwares by going to space.vgmoose.com. I've written a couple of posts about it on gbatemp and reddit. The source code is available on my github.
+
+
+Please enjoy! I hope to one day make my splash as a real developer on a Nintendo console, but until then, this homebrew stuff is the only card I can play.</div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- search_group
+    <div id="content">
+        <h2>Search vgmoose.dev</h2>
+        <p class="hideme">Search is loading...</p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script>lookup = $search_lookup;</script>
+        <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
+        <script src="../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
+        <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
+        <div id="results"></div>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
+    </div>
+    search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
+    
+    <br>
+    <!-- single_entry
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = $id;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    single_entry -->
+    <div id="footer">
+		<div class="left"><a href="../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
+		<div style="clear: both"></div>
+	</div>
+</div>

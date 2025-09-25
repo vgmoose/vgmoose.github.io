@@ -1,50 +1,48 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Wiiload for Android</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Wiiload for Android" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="Wiiload for Android is a graphical interface for the Wiiload client for Android. Wiiload is an application that sends bootable ELF or DOL files over the network to a Wii running the Homebrew Channel mod. This allows for one to boot native Wii code and applications without using a computer at all, only using a phone and the Wii. Wiiload for Android is possible, as Android applications are programmed in Java, so JWiiload for Android is a port of JWiiload, a project of mine that was also written fr..." />
+    <meta property="og:image" content="posts/22709100%20-%20Wiiload%20for%20Android.post/300px-screenshot_2012-06-12-20-50-47.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2013-03-06<br />
-        Tags: apps, android, java, wii, release<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Wiiload for Android</h2>
+        <div class="post-meta">
+            <span class="post-date">2013-03-06</span>
+            <span class="post-tags">Tags: apps, android, java, wii, release</span>
+        </div>
         <p>Wiiload for Android is a graphical interface for the Wiiload client for Android. Wiiload is an application that sends bootable ELF or DOL files over the network to a Wii running the Homebrew Channel mod. This allows for one to boot native Wii code and applications without using a computer at all, only using a phone and the Wii.</p>
 <p>Wiiload for Android is possible, as Android applications are programmed in Java, so JWiiload for Android is a port of <a href="http://vgmoose.com/9909702342">JWiiload</a>, a project of mine that was also written from the ground up. In fact, it was written with the intent of releasing Wiiload for Android, and eliminating the need of a computer from the homebrew scene on the Wii.</p>
 <h4>Requirements</h4>
@@ -55,7 +53,7 @@
 <h4>Usage</h4>
 <p>The application can launch itself from intents (from .zip, .elf, or .dol from other file browser’s open with… dialogs) or through the own built in filebrowser which isn’t as simple as it appears. It displays images and contains filetype filtering, and support of a home directory and new file support. The application checks if the user’s wifi is on, and if it’s not, requests it to be enabled. The scan option should locate the Wii if it is on the same Wi-Fi network as the phone, usually returning the IP address of the Wii in seconds, assuming the Wii has been put on the Homebrew Channel. Arguments and port can be specified from the menu on the main screen. There is an ad at the bottom of the screen, but it can be disabled by entering “I love you” under the “Make New Folder” dialog in the file browser. Please report any errors!</p>
 <h4>Screen shots</h4>
-<p><img alt="Android" src="../../posts/22709100 - Wiiload for Android.post/300px-Screenshot_2012-06-12-20-50-47.png" /> <img alt="Android" src="../../posts/22709100 - Wiiload for Android.post/300px-Screenshot_2012-06-12-20-51-32.png" /> <img alt="Android" src="../../posts/22709100 - Wiiload for Android.post/300px-Screenshot_2012-06-12-20-51-46.png" /></p>
+<p><img alt="Android" src="../../posts/22709100 - Wiiload for Android.post/300px-Screenshot_2012-06-12-20-50-47.png"> <img alt="Android" src="../../posts/22709100 - Wiiload for Android.post/300px-Screenshot_2012-06-12-20-51-32.png"> <img alt="Android" src="../../posts/22709100 - Wiiload for Android.post/300px-Screenshot_2012-06-12-20-51-46.png"></p>
 <p>For more information, see the <a href="http://wiibrew.org/wiki/JWiiload#Wiiload_for_Android">WiiBrew page</a> on Wiiload for Android.</p>
     </div>
     
@@ -64,23 +62,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -101,10 +102,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

@@ -1,56 +1,54 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>[release] vgedit - Text Editor for Video Game Consoles</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="[release] vgedit - Text Editor for Video Game Consoles" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="A little bit more than a year ago (oops somehow it's June?) I made a homebrew app for called vgedit, with the goal being the ability to edit text files directly on the Switch / Wii U. The app was made mostly for personal use cases, but I now have a major update to its functionality, which I will now tell you all about! Download: https://github.com/vgmoose/vgedit/releases Available under the GPLv3 license This update allows vgedit to handle much larger files, adds line number and  cursor fixes, u..." />
+    <meta property="og:image" content="posts/26520908%20-%20%5Brelease%5D%20vgedit%20-%20Text%20Editor%20for%20Video%20Game%20Consoles.post/screen1.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2020-06-04 03:08:08<br />
-        Tags: homebrew, text editor, video games, release, switch<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>[release] vgedit - Text Editor for Video Game Consoles</h2>
+        <div class="post-meta">
+            <span class="post-date">2020-06-04</span>
+            <span class="post-tags">Tags: homebrew, text editor, video games, release, switch</span>
+        </div>
         <p>A little bit more than a year ago (oops somehow it's June?) I made a homebrew app for called <strong>vgedit</strong>, with the goal being the ability to edit text files directly on the Switch / Wii U.</p>
 <p>The app was made mostly for personal use cases, but I now have a major update to its functionality, which I will now tell you all about!</p>
-<p><strong>Download:</strong> <a href="https://github.com/vgmoose/vgedit/releases">https://github.com/vgmoose/vgedit/releases</a><br />
+<p><strong>Download:</strong> <a href="https://github.com/vgmoose/vgedit/releases">https://github.com/vgmoose/vgedit/releases</a><br>
 Available under the GPLv3 license</p>
 <p>This update allows vgedit to handle much larger files, adds line number and  cursor fixes, usb keyboard support, and other features/bugfixes!</p>
-<p><img alt="editing" src="../../posts/26520908 - [release] vgedit - Text Editor for Video Game Consoles.post/screen2.png" /></p>
+<p><img alt="editing" src="../../posts/26520908 - [release] vgedit - Text Editor for Video Game Consoles.post/screen2.png"></p>
 <h2>Editing Bigger Files!</h2>
 <p>It's now using the <a href="https://github.com/grimfang4/SDL_FontCache">SDL_FontCache</a> library by grimfang4 for rendering the body text. I discovered this via the following <a href="https://stackoverflow.com/a/29725751">SO post</a> by the author. Adding this functionality, and also changing the way that the line in the file are rendered, vgedit is now capable of loading much, much larger files than it used to.</p>
 <p>This is on the order of being able to edit several MB files no problem in the update, compared with barely being able to handle a KB in the orignal! It also has improved line wrapping and line numbers in order to actually tell where you are in file, plus find+replace to find what you're looking for faster.</p>
@@ -97,8 +95,8 @@ Available under the GPLv3 license</p>
 <li>Allow copy/paste between two files</li>
 </ul>
 <h3>More Screenshots:</h3>
-<p><img alt="browser" src="../../posts/26520908 - [release] vgedit - Text Editor for Video Game Consoles.post/screen1.png" /><br />
-<img alt="editing2" src="../../posts/26520908 - [release] vgedit - Text Editor for Video Game Consoles.post/screen3.png" /></p>
+<p><img alt="browser" src="../../posts/26520908 - [release] vgedit - Text Editor for Video Game Consoles.post/screen1.png"><br>
+<img alt="editing2" src="../../posts/26520908 - [release] vgedit - Text Editor for Video Game Consoles.post/screen3.png"></p>
     </div>
     
     
@@ -106,23 +104,26 @@ Available under the GPLv3 license</p>
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -143,10 +144,7 @@ Available under the GPLv3 license</p>
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

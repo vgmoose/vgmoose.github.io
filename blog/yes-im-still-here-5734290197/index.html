@@ -1,50 +1,48 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Yes I'm Still Here</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Yes I'm Still Here" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="Hello! Like USUAL it feels like it's been forever since drafting a blog post. Apparently I felt like there was no point to post at all in all of 2019. Actually, I can probably scrounge up a Homebrew App Store release post that happened in 2019 and repurpose that as a blog post... Like most of the other older blog posts on here. So anyway, the year is apparently 2020 somehow, and there's a Literal Death Virus outdoors that turns all of reality into a poorly thought out NaNoWriMo premise. And we'r..." />
+    <meta property="og:image" content="posts/26494395%20-%20Yes%20I%27m%20Still%20Here.post/img_5463.jpeg" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2020-05-16 17:15:45<br />
-        Tags: still here, update, projects, computer<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Yes I'm Still Here</h2>
+        <div class="post-meta">
+            <span class="post-date">2020-05-16</span>
+            <span class="post-tags">Tags: still here, update, projects, computer</span>
+        </div>
         <p>Hello! Like USUAL it feels like it's been forever since drafting a blog post. Apparently I felt like there was no point to post at all in all of 2019.</p>
 <p>Actually, I can probably scrounge up a Homebrew App Store release post that happened in 2019 and repurpose that as a blog post... Like most of the other older blog posts on here.</p>
 <p>So anyway, the year is apparently 2020 somehow, and there's a Literal Death Virus outdoors that turns all of reality into a poorly thought out NaNoWriMo premise. And we're here! I'm here. You're here, presumably.</p>
@@ -126,7 +124,7 @@
 <p>After binging too many videos on GBA modding, I went through and got a TS80 soldering iron and a bunch of boards to practice on / start small electrical projects. I don't really have an end goal with endeavor except to upgrade my skills in this area.</p>
 <p>It would be nice to somehow merge some of these efforts with my <a href="https://github.com/vgmoose/gba_asm">GBA assembly experiments</a>, which would also likely make another great blog post. It occurs to me now that this entire post is kinda being used as an index for myself to use when I feel like I have nothing to say or write about.</p>
 <p>I'd like to make something like the <a href="https://granthaack.com/piboy-sp/">PiBoy SP</a>, but have it look innocuous as possible that it's a regular GBA, in terms of being able to play GBA cartridges / homebrew games.</p>
-<p><img alt="pic of hardware" src="../../posts/26494395 - Yes I'm Still Here.post/IMG_5463.jpeg" /></p>
+<p><img alt="pic of hardware" src="../../posts/26494395 - Yes I'm Still Here.post/IMG_5463.jpeg"></p>
 <h2>What else?</h2>
 <p>That's really all I have for now. I had to dig up this blog cause I barely remembered how to update it. As such, the blog.py generation script has been updated to python3, which is what you gotta use nowadays if you want any cred amongst other python devs.</p>
 <p>The earliest blog post on this site is from <a href="https://vgmoose.com/0661862430">2005</a>, and it came off a small website that I made for the other kids in my neighborhood when I was growing up. It was the first (and only...) issue of a quarterly online magazine (which was also available in a Powerpoint format). Comparing it later blog posts is really strange. I don't exactly know how I feel about it... 15 years is a long time!</p>
@@ -141,23 +139,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -178,10 +179,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

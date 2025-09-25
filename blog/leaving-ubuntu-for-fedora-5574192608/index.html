@@ -1,52 +1,50 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Leaving Ubuntu for Fedora</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Leaving Ubuntu for Fedora" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="Despite having literally worked at Red Hat, I've actually always been a Debian/Ubuntu guy. There are three common reasons that I would give for this preference: stability, ease-of-use, and support. I don't usually blog about personal computing either, but I feel like I need to vent some frustration here!  Above: The default Fedora 24 gnome-3 desktop (larger) When I started my next job, I made the decision to install Ubuntu on the work laptop rather than Fedora. I believed that, since it was a la..." />
+    <meta property="og:image" content="posts/24457815%20-%20Leaving%20Ubuntu%20for%20Fedora.post/desktop.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2016-07-02 10:15:34<br />
-        Tags: linux, fedora, ubuntu<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Leaving Ubuntu for Fedora</h2>
+        <div class="post-meta">
+            <span class="post-date">2016-07-02</span>
+            <span class="post-tags">Tags: linux, fedora, ubuntu</span>
+        </div>
         <p>Despite having literally <a href="http://vgmoose.com/blog/day-03-cubicle-sweet-cubicle-4154581713/">worked at Red Hat</a>, I've actually always been a Debian/Ubuntu guy. There are three common reasons that I would give for this preference: stability, ease-of-use, and support. I don't usually blog about personal computing either, but I feel like I need to vent some frustration here!</p>
-<p><img alt="Fedora 24 desktop" src="../../posts/24457815 - Leaving Ubuntu for Fedora.post/desktop.png" /><br />
+<p><img alt="Fedora 24 desktop" src="../../posts/24457815 - Leaving Ubuntu for Fedora.post/desktop.png"><br>
 Above: The default Fedora 24 gnome-3 desktop (<a href="https://i.imgur.com/GnmY4sT.png">larger</a>)</p>
 <p>When I started my next job, I made the decision to install Ubuntu on the work laptop rather than Fedora. I believed that, since it was a laptop, Ubuntu has better drivers, and on top of that apt-get "felt" less intrusive to use. I was also under the impression that it would be easier to find support online due to the popularity of Ubuntu.</p>
 <h2>The situation</h2>
@@ -57,10 +55,9 @@ Above: The default Fedora 24 gnome-3 desktop (<a href="https://i.imgur.com/GnmY4
 <p>Not surprisingly, the computer failed to boot. It was in a strange halfa-state, where the glibc library wasn't installed. And most things depend on glibc! Fortunately, although bash wouldn't work, the recovery mode in Ubuntu jumps to busybox, which isn't linked against glibc. From here I was able to fetch and manually install some .deb files that provided glibc. Then I couldn't boot, but I could get to bash, and apt was working.</p>
 <p>Now I know, perhaps I should cut my losses at this point. Machine lost power mid-upgrade, it's over. Reinstall. But apt is working! If I could repair the packages, surely, I should be fine. I obtained a slew of errors whenever I tried to get apt-get to do anything that I wanted. Most of them seemed to be related to dependency problems. For instance, it would say that it couldn't install something because of something else being a newer version, and that it wouldn't downgrade. </p>
 <p>Let me save you some time if you ever run into apt-get troubles. Everything you ever google and look up online will always recommend the following advice:</p>
-<div class="highlight"><pre><span></span>apt-get clean
+<pre class="highlight"><code>apt-get clean
 apt-get update
-apt-get install -f
-</pre></div>
+apt-get install -f</code></pre>
 
 
 <p>Sounds so simple. Well I've never had that work... ever. Never has that resolved apt-get dependency issues I've had in the past, not just now. It doesn't prevent people from continuing to recommend it, however. I wish I could tell you the specific error messages that I came across, but I don't have access to them right now.</p>
@@ -79,23 +76,26 @@ apt-get install -f
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -116,10 +116,7 @@ apt-get install -f
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

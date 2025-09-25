@@ -1,66 +1,61 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Day 12 - Kernel Upgrading and Reinstallation</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Day 12 - Kernel Upgrading and Reinstallation" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="The toolset lvmcache is special in that it isn't supported in the default kernel that ships with Fedora 20. My RHEL7 machines (and partition on my laptop) have no issues using it, but it would be most useful to have functioning on my laptop. After a lot of researching I learned that it eventually boiled down to the version of the linux kernel that I was using. uname -r    The above command reports information about the kernel. I was running 3.11, which does not have dm-cache support. The README ..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2014-06-06 16:32:48<br />
-        Tags: red hat, internship, kernel, yum, lvmcache, grub<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Day 12 - Kernel Upgrading and Reinstallation</h2>
+        <div class="post-meta">
+            <span class="post-date">2014-06-06</span>
+            <span class="post-tags">Tags: red hat, internship, kernel, yum, lvmcache, grub</span>
+        </div>
         <p>The toolset <code>lvmcache</code> is special in that it isn't supported in the default kernel that ships with Fedora 20. My RHEL7 machines (and partition on my laptop) have no issues using it, but it would be most useful to have functioning on my laptop. After a lot of researching I learned that it eventually boiled down to the version of the linux kernel that I was using.</p>
-<div class="highlight"><pre><span></span>uname -r 
-</pre></div>
+<pre class="highlight"><code>uname -r </code></pre>
 
 
 <p>The above command reports information about the kernel. I was running 3.11, which does not have <a href="https://github.com/mingzhao/dm-cache">dm-cache</a> support. The README lists instructions on how to compile the kernel module, but I had mixed results. My knowledge of how a kernel is actually compiled is severly limited given my previous userland background, but that didn't mean that I wasn't ready to give it my all. The short explanation is that it may not have been as simple as the instructions made it out to be. The long explanation is that I spent a long time downloading various kernel sources and headers  trying to recompile and add this module to the kernel.</p>
 <p>The process is all very official and streamlined, but it still gave me some issues. For that reason, I am choosing <em>not</em> to include the instructions here, for fear that someone else will build upon my mistakes. After I finally seemed to have everything functioning, I didn't actually know how to "activate" it. When flashing kernels on Android, it's always fairly obvious. I mean, you usually just go to recovery and literally flash it. There's no concept of multiple kernels or anything.</p>
-<div class="highlight"><pre><span></span>sudo yum update kernel
-</pre></div>
+<pre class="highlight"><code>sudo yum update kernel</code></pre>
 
 
 <p>It should be noted here that, prior to deciding to jump in and compile my own kernel, I had tried the simple above command. When I first typed it, I thought I was an idiot, it couldn't be so simple. Once it actually started to download and install kernel 3.14 though, I then felt very satisfied. Upon rebooting though, the kernel still wasn't activated. Well, to get back to my own compiled kernel, the case was the same for that. Neither the updated kernel from yum nor my own custom kernel seemed to be activated.</p>
 <p>I'm not sure if I missed something along the lines, and I was getting increasingly frustrated, so I performed a reinstall of Fedora 20. As you know, my home directory is on another partition, so all of my data and preferences were still intact. Still though, my kernel refused to update. Then it hit me, and things started to click into place. The whole manner in which my system functions is it loads a kernel into ram from a /boot physical partition selected via grub, and this kernel then mounts and loads the filesystem and all its contents. </p>
 <p>Well, as it turned out that was an oversimplication. It would seem that the grub bootloader entries actually contain information about the kernel that is being used at boot. Unlike the Android model where you can flash and only use one at a time, it would seem the kernels are almost hot swappable via grub. I should have expected such functionality. </p>
-<div class="highlight"><pre><span></span>grub2-mkconfig -o /boot/grub/grub.cfg
-</pre></div>
+<pre class="highlight"><code>grub2-mkconfig -o /boot/grub/grub.cfg</code></pre>
 
 
 <p>So as it turned out, getting grub to re-run the OS scanner and reconfigure itself allowed it to pick up both kernels, and 3.11 and 3.14 are both selectable at boot time. Such fine grained control should have been expected. I'm a little surprised that I had never come across this in any of my kernel building tutorials, but I should probably blame myself for not having ran a real multi-boot linux machine in a long time.</p>
@@ -71,23 +66,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -108,10 +106,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

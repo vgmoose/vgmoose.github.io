@@ -1,54 +1,52 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>How To: Host a File Locally</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="How To: Host a File Locally" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="Here's a quick guide on how to host a file over the network.  There are three basic parts to this: 1. Knowing your local IP 2. Knowing where the files to host are 3. Running a server to serve it over HTTP Every single website that you see and visit in your browser is done over the HyperText Transfer Protocol. These websites are hosted on remote servers, which distribute content to you via this protocol. So to host a file, we will need to run a server on your machine, to be visited by the other m..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2016-03-13 13:35:41<br />
-        Tags: python, tutorial<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>How To: Host a File Locally</h2>
+        <div class="post-meta">
+            <span class="post-date">2016-03-13</span>
+            <span class="post-tags">Tags: python, tutorial</span>
+        </div>
         <p>Here's a quick guide on how to host a file over the network. </p>
-<p>There are three basic parts to this:<br />
-1. Knowing your local IP<br />
-2. Knowing where the files to host are<br />
+<p>There are three basic parts to this:<br>
+1. Knowing your local IP<br>
+2. Knowing where the files to host are<br>
 3. Running a server to serve it over HTTP</p>
 <p>Every single website that you see and visit in your browser is done over the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HyperText Transfer Protocol</a>. These websites are hosted on remote servers, which distribute content to you via this protocol. So to host a file, we will need to run a server on your machine, to be visited by the other machine.</p>
 <p>After step 3. is accomplished on the hosting computer that is running the server, any machine on your network will be able to visit the content that is being hosted by navigating to <a href="http://YOUR_IP:port">http://YOUR_IP:port</a>. The default port is 80. This is true for any website: for example <a href="http://serebii.net">this</a> vs <a href="http://serebii.net:80">this</a>.</p>
@@ -56,9 +54,8 @@
 <p>The host will require a server. There are many different types of http servers for many various operating systems. For this guide, I will be demonstrating how to host it using a built-in module in <a href="https://www.python.org/">python</a>.</p>
 <p>Python is included on most modern operating systems, but not on some of the most <em>popular</em> operating systems. Open up a terminal (or CMD on Windows) and run: <code>python --version</code> If you get back "no command found" or something similar, you will have to <a href="https://www.python.org/downloads/">install python</a>. This guide uses the 2.7.x version. Also if on Windows, you'll want to add the python binaries to your path, <a href="https://docs.python.org/2/using/windows.html#configuring-python">instructions here</a>.</p>
 <p>When it's all setup and configured properly, you should get output like this from your terminal:</p>
-<div class="highlight"><pre><span></span>&gt;&gt; python --version
-Python 2.7.6
-</pre></div>
+<pre class="highlight"><code>&gt;&gt; python --version
+Python 2.7.6</code></pre>
 
 
 <h3>Finding your local IP</h3>
@@ -66,16 +63,14 @@ Python 2.7.6
 <p>It's very common for your local IP to be one of the following formats: 192.168.x.x or 10.x.x.x, so you can expect it to look lke that.</p>
 <h3>Getting the files to host</h3>
 <p>Now that we are ready to run the server, we need files to actually host. cd into the folder (<a href="http://ss64.com/nt/cd.html">Windows</a>) (<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/3/html/Step_by_Step_Guide/s1-navigating-cd.html">Other</a>) with the files you want to host, and run the folliowing:</p>
-<div class="highlight"><pre><span></span>&gt;&gt; python -m SimpleHTTPServer
-Serving HTTP on 0.0.0.0 port 8000 ...
-</pre></div>
+<pre class="highlight"><code>&gt;&gt; python -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 ...</code></pre>
 
 
 <p>This command will run until you hit Ctrl+C. While it's running, you should be able to go to <a href="http://YOUR_IP:8000/">http://YOUR_IP:8000/</a> in your browser <strong>on any computer on your network</strong>. Upon visiting, you should see a list of files in the current directory. If you put html files in this folder, you will also be able to see them rendered on screen.</p>
 <p>If you are using python 3, the command is as follows:</p>
-<div class="highlight"><pre><span></span>&gt;&gt; python3 -m http.server
-Serving HTTP on 0.0.0.0 port 8000 ...
-</pre></div>
+<pre class="highlight"><code>&gt;&gt; python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 ...</code></pre>
 
 
 <p>At this point you can now go to another machine and check it to make sure it works!</p>
@@ -95,23 +90,26 @@ Serving HTTP on 0.0.0.0 port 8000 ...
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -132,10 +130,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

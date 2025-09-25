@@ -1,4 +1,4 @@
-<p><em>Notice</em>: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.<br />
+<p><em>Notice</em>: The below instructions were written on 9/22/17 and refer to an alpha build of devkitA64, libnx, and Mephisto. Take it with a grain of salt if the date has moved too far into the future since then.<br>
 <em>Double Notice</em>: The creator of devkitpro advises against these instructions in favor of using an automated installer, which as of 10/28/17 has not been released yet. Follow only as your own curiosity permits.</p>
 <h2>Requirements</h2>
 <ul>
@@ -11,36 +11,32 @@
 <ol>
 <li>Make a <code>devkitpro</code> folder (any directory is fine, but this guide will use <code>~</code>)</li>
 </ol>
-<div class="highlight"><pre><span></span>mkdir ~/devkitpro
-</pre></div>
+<pre class="highlight"><code>mkdir ~/devkitpro</code></pre>
 
 
 <ol>
 <li>Extract the contents of <a href="https://sourceforge.net/projects/devkitpro/files/devkitA64/">Devkit ARM64</a> to <code>~/devkitpro/devkitA64</code>  </li>
 <li>Clone the <a href="https://github.com/switchbrew/libnx">libnx</a> library from github</li>
 </ol>
-<div class="highlight"><pre><span></span>cd ~
-git clone https://github.com/switchbrew/libnx.git
-</pre></div>
+<pre class="highlight"><code>cd ~
+git clone https://github.com/switchbrew/libnx.git</code></pre>
 
 
 <ol>
 <li>Update the <code>DEVKITPRO</code>, <code>DEVKITA64</code>, and <code>PATH</code> environment variables</li>
 </ol>
-<div class="highlight"><pre><span></span>export DEVKITPRO=~/devkitpro
+<pre class="highlight"><code>export DEVKITPRO=~/devkitpro
 export DEVKITA64=$DEVKITPRO/devkitA64
 export PATH=$PATH:$DEVKITA64/bin
-export PATH=$PATH:~/libnx/tools
-</pre></div>
+export PATH=$PATH:~/libnx/tools</code></pre>
 
 
 <ol>
 <li>Compile libnx</li>
 </ol>
-<div class="highlight"><pre><span></span>cd ~/libnx
+<pre class="highlight"><code>cd ~/libnx
 make install
-make
-</pre></div>
+make</code></pre>
 
 
 <h2>Compiling example binary</h2>
@@ -51,28 +47,25 @@ make
 <ol>
 <li>Clone the <a href="https://github.com/switchbrew/switch-examples">switch-examples</a> project</li>
 </ol>
-<div class="highlight"><pre><span></span>cd ~
-git clone https://github.com/switchbrew/switch-examples
-</pre></div>
+<pre class="highlight"><code>cd ~
+git clone https://github.com/switchbrew/switch-examples</code></pre>
 
 
 <ol>
 <li>Compile the simple example by running make (if you hit a devkit error here, redo the exports from <strong>Setup</strong> step #3)</li>
 </ol>
-<div class="highlight"><pre><span></span>cd ~/switch-examples/templates/simple
+<pre class="highlight"><code>cd ~/switch-examples/templates/simple
 mkdir -p exefs_src/a
-make
-</pre></div>
+make</code></pre>
 
 
 <ol>
 <li>You should now have two files in the current folder, <code>simple.nso</code> and <code>simple.pfs0</code></li>
 </ol>
-<div class="highlight"><pre><span></span>hexdump -C simple.nso | head -20
-</pre></div>
+<pre class="highlight"><code>hexdump -C simple.nso | head -20</code></pre>
 
 
-<div class="highlight"><pre><span></span>00000000  4e 53 4f 30 00 00 00 00  00 00 00 00 3f 00 00 00  |NSO0........?...|
+<pre class="highlight"><code>00000000  4e 53 4f 30 00 00 00 00  00 00 00 00 3f 00 00 00  |NSO0........?...|
 00000010  00 01 00 00 00 00 00 00  60 04 00 00 01 00 00 00  |........`.......|
 00000020  1f 04 00 00 00 10 00 00  20 00 00 00 01 00 00 00  |........ .......|
 00000030  2a 04 00 00 00 20 00 00  48 00 00 00 10 01 02 00  |*.... ..H.......|
@@ -91,8 +84,7 @@ make
 00000110  00 d1 40 04 00 58 61 04  00 58 21 00 00 cb 21 1c  |..@..Xa..X!...!.|
 00000120  00 91 21 f0 7d 92 02 00  80 d2 00 00 1c 8b 02 84  |..!.}...........|
 00000130  00 f8 21 20 00 f1 c1 ff  ff 54 80 03 00 58 a1 03  |..! .....T...X..|
-00000140  28 00 01 24 00 47 00 40  f9 42 2c 00 f3 0e 81 ff  |(..$.G.@.B,.....|
-</pre></div>
+00000140  28 00 01 24 00 47 00 40  f9 42 2c 00 f3 0e 81 ff  |(..$.G.@.B,.....|</code></pre>
 
 
 <p>The <code>exefs_src</code> contains any files that should be copied to the executable filesystem. In the simple example, we don't need any files copied, so the <code>mkdir -p exefs_src/a</code> is just so that the <a href="https://github.com/switchbrew/switch-examples/blob/master/templates/simple/Makefile#L18">Makefile doesn't complain</a>.</p>

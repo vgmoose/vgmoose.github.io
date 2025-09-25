@@ -1,9 +1,9 @@
 <p>This post looks into some behavior related to poison damage not being applied in certain areas in Yellow. The special state where these checks are skipped can be stored, which will allow visiting other areas without taking poison damage or fainting while walking. This mode also persists across saving/resetting, effectively removing these overworld checks for the rest of the game.</p>
 <h3>Background info</h3>
 <p>In Pokemon Yellow there are a few special added events that involve the player's Pikachu. During all three of these events, the player's Pikachu stops following the player, and is locked in place in the overworld. It will also disappear from the Party menu, and be prevented from being deposited in the PC.</p>
-<p>The events:<br />
-- Pewter City: The Jigglypuff in the Pokemon Center will put the player's Pikachu to sleep<br />
-- Route 25: Pikachu will run to Bill and be confused until he turns back into a human<br />
+<p>The events:<br>
+- Pewter City: The Jigglypuff in the Pokemon Center will put the player's Pikachu to sleep<br>
+- Route 25: Pikachu will run to Bill and be confused until he turns back into a human<br>
 - Vermillion City: The Clefairy in the Fan Club will cause Pikachu to display hearts</p>
 <p><img alt="pewter1.png" src="./pewter1.png" width=180> <img alt="pewter2.png" src="./pewter2.png" width=180> <img alt="bill1.png" src="./bill1.png" width=180></p>
 <p><img alt="bill2.png" src="./bill2.png" width=180> <img alt="vermillion1.png" src="./vermillion1.png" width=180> <img alt="vermillion2.png" src="./vermillion2.png" width=180></p>
@@ -16,18 +16,18 @@
 <p>Yellow version has <em>another</em> change related to two of these locations. Bill's House and the Fan Club both use the Silph Co tileset, which in Red and Blue versions allows an escape rope or dig to be used to return back to the overworld. In Yellow though, these two specific maps have <a href="https://github.com/pret/pokeyellow/blob/7f78fed85a8c8b0ba83ff982f35d2db01ba58aad/engine/items/item_effects.asm#L1634-L1640">an additional check</a> that prevents escaping in this manner. (Compare to <a href="https://github.com/pret/pokered/blob/master/engine/items/item_effects.asm#L1496-L1497">Red/Blue</a>)</p>
 <p>This is a bug fix, as those two locations aren't dungeons. However! It also fixes a potential new issue that would have arisen-- if you were in Bill's House or the Fan Club, an escape rope would bypass visiting the exterior map, which could skip disabling the Poison-supressing flag. By fixing the escape rope issue, the player is instead forced to exit these event areas directly through the door to the outer map. This ensures the flag is properly unset and that poison damage / fainting checks will continue to apply.</p>
 <h3>Saving the flag (via Safari Zone warp)</h3>
-<p>There is still a way to skip visiting the exterior maps and save the flag! We can use the <a href="https://glitchcity.wiki/wiki/Safari_Zone_exit_glitch">Safari Zone exit glitch</a> to have the Warden call us back after taking 500 steps from any map, to return back to the Safari Zone. This allows us to:<br />
-1. Heal our team at Fuchsia city (any town besides Pewter or Vermillion)<br />
-2. Setup the Safari Zone warp glitch (<a href="https://glitchcity.wiki/wiki/Safari_Zone_exit_glitch#Steps">steps</a>)<br />
-3. Enter one of the three interior locations that set the flag<br />
-4. Walk 500 steps within the area, without exiting<br />
+<p>There is still a way to skip visiting the exterior maps and save the flag! We can use the <a href="https://glitchcity.wiki/wiki/Safari_Zone_exit_glitch">Safari Zone exit glitch</a> to have the Warden call us back after taking 500 steps from any map, to return back to the Safari Zone. This allows us to:<br>
+1. Heal our team at Fuchsia city (any town besides Pewter or Vermillion)<br>
+2. Setup the Safari Zone warp glitch (<a href="https://glitchcity.wiki/wiki/Safari_Zone_exit_glitch#Steps">steps</a>)<br>
+3. Enter one of the three interior locations that set the flag<br>
+4. Walk 500 steps within the area, without exiting<br>
 5. Get returned to the Safari Zone, and use an escape rope or fly (This avoids returning to the right exterior map)</p>
 <p>Then, we'll return to Fuchsia city with the flag set, and observe that we can now walk around the overworld without taking any poison damage. Similarly, if we deposit all of our party besides fainted Pokemon, we can explore most of the map without blacking out. (Pictured below, at Lavendar tower with only one fainted Pokemon).</p>
-<p><img alt="zone1.png" src="./zone1.png" width=240> <img alt="zone2.png" src="./zone2.png" width=240><br />
+<p><img alt="zone1.png" src="./zone1.png" width=240> <img alt="zone2.png" src="./zone2.png" width=240><br>
 <img alt="faint1.png" src="./faint1.png" width=240> <img alt="faint2.png" src="./faint2.png" width=240></p>
 <p>If we enter any battles, we'll instantly lose before even sending out another Pokemon. I'm not sure if there's anything else interesting that can be done at this point, but the flag will persist across saving and resetting, and you can effectively permanently disable poison damage using this method.</p>
 <p>If you walk into (or fly into) any of the three exterior locations that unset the flag, with a fainted team, you will instantly faint upon one step after the map transition. This is only three locations, however, so it's relatively easy to avoid them.</p>
-<p><img alt="rival1.png" src="./rival1.png" width=240> <img alt="rival2.png" src="./rival2.png" width=240><br />
+<p><img alt="rival1.png" src="./rival1.png" width=240> <img alt="rival2.png" src="./rival2.png" width=240><br>
 <img alt="fainted1.png" src="./fainted1.png" width=240> <img alt="fainted2.png" src="./fainted2.png" width=240></p>
 <p>In Red and Blue, there is a similar bug (<a href="https://glitchcity.wiki/wiki/Poison_step_avoidance_glitch">Poison step avoidance</a>) that allows you to explore the overworld with a fainted party, by walking 3 steps, save/quitting, and reloading, then taking another 3 steps, etc. Yellow fixes this by making the fainted party check apply every single step. However, with the introduction of this <a href="https://github.com/pret/pokeyellow/blob/7f78fed85a8c8b0ba83ff982f35d2db01ba58aad/engine/events/poison.asm#L6-L8">poison/fainting supression flag</a>, this makes it much easier and less tedious to use Yellow to see what side-effects a fainted party has in the overworld.</p>
 <p>What's suprising to me is not just that this flag is only used on these three maps, but even if the flag didn't exist at all, I don't think it'd be a big deal if the events were allowed to be interrupted. You'd just see Pikachu fainting in the overworld, and the event being interrupted, as if you left normally. And each of the events verifies that the Pikachu is healthy and not-fainted anyway. It makes me more wonder about an older build of the game, and what other side-effects might have been associated with these overworld events.</p>

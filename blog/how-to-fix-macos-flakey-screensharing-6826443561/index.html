@@ -1,56 +1,54 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>How to fix macOS Flakey Screensharing</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="How to fix macOS Flakey Screensharing" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="TLDR: for flakiness in Messages screen sharing, run the command at the bottom of this post The screen sharing functionality in macOS is really good!... When it works! I've been using it for a really long time now, and they seem to continuously change how you access/use it. In the early days, it could be accessed through AIM and iChat, if both parties had a Mac. In the buddy list, this would be denoted with a video chat icon that showed little screens behind it. As Apple upgraded the operating sy..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2020-06-10 15:41:41<br />
-        Tags: mac, tips<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>How to fix macOS Flakey Screensharing</h2>
+        <div class="post-meta">
+            <span class="post-date">2020-06-10</span>
+            <span class="post-tags">Tags: mac, tips</span>
+        </div>
         <p><strong>TLDR:</strong> for flakiness in Messages screen sharing, run the command at the bottom of this post</p>
 <p>The screen sharing functionality in macOS is really good!... When it works! I've been using it for a really long time now, and they seem to continuously change how you access/use it. In the early days, it could be accessed through AIM and iChat, if both parties had a Mac. In the buddy list, this would be denoted with a video chat icon that showed little screens behind it.</p>
 <p>As Apple upgraded the operating system, Messages replaced iChat, and they slowly ripped out the support for other non-iMessage accounts. The screen sharing functionality however, is still there!</p>
-<p>In order to screen share with someone else on macOS, it seems that all of the following needs to be true:<br />
-1. You are both signed into an iMessage-capable apple ID in the following places: System Preferences (under Account), FaceTime, and Messages (yes all three)<br />
-2. You both add each other as a contact (Can be done in Messages)<br />
+<p>In order to screen share with someone else on macOS, it seems that all of the following needs to be true:<br>
+1. You are both signed into an iMessage-capable apple ID in the following places: System Preferences (under Account), FaceTime, and Messages (yes all three)<br>
+2. You both add each other as a contact (Can be done in Messages)<br>
 3. One person initiates it via the far-left icon in the  "Details" menu in the upper right in the Conversation in Messages</p>
 <p>If the option is presented, there are two choices: "Invite to Share My Screen" and "Ask to Share Screen". These are great! Very often, you'll want to screen share with someone who doesn't really know the feature exists, and "Ask to Share Screen" is a great way to get connected faster without them worrying about finding the setting. The problem, however, is what happens <em>after</em> that.</p>
 <p>Oftentimes, after choosing one of the two selections, there is no visible indicator of the pending invitation. Sometimes there is, but sometimes there isn't. Then, if they don't answer the call in a specific amount of time, the pending invitation disappears, and neither party has any idea what the status of the invite is. Despite this though, trying to re-invite won't work.</p>
@@ -58,8 +56,7 @@
 <p>I know this all sounds strange and specific, but having used many different Macs with many different people throughout the years, this has been a consistent issue. It's very frustrating, especially because of how <em>good</em> the screen sharing functionality is when it works! It's byfar better than Hangouts, Zoom, or Skype screen sharing.</p>
 <p>So, this brings me to the "solution", which is more of a "Let's restart everything that might have even a little to do with screen sharing".</p>
 <p>Executing this command as follows, and entering the password, in the Terminal app:</p>
-<div class="highlight"><pre><span></span>sudo killall SSInvitationAgent imagent VDCAssistant &quot;Screen Sharing&quot; Messages   
-</pre></div>
+<pre class="highlight"><code>sudo killall SSInvitationAgent imagent VDCAssistant &quot;Screen Sharing&quot; Messages   </code></pre>
 
 
 <p>It probably kills more than it has to, but in my experience, if screen sharing flakiness is experienced, and both parties run the above, things magically resume working!</p>
@@ -72,23 +69,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -109,10 +109,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

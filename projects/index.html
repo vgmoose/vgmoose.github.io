@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../layout/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+    <title>VGMoose - Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="VGMoose - Projects" />
+    <!-- single_entry <meta property="og:type" content="article" /> single_entry -->
+     <meta property="og:type" content="website" /> 
+    <meta property="og:url" content="https://vgmoose.dev/projects" />
+    <meta property="og:description" content="Open source projects and tools by VGMoose" />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
+</head>
+
+<div id="all">
+    <div id="banner">
+        <img src="../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
+    <div id="nav">
+        <ul>
+            <li><a href="..//">Home</a></li>
+            <li><a href="..//projects/">Projects</a></li>
+            <li><a href="..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="..//archive/">Archive</a></li>
+            <li><a href="..//search/">Search</a></li>
+            <li class="opt-nav"><a href="..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
+        </ul>
+    </div>
+    
+    <!-- single_entry
+    <div id="content">
+        <h2>VGMoose - Projects</h2>
+        <div class="post-meta">
+            <span class="post-date">$date</span>
+            <span class="post-tags">Tags: $categories</span>
+        </div>
+        $content
+    </div>
+    single_entry -->
+    
+    
+    <div id="content">
+        <h2>Projects Index</h2><div class="project-entry">
+            <img src="/projects/broccolini.png" alt="Broccolini" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://github.com/vgmoose/broccolini" target="_blank">Broccolini</a>
+                    <a href="https://github.com/vgmoose/broccolini" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">A lightweight web browser for video game consoles and other low-dependency devices. Written in SDL2 using Chesto, it supports viewing simple websites. Broccolini uses litehtml as its rendering engine, and quickjs/mujs for JS support.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/vgedit.png" alt="VGEdit" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://github.com/vgmoose/vgedit" target="_blank">VGEdit</a>
+                    <a href="https://github.com/vgmoose/vgedit" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">A basic SDL2 text editor designed for easy use on a video game console using a controller or touch screen. The primary goal of this project is to allow you to not have to turn to another device to edit text files.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/hbas.png" alt="Homebrew App Store" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://github.com/fortheusers/hb-appstore" target="_blank">Homebrew App Store</a>
+                    <a href="https://github.com/fortheusers/hb-appstore" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">A homebrew app store for various consoles and handhelds. Browse and install homebrew applications directly on your console.</div>
+            </div>
+        </div><div class="project-entry no-image">
+            
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://github.com/fortheusers/libget" target="_blank">libget</a>
+                    <a href="https://github.com/fortheusers/libget" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">A C++ library for downloading and managing homebrew packages. Used as the backend for various homebrew package managers.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/chesto.png" alt="chesto" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://chesto.fortheusers.org" target="_blank">chesto</a>
+                    <a href="https://github.com/fortheusers/chesto" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">A declarative C++ GUI library for creating applications that run on Nintendo Switch, PC, and other platforms.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/glasscontroller.png" alt="GlassController" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://vgmoose.dev/blog/release-an-open-source-macos-touchpad-tool-1730555559/" target="_blank">GlassController</a>
+                    <a href="https://github.com/vgmoose/GlassController" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">Virtual controller using regions of the macOS touchpad. Allows you to configure different actions (such as key bindings) depending on gestures/input from the touchpad. It does this by linking against Apple's private MutlitouchSupport.framework, and using a bridging header to access the functions from Swift.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/showifi.png" alt="ShoWiFi" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://github.com/vgmoose/ShoWiFi" target="_blank">ShoWiFi</a>
+                    <a href="https://github.com/vgmoose/ShoWiFi" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">Homebrew app to display current wifi network info on wii/wiiu/switch/3ds</div>
+            </div>
+        </div><div class="project-entry no-image">
+            
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://github.com/vgmoose/The-Notch" target="_blank">TheNotch</a>
+                    <a href="https://github.com/vgmoose/The-Notch" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">Add a software notch to your outdated Macbook! Deceive strangers!</div>
+            </div>
+        </div><div class="project-entry no-image">
+            
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://github.com/vgmoose/TvInputSwapper" target="_blank">TvInputSwapper</a>
+                    <a href="https://github.com/vgmoose/TvInputSwapper" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">An Android TV app that runs in the background, and lets you hold the Mute button on the remote for 2 seconds to cycle through HDMI inputs/sources.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/space-game.png" alt="Space Game" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://vgmoose.dev/space-game/" target="_blank">Space Game</a>
+                    <a href="https://github.com/vgmoose/space-game" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">A simple 2D shooter reminiscent of classic arcade games. Built using SDL2 and C++, it features basic enemy AI, shooting mechanics, and score tracking.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/openbackup.png" alt="OpenBackupExtractor" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://vgmoose.dev/blog/extracting-ios-voicemails-and-other-data-with-openbackuptool-2425971492/" target="_blank">OpenBackupExtractor</a>
+                    <a href="https://github.com/vgmoose/OpenBackupExtractor" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">A program for extracting data from iPhone and iPad backups.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/tertiary_text.png" alt="tertiary_text" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://vgmoose.dev/tertiary_text/" target="_blank">tertiary_text</a>
+                    <a href="https://github.com/vgmoose/tertiary_text" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">Type using your Pebble! Tertiary text presents a solution for a quick and efficient method of entering text using only the Pebble itself. By fully utilizing the three buttons and narrowing down the selection each time, it is possible to hit all twenty-six characters of the alphabet in three button strokes. It looks a little clunky at first, but in almost no time the letters become muscle memory and your speed greatly improves.</div>
+            </div>
+        </div><div class="project-entry">
+            <img src="/projects/words.png" alt="words" class="project-thumbnail">
+            <div class="project-content">
+                <div class="project-header">
+                    <a href="https://vgmoose.dev/words/" target="_blank">words</a>
+                    <a href="https://github.com/vgmoose/words" target="_blank" class="source-link">[source]</a>
+                </div>
+                <div class="project-description">Web app to keep track of words written over time.</div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- search_group
+    <div id="content">
+        <h2>Search vgmoose.dev</h2>
+        <p class="hideme">Search is loading...</p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script>lookup = $search_lookup;</script>
+        <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
+        <script src="../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
+        <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
+        <div id="results"></div>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
+    </div>
+    search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
+    
+    <br>
+    <!-- single_entry
+    <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'vgmoose';
+            var disqus_identifier = $id;
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    single_entry -->
+    <div id="footer">
+		<div class="left"><a href="../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
+		<div style="clear: both"></div>
+	</div>
+</div>

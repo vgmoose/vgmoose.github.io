@@ -1,85 +1,77 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Day 09 - RAM Disks and Write Speeds</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Day 09 - RAM Disks and Write Speeds" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="As discussed in yesterday's post, caching is beneficial when a large slow volume is assisted by a fast small one. While it isn't a practical use for production, my manager suggested I could emulate this faster behavior by using a ramdisk, as 2/3 of my machines don't have flash storage. A RAM disk, (which, from this point on, I shall continue going back and forth between \"RAM disk\" and \"ramdisk\" spellings) allows a piece of memory to be sectioned off and mounted like a disk would. This means it n..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2014-06-03 19:31:20<br />
-        Tags: red hat, internship, lvm, ramdisk, dd<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Day 09 - RAM Disks and Write Speeds</h2>
+        <div class="post-meta">
+            <span class="post-date">2014-06-03</span>
+            <span class="post-tags">Tags: red hat, internship, lvm, ramdisk, dd</span>
+        </div>
         <p>As discussed in yesterday's post, caching is beneficial when a large slow volume is assisted by a fast small one. While it isn't a practical use for production, my manager suggested I could emulate this faster behavior by using a ramdisk, as 2/3 of my machines don't have flash storage. A <a href="http://en.wikipedia.org/wiki/RAM_drive">RAM disk</a>, (which, from this point on, I shall continue going back and forth between "RAM disk" and "ramdisk" spellings) allows a piece of memory to be sectioned off and mounted like a disk would. This means it no longer performs its RAM duties of storing memory, and the computer effectively treats your computer has having that much less RAM.</p>
-<div class="highlight"><pre><span></span>mkdir /mnt/ramdisk
-mount -t tmpfs -o size=4096m tmpfs /mnt/ramdisk
-</pre></div>
+<pre class="highlight"><code>mkdir /mnt/ramdisk
+mount -t tmpfs -o size=4096m tmpfs /mnt/ramdisk</code></pre>
 
 
 <p>Those commands will create a ramdisk on a linux system. <a href="http://www.tekrevue.com/tip/how-to-create-a-4gbs-ram-disk-in-mac-os-x/">Mac instructions here</a>. You can then test the write speed, and note how much faster the RAM disk reacts than your disk originally had.</p>
-<div class="highlight"><pre><span></span># dd if=/dev/zero of=/mnt/ramdisk/disk.img bs=1m count=4096
+<pre class="highlight"><code># dd if=/dev/zero of=/mnt/ramdisk/disk.img bs=1m count=4096
 4194304000 GB transferred in 4.0 GB/s
 # dd if=/dev/zero of=~/disk.img bs=1m count=4000
-4194304000 GB transferred in 300 MB/s
-</pre></div>
+4194304000 GB transferred in 300 MB/s</code></pre>
 
 
 <p>As seen there, the RAM is much faster. There are a couple of issues of course. The biggest one is when you reboot the ramdisk won't just be unmounted– it will be totally deleted. So you can't really rely on it for anything. In fact, the linux commands I listed above use <a href="http://en.wikipedia.org/wiki/Tmpfs">tmpfs</a>, which is designed to optimize things in such a situation.</p>
 <p>There's another problem, though. I wanted to use the RAM disks as physical volumes on which to extend a volume group over to use it with lvmcache. AFAIK, the only way to do this is via a loopback device, as "mounting" the ramdisk doesn't actually count as a device in <code>/dev</code>, which is required to create a physical volume.</p>
-<div class="highlight"><pre><span></span>losetup loop1 /mnt/ramdisk/disk.img
-</pre></div>
+<pre class="highlight"><code>losetup loop1 /mnt/ramdisk/disk.img</code></pre>
 
 
 <p>And after this, it can be formatted as an LVM2 Physical Volume and added to the volume group.</p>
-<div class="highlight"><pre><span></span>pvcreate /dev/loop1
-vgextend volume_group /dev/loop1
-</pre></div>
+<pre class="highlight"><code>pvcreate /dev/loop1
+vgextend volume_group /dev/loop1</code></pre>
 
 
 <p>There is a caveat to this though, which has hurt me on a couple of occasions-- since the loopback device is temporary, once the computer reboots the physical device won't exist anymore. Normally that would mean the data on that device wouldn't be accessible, but as that device was part of a volume group, the volume group becomes inconsistent, and won't be able to be mounted until it is properly repaired.</p>
 <p>To prevent this, prior to rebooting the following command needs to be executed:</p>
-<div class="highlight"><pre><span></span>vgreduce volume_group /dev/loop1
-</pre></div>
+<pre class="highlight"><code>vgreduce volume_group /dev/loop1</code></pre>
 
 
 <p>And the following command will attempt to backtrack you out of the situation where one forgets to do that prior to it, and needs to recover the volume group to access the logical volumes on it. Not that anyone would <em>ever</em> do that. </p>
-<div class="highlight"><pre><span></span>vgreduce volumegroup --removemissing
-</pre></div>
+<pre class="highlight"><code>vgreduce volumegroup --removemissing</code></pre>
 
 
 <p>(Yeah, I've more recorded these for myself to reference at a later date, so what.)</p>
@@ -90,23 +82,26 @@ vgextend volume_group /dev/loop1
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -127,10 +122,7 @@ vgextend volume_group /dev/loop1
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

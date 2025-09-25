@@ -1,0 +1,101 @@
+{
+  "projects": [
+    {
+      "id": "broccolini",
+      "title": "Broccolini",
+      "description": "A lightweight web browser for video game consoles and other low-dependency devices. Written in SDL2 using Chesto, it supports viewing simple websites. Broccolini uses litehtml as its rendering engine, and quickjs/mujs for JS support.",
+      "source": "https://github.com/vgmoose/broccolini",
+      "screenCount": 2,
+      "featured": true
+    },
+    {
+      "id": "vgedit",
+      "title": "VGEdit",
+      "description": "A basic SDL2 text editor designed for easy use on a video game console using a controller or touch screen. The primary goal of this project is to allow you to not have to turn to another device to edit text files.",
+      "source": "https://github.com/vgmoose/vgedit",
+      "screenCount": 2,
+      "featured": true
+    },
+    {
+      "id": "hbas",
+      "title": "Homebrew App Store",
+      "description": "A homebrew app store for various consoles and handhelds. Browse and install homebrew applications directly on your console.",
+      "source": "https://github.com/fortheusers/hb-appstore",
+      "screenCount": 2,
+      "authors": ["vgmoose", "rw-r-r-0644", "pwsincd", "crc-32", "compucat", "Fancy2209", "Maschell", "CompSciOrBust"],
+      "featured": true
+    },
+    {
+      "id": "libget",
+      "title": "libget",
+      "description": "A C++ library for downloading and managing homebrew packages. Used as the backend for various homebrew package managers.",
+      "source": "https://github.com/fortheusers/libget",
+      "authors": ["vgmoose", "rw-r-r-0644", "Maschell",  "crc-32", "iTotalJustice", "pwsincd"],
+      "featured": false
+    },
+    {
+      "id": "chesto",
+      "title": "chesto",
+      "description": "A declarative C++ GUI library for creating applications that run on Nintendo Switch, PC, and other platforms.",
+      "url": "https://chesto.fortheusers.org",
+      "source": "https://github.com/fortheusers/chesto",
+      "authors": ["vgmoose", "compucat", "rw-r-r-0644", "ashquarky",  "crc-32"]
+    },
+    {
+      "id": "glasscontroller",
+      "title": "GlassController",
+      "description": "Virtual controller using regions of the macOS touchpad. Allows you to configure different actions (such as key bindings) depending on gestures/input from the touchpad. It does this by linking against Apple's private MutlitouchSupport.framework, and using a bridging header to access the functions from Swift.",
+      "url": "https://vgmoose.dev/blog/release-an-open-source-macos-touchpad-tool-1730555559/",
+      "source": "https://github.com/vgmoose/GlassController",
+      "featured": false
+    },
+    {
+      "id": "showifi",
+      "title": "ShoWiFi",
+      "description": "Homebrew app to display current wifi network info on wii/wiiu/switch/3ds",
+      "source": "https://github.com/vgmoose/ShoWiFi"
+    },
+    {
+      "id": "thenotch",
+      "title": "TheNotch",
+      "description": "Add a software notch to your outdated Macbook! Deceive strangers!",
+      "source": "https://github.com/vgmoose/The-Notch"
+    },
+    {
+      "id": "tvinputswapper",
+      "title": "TvInputSwapper",
+      "description": "An Android TV app that runs in the background, and lets you hold the Mute button on the remote for 2 seconds to cycle through HDMI inputs/sources.",
+      "source": "https://github.com/vgmoose/TvInputSwapper"
+    },
+    {
+      "id": "space-game",
+      "title": "Space Game",
+      "description": "A simple 2D shooter reminiscent of classic arcade games. Built using SDL2 and C++, it features basic enemy AI, shooting mechanics, and score tracking.",
+      "url": "https://vgmoose.dev/space-game/",
+      "source": "https://github.com/vgmoose/space-game",
+      "featured": true
+    },
+    {
+      "id": "openbackup",
+      "title": "OpenBackupExtractor",
+      "description": "A program for extracting data from iPhone and iPad backups.",
+      "url": "https://vgmoose.dev/blog/extracting-ios-voicemails-and-other-data-with-openbackuptool-2425971492/",
+      "source": "https://github.com/vgmoose/OpenBackupExtractor"
+    },
+    {
+      "id": "tertiary_text",
+      "title": "tertiary_text",
+      "description": "Type using your Pebble! Tertiary text presents a solution for a quick and efficient method of entering text using only the Pebble itself. By fully utilizing the three buttons and narrowing down the selection each time, it is possible to hit all twenty-six characters of the alphabet in three button strokes. It looks a little clunky at first, but in almost no time the letters become muscle memory and your speed greatly improves.",
+      "url": "https://vgmoose.dev/tertiary_text/",
+      "source": "https://github.com/vgmoose/tertiary_text",
+      "authors": ["vgmoose", "kanewallmann", "dewguzzler"]
+    },
+    {
+      "id": "words",
+      "title": "words",
+      "description": "Web app to keep track of words written over time.",
+      "url": "https://vgmoose.dev/words/",
+      "source": "https://github.com/vgmoose/words"
+    }
+  ]
+}

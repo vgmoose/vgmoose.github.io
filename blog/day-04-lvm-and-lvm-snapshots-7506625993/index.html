@@ -1,89 +1,82 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Day 04 - LVM and LVM Snapshots</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Day 04 - LVM and LVM Snapshots" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="We're jumping right into this, because it's pretty crazy. Like, mad crazy son. I haven't talked much about what lvm actually is. So I'm gonna attempt to do an introduction to it right now. Right here. Literally next. An entire drive can be split into partitions. This is old news. What's also old news is that you can only have a maximum of four primary partitions on an MBR drive. While this is being phased out, it is still very popular. Additionally, what if you want to have a partition that's bi..." />
+    <meta property="og:image" content="posts/23353652%20-%20Day%2004%20-%20LVM%20and%20LVM%20Snapshots.post/lvm.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2014-05-27 15:32:05<br />
-        Tags: red hat, internship, lvm, fedora, dm<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Day 04 - LVM and LVM Snapshots</h2>
+        <div class="post-meta">
+            <span class="post-date">2014-05-27</span>
+            <span class="post-tags">Tags: red hat, internship, lvm, fedora, dm</span>
+        </div>
         <p>We're jumping right into this, because it's pretty crazy. Like, mad crazy son. I haven't talked much about what <a href="http://en.wikipedia.org/wiki/Logical_volume_management">lvm</a> actually is. So I'm gonna attempt to do an introduction to it right now. Right here. Literally next.</p>
 <p>An entire drive can be split into partitions. This is old news. What's also old news is that you can only have a maximum of four primary partitions on an MBR drive. While this is <a href="http://en.wikipedia.org/wiki/GUID_Partition_Table">being phased out</a>, it is still very popular. Additionally, what if you want to have a partition that's <strong>bigger</strong> than your entire physical drive? That sounds a little silly-- when exactly would you WANT to have more data than can fit on one drive? Just buy another drive and make a new filesystem and manage 'em no? Well that's annoying and not as cool as LOGICAL VOLUME MANAGEMENT. I hope I'm asking the right rhetorical questions here.</p>
-<p><img alt="Blog Image" src="../../posts/23353652 - Day 04 - LVM and LVM Snapshots.post/lvm.png" /></p>
+<p><img alt="Blog Image" src="../../posts/23353652 - Day 04 - LVM and LVM Snapshots.post/lvm.png"></p>
 <p>Okay, I've pretty much ALREADY butchered this explanation, so let's try to salvage what I've said so far with this diagram. At the bottom layer are the physical volumes. In this case, there are two SEPARATE devices (<code>/dev/sda</code> and <code>/dev/sdb</code>). They don't actually have to be the same size but in this case they are. Now, these could be like, a spinning hard disk and a flash drive, for example. Then on top of this you create something called a volume group (VG). On top of that are the actual logical volumes which can be split up however you want, and then finally those volumes can be formatted as filesystems.</p>
 <p>For simplicity's sake, these instructions are going to refer to a single 32GB device, <code>/dev/sdc</code> that is assumed to be totally unallocated (no filesystems). While you span multiple different types of device media, lvm still has benefits to offer on a single physical device. You can play along at home if you'd like by destroying all the filesystems on it through a tool like parted or gparted.</p>
-<div class="highlight"><pre><span></span>pvcreate /dev/sdc1
-vgcreate dat_group_name_tho /dev/sdc1
-</pre></div>
+<pre class="highlight"><code>pvcreate /dev/sdc1
+vgcreate dat_group_name_tho /dev/sdc1</code></pre>
 
 
 <p>So now we've got ourselves a volume group spanning the entire USB stick. If you had an existing filesystem on <code>/dev/sdc1</code>, but some unallocated space after, you could also have created the physical volume (with <code>pvcreate</code>) on /dev/sdc2.</p>
 <p>So now check this out:</p>
-<div class="highlight"><pre><span></span>lvcreate --size 10G --name first_lv dat_group_name_tho
-</pre></div>
+<pre class="highlight"><code>lvcreate --size 10G --name first_lv dat_group_name_tho</code></pre>
 
 
 <p>This creates a single 10GB logical volume across the device. Keep in mind this now leaves us with 22GB left free to create more logical volumes within this volume group. This of course can be formatted an mounted just like any real disk.</p>
-<div class="highlight"><pre><span></span>mkfs.ext4 /dev/mapper/dat_group_name_tho-first_lv
+<pre class="highlight"><code>mkfs.ext4 /dev/mapper/dat_group_name_tho-first_lv
 mkdir /mnt/my_lvm
-mount /dev/mapper/dat_group_name_tho-first_lv /mnt/my_lvm
-</pre></div>
+mount /dev/mapper/dat_group_name_tho-first_lv /mnt/my_lvm</code></pre>
 
 
 <p>Nothing special so far though, ya? WRONG. So in between the LV and the PV exists something called the device mapper, of which I know nothing about. Hopefully I will learn about it in the future, though. But thanks to this, it's possible to play with the data in some interesting ways, including making <a href="http://en.wikipedia.org/wiki/Snapshot_(computer_storage)">snapshots</a> of the filesystem.</p>
 <p>So here's how this diddy breaks down: a snapshot, from the moment it is created on a target filesystem, is a logical volume itself that will store the <strong>differences</strong> between it and the target volume. That is, physically the snapshot logical volume will ONLY contain the old bytes that have since been overwritten on the original device since it was taken. This means that the snapshot will be empty until a write is made on its target. Then the old data, before being overwritten will be written to the snapshot volume. Using this small set of differences, given a snapshot and its target, one can recreate the entire filesystem from the point it was taken.</p>
-<div class="highlight"><pre><span></span>lvcreate --snapshot dat_group_name_tho/first_lv --size 200M --name snap5_27_14 dat_group_name_tho
-</pre></div>
+<pre class="highlight"><code>lvcreate --snapshot dat_group_name_tho/first_lv --size 200M --name snap5_27_14 dat_group_name_tho</code></pre>
 
 
 <p>Above I've created a snapshot of our <code>first_lv</code> using <code>lvcreate</code>, just like other logical volumes, but using the <code>--snapshot [target]</code> argument. Now here's the fun part: MOUNTING that snapshot.</p>
-<div class="highlight"><pre><span></span>mkdir /mnt/snap
-mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
-</pre></div>
+<pre class="highlight"><code>mkdir /mnt/snap
+mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap</code></pre>
 
 
 <p>When you mount it, you'll notice it mounts as a 10GB volume! Not the 200MB volume that we allotted it. You can now open both <code>/mnt/snap</code> and <code>/mnt/my_lvm</code> side by side. (Also, I should have noted that we should have created some files on <code>/mnt/my_lvm</code> prior to taking a snapshot of it...). The snapshot volume will contain the exact data that our lvm volume had when we took the snapshot, without taking up the same amount of space.</p>
 <p>There's a caveat here though that I have not discussed: What happens when differences between the original and the target volume <strong>exceed</strong> 200MB? Well, the snapshot will then become invalidated. To ensure that the snapshot won't fill, you can make it the same size as the target volume (10GB), but then we lose the previous advantage of not requiring to be the same size as the target volume. It SEEMS kinda chicken and eggy, and oh whatever shall we do about it? WELL FRET NOT.</p>
 <p>Tomorrow I will discuss what I know so far about lvm thin provisioning (which is what my actual internship is around-- reviewing that the lvmthin documentation is up to date.), and in particular how it addresses this little snapshot dilemna.</p>
-<p><img alt="Blog Image" src="../../posts/23353652 - Day 04 - LVM and LVM Snapshots.post/IMG_20140527_172623.jpg" /></p>
+<p><img alt="Blog Image" src="../../posts/23353652 - Day 04 - LVM and LVM Snapshots.post/IMG_20140527_172623.jpg"></p>
 <p>Before I go, I found this special mirror-outlet today on a mirror in the building. WHAT. That's amazing.</p>
 <p>Oh also, I forgot to mention, a snapshot is 100% read and writable, just as if it were the original filesystem, without taking up the same amount of space (as it shares the common bytes). AWESOME.</p>
     </div>
@@ -93,23 +86,26 @@ mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -130,10 +126,7 @@ mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

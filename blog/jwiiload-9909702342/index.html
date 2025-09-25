@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>JWiiload</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="JWiiload" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="JWiiload is an program that sends bootable ELF and DOL files to a Wii that is currently running the Homebrew Channel mod. It sends the file over the network, so code can easily be compiled for the Wii, and then run by using it from the console.   JWiiload is programmed in Java so that it is compatible on any OS that can run the Java Runtime. Unlike many other Wiiload programs with graphical interfaces, JWiiload does not rely on any pre-built binaries, and runs everything from Java natively. Requ..." />
+    <meta property="og:image" content="posts/22709100%20-%20JWiiload.post/jwiiloadmac.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2013-03-06<br />
-        Tags: apps, java, release<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>JWiiload</h2>
+        <div class="post-meta">
+            <span class="post-date">2013-03-06</span>
+            <span class="post-tags">Tags: apps, java, release</span>
+        </div>
         <p><strong>JWiiload</strong> is an program that sends bootable ELF and DOL files to a Wii that is currently running the Homebrew Channel mod. It sends the file over the network, so code can easily be compiled for the Wii, and then run by using it from the console.</p>
-<p><img alt="JWiiload on Mac" src="../../posts/22709100 - JWiiload.post/Jwiiloadmac.png" /><br />
-<img alt="JWiiload on Windows" src="../../posts/22709100 - JWiiload.post/Jwiiloadxp.png" /></p>
+<p><img alt="JWiiload on Mac" src="../../posts/22709100 - JWiiload.post/Jwiiloadmac.png"><br>
+<img alt="JWiiload on Windows" src="../../posts/22709100 - JWiiload.post/Jwiiloadxp.png"></p>
 <p>JWiiload is programmed in Java so that it is compatible on any OS that can run the Java Runtime. Unlike many other Wiiload programs with graphical interfaces, JWiiload does not rely on any pre-built binaries, and runs everything from Java natively.</p>
 <h4>Requirements</h4>
 <ul>
@@ -58,8 +56,7 @@
 <h4>Usage</h4>
 <p>Double click the program, and if you have the JRE installed, it should just launch. First, it will ask for a file if the auto-send is on (by default) and then try to automatically find the Wii behind the scenes. If it can’t locate it, which it often cannot, enter the IP address and hit send. There are preferences to specify arguments and a specific port, and also to disable the autosend feature. When autosend is disabled, it will not prompt the user at launch for a file.</p>
 <p>To use it from the command line, run it as you normally would a .jar file, and pass it the necessary arguments. Passing any arguments at all will not launch the GUI, and keep it contained in the command line only.</p>
-<div class="highlight"><pre><span></span>java -jar JWiiload.jar 
-</pre></div>
+<pre class="highlight"><code>java -jar JWiiload.jar </code></pre>
 
 
 <p>pass $WIILOAD (*nix) or %WIILOAD% (win) as the first argument if your environment is set up that way. (Accepts “tcp:x.x.x.x” or just “x.x.x.x” to ensure compatibility with Wiiload.)</p>
@@ -76,23 +73,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -113,10 +113,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

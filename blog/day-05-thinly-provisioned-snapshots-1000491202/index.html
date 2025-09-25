@@ -1,77 +1,70 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Day 05 - Thinly Provisioned Snapshots</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Day 05 - Thinly Provisioned Snapshots" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="In yesterday's post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of commands. To recap, snapshots physically store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created. That, of course, is really cool, but let's say you want to take a TON of snapshots (..." />
+    <meta property="og:image" content="posts/23355534%20-%20Day%2005%20-%20Thinly%20Provisioned%20Snapshots.post/uglydiagram.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2014-05-28 22:54:34<br />
-        Tags: red hat, internship, lvm, lvmthin, rhel, snapshot<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Day 05 - Thinly Provisioned Snapshots</h2>
+        <div class="post-meta">
+            <span class="post-date">2014-05-28</span>
+            <span class="post-tags">Tags: red hat, internship, lvm, lvmthin, rhel, snapshot</span>
+        </div>
         <p>In yesterday's post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of commands. To recap, snapshots <em>physically</em> store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created.</p>
 <p>That, of course, is really cool, but let's say you want to take a TON of snapshots (like we're talking daily ones). The daily snaps would allow you to easily revert to what the filesystem looked like on a given day without using much more space. Of course, if they were just regular LVM snapshots, you'd need to decide on a size to give them. Taking daily snapshots in this manner would fill up in no time.</p>
-<p><img alt="Blog Image" src="../../posts/23355534 - Day 05 - Thinly Provisioned Snapshots.post/uglydiagram.png" /></p>
+<p><img alt="Blog Image" src="../../posts/23355534 - Day 05 - Thinly Provisioned Snapshots.post/uglydiagram.png"></p>
 <p>A thin pool is a logical volume. You give it a set size, and it is that size, much like a logical volume. The total amount of bytes cannot exceed that size ever, and if it does you'll have to resize it. Making one is as follows:</p>
-<div class="highlight"><pre><span></span>lvcreate --thinpool vg/thin_pool --size 30G
-</pre></div>
+<pre class="highlight"><code>lvcreate --thinpool vg/thin_pool --size 30G</code></pre>
 
 
 <p>Where vg is the volume group. Nothing special <em>so far</em>. What's amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 100TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 100TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
-<div class="highlight"><pre><span></span>lvcreate -T vg/thin_pool -V 100T -n big_filesystem
-</pre></div>
+<pre class="highlight"><code>lvcreate -T vg/thin_pool -V 100T -n big_filesystem</code></pre>
 
 
 <p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let's say you put 2GB worth of files on this "100TB filesystem." Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn't matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I'd give it a try.</p>
-<div class="highlight"><pre><span></span>lvcreate -s vg/big_filesystem -n snappy
-</pre></div>
+<pre class="highlight"><code>lvcreate -s vg/big_filesystem -n snappy</code></pre>
 
 
 <p>Another added bonus of being within the pool is that the thin snapshots will share common data with <em>each other</em> too. This would have also been wasted duplicated space. These enhancements change the game of snapshots from a useful way to get a O(1) image of the filesystem to a meaningful way of storing the filesystem at any point and time.</p>
 <p>QUICK CAVEAT. I got hung up on this for a long time. Thin snapshots have a special case when they are generated and are <strong>not</strong> automatically marked active to be mountable in <code>/dev</code>. You can view this information using <code>lvscan</code>. You will see any thin snapshots are marked inactive. Normally to mark a volume active, you'd simply perform:</p>
-<div class="highlight"><pre><span></span>lvconvert -ay vg/lv
-</pre></div>
+<pre class="highlight"><code>lvconvert -ay vg/lv</code></pre>
 
 
 <p>However, as thin snapshots have the special flag set to not be marked active, you need to modify this to look like:</p>
-<div class="highlight"><pre><span></span>lvconvert -ay -K vg/lv
-</pre></div>
+<pre class="highlight"><code>lvconvert -ay -K vg/lv</code></pre>
 
 
 <p>That simple <code>-K</code> argument drove me crazy for a bit. It was mentioned in the documentation, but I must have passed by it. As leaving <code>-K</code> out silently fails, I wasn't sure if my build of lvm2 was broken or what (as it would just not mark it active without telling me it failed).</p>
@@ -83,23 +76,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -120,10 +116,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>

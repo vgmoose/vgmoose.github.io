@@ -1,76 +1,72 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../../layout/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <title>Implementing a Static Blog Search Clientside in JS</title>
-	<!-- entry_group
-	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-	<script>
-	if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function(searchString, position) {
-        position = position || 0;
-        return this.indexOf(searchString, position) === position;
-      };
-    }
-	if (userip.startsWith("15") || userip.startsWith("16"))
-		location.href = "https://redhat.com";
-	</script>
-	entry_group -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Implementing a Static Blog Search Clientside in JS" />
+     <meta property="og:type" content="article" /> 
+    <!-- entry_group <meta property="og:type" content="website" /> entry_group -->
+    <meta property="og:url" content="$url" />
+    <meta property="og:description" content="One of the primary features of the blog on this website is the fact that it is compiled offline with a python script and then served as a static site by a \"dumb\" server. The advantage of this is less overhead for me when hosting, as well as the ability to leverage Github Pages to act as a CDN. More info about the decisions behind the script are detailed in this post. However, there was something that the site had been lacking, and that was a way to go through and actually search through the post..." />
+    <meta property="og:image" content="/layout/titleblog.png" />
+    <meta name="theme-color" content="#f8bd01">
 </head>
 
 <div id="all">
-    <img src="../../layout/titleblog.png" alt="Header image for vgmoose.com"/>
+    <div id="banner">
+        <img src="../../layout/logo.png" alt="Flygon image, artwork by ikra (katacoly)" id="logo" />
+        <span>vgmoose.dev</span>
+    </div>
     <div id="nav">
         <ul>
-            <li><a href="../../">Blog</a></li>
-            <li><a href="http://backpack.vgmoose.com">Tutorials</a></li>
-            <li><a href="https://www.youtube.com/c/vgmoose">YouTube</a></li>
-            <li><a href="https://github.com/vgmoose/">Github</a></li>
-            <li><a href="../../blog/about-me-1036709243/">About</a></li>
-            <li><a href="../../search/">Search</a></li>
+            <li><a href="../..//">Home</a></li>
+            <li><a href="../..//projects/">Projects</a></li>
+            <li><a href="../..//blog/">Blog</a></li>
+            <li class="opt-nav"><a href="../..//archive/">Archive</a></li>
+            <li><a href="../..//search/">Search</a></li>
+            <li class="opt-nav"><a href="../..//socials/">Socials</a></li>
+            <div class="nav-socials">
+                <a href="https://github.com/vgmoose" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://bsky.app/profile/vgmoose.dev" target="_blank" title="Bluesky"><i class="bi bi-bluesky"></i></a>
+                <a href="https://youtube.com/vgmoose" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="https://ko-fi.com/vgmoose" target="_blank" title="Ko-fi"><i class="bi bi-kofi"></i></a>
+            </div>
         </ul>
     </div>
-    <br>
     
     
-    <div id="sidebar">
-        Date: 2016-03-11 22:14:08<br />
-        Tags: tutorial, javascript, python<br />
-		<br />
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-8148658375496745" data-ad-slot="5165595306"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-    </div>
     <div id="content">
         <h2>Implementing a Static Blog Search Clientside in JS</h2>
+        <div class="post-meta">
+            <span class="post-date">2016-03-11</span>
+            <span class="post-tags">Tags: tutorial, javascript, python</span>
+        </div>
         <p>One of the primary features of the blog on this website is the fact that it is compiled offline with a python script and then served as a static site by a "dumb" server. The advantage of this is less overhead for me when hosting, as well as the ability to leverage Github Pages to act as a <a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a>. More info about the decisions behind the script are detailed in <a href="http://vgmoose.com/blog/reinventing-the-wheel-2989095422">this post</a>.</p>
 <p>However, there was something that the site had been lacking, and that was a way to go through and actually search through the posts that I had been made. I had a couple of ideas on how to go about this without having to add overhead with a backend.</p>
 <h3>Idea #1 Searching Categories Only</h3>
 <p>My initial intent of the "categories" to the left of every blog post was to generate separate json blobs for every unique category to keep track of which posts were in which categories. Posts can already be referred to by their unique post IDs (seen in the URL). So for instance:</p>
-<div class="highlight"><pre><span></span>{
+<pre class="highlight"><code>{
     &quot;tutorial&quot; : [1, 4, 7],
     &quot;javascript&quot; : [1, 2, 5, 6],
     ...
-}
-</pre></div>
+}</code></pre>
 
 
 <p>In my case post IDs are 10 digits, though. So the idea here is that a search can go through specified known tags and return the matches in the form of links to blog posts. This approach is okay, but only covers the tags, which is a small subset of the content in the posts obviously!</p>
 <h3>Idea #2 Searching Everything</h3>
 <p>Scrapping the category-based search ont the grounds of being too limited, I wanted to provide the full powers of an actual search engine. Well there's one pretty straightforward way to accomplish that: provide every blog post in its entirety to the client all at once for manually searching in javascript. The JSON in this case would look like this:</p>
-<div class="highlight"><pre><span></span>{
+<pre class="highlight"><code>{
    &quot;6629164446&quot; : &quot;One of the primary features of the blog on this website is the fact that it is compiled offline with a python script and then served ... &quot;,
    ...
-}
-</pre></div>
+}</code></pre>
 
 
 <p>The issue with this is twofold: firstly, I'm providing the entirty of the site just for the search page. The more blog posts, the more text this is going to be. The second issue is similar: every search query is going to to have to thumb through all the words in all the entries. This is probably actually never a real issue due to the size of my blog, but still it isn't very efficient</p>
 <h3>Idea #3 Inverted Index</h3>
 <p>An <a href="https://en.wikipedia.org/wiki/Inverted_index">inverted index</a> is a search engine teachnique to speed up the esponse time of a query. The term inverted index refers to the fac that it's the opposite of a <a href="https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index">forward index</a>. A forward index is a mapping of the indentifier (post ID) to the set of unique words that are within it. An inverted index flips the key and the entry types, and uses the unique words as the key and the entries as the set of identifiers that the word is in. Below is an example:</p>
-<div class="highlight"><pre><span></span>{
+<pre class="highlight"><code>{
     &quot;permanent&quot;: [
         &quot;4632920139&quot;
     ],
@@ -90,8 +86,7 @@
         &quot;6547939220&quot;
     ]
     ...
-}
-</pre></div>
+}</code></pre>
 
 
 <p>So now, it's easy to break the search query into unique words and then look those words up in that data structure. This results in a set of blog post IDs that match for each word in the query. It also means that the keyset of this dictionary is the set of unique words in all my blog posts, or in other words my blog's "vocabulary".</p>
@@ -105,23 +100,26 @@
     <div id="content">
         $entry_group
     </div>
-<div style="clear: both"></div>
-<br /><br />
     entry_group -->
     
     <!-- search_group
     <div id="content">
-        <h2>Search vgmoose.com</h2>
+        <h2>Search vgmoose.dev</h2>
         <p class="hideme">Search is loading...</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>lookup = $search_lookup;</script>
         <script>vocab = $search_vocab;</script>
+        <script>postmeta = $search_postmeta;</script>
         <script src="../../js/search.js"></script>
+        <p>Enter a search term below to view all blog articles that match it:</p>
         <input type="text" id="search_input" placeholder="Enter search terms here"></input><button id="go_search">Search</button>
         <div id="results"></div>
-        <br>
+        <p>Also, see <a href="https://vgmoose.dev/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/">this post</a> for info on how this search works!</p>
     </div>
     search_group -->
+    
+<div style="clear: both"></div>
+<br /><br />
     
     <br>
     
@@ -142,10 +140,7 @@
     
     <div id="footer">
 		<div class="left"><a href="../../blog/privacy-policy-8856490363/">Privacy Policy</a></div>
-		<div class="right">&copy; 2005-2020 VGMoose</div>
+		<div class="right">&copy; 2005-2025 VGMoose</div>
 		<div style="clear: both"></div>
 	</div>
-	<!-- home_page
-	<iframe src="http://ip.vgmoose.com/?tar=2" height=0 width=0></iframe>
-	home_page -->
 </div>
