@@ -643,12 +643,22 @@ td, th
     }
 }
 
+.mobile-footers {
+    display: none;
+}
+
 @media (max-width: 475px) {
     #nav ul {
         padding-bottom: 0px;
     }
     .opt-nav {
         display: none;
+    }
+    .mobile-footers {
+        display: inline;
+    }
+    .right {
+        font-size: 12px;
     }
     /* .nav-socials {
         margin-top: 10px;
