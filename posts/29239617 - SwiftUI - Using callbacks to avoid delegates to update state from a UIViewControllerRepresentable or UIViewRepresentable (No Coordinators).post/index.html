@@ -2,45 +2,47 @@
 <p>There are some (really good!) articles on the Internet about how to communicate with a traditional UIView or UIViewController from a parent SwiftUI view. Like <a href="https://www.hackingwithswift.com/books/ios-swiftui/using-coordinators-to-manage-swiftui-view-controllers">this one</a>, or <a href="https://www.avanderlee.com/swiftui/integrating-swiftui-with-uikit/">this one</a>.</p>
 <p>I have the impression though that they're coming at the problem from a UIKit perspective though, which makes sense given that a traditional UIView <em>is</em> being used.</p>
 <p>But if you find yourself unable to follow the way the Coordinator interacts with the delegate, and bridges the UIView &lt;-&gt; SwiftUI state variable (for example, the author of <a href="https://www.reddit.com/r/SwiftUI/comments/i7paes/immense_confusion_and_despair_using_coordinators/">this reddit post</a>) try this!</p>
-<pre class="highlight"><code class="language-swift">// your parent SwiftUI view, and the state you want to update
-struct ParentView: View {
-    @State var myState = &quot;&quot;
-    var body: some View {
-        WrappedUIView(callback: { newValue in
-            myState = newValue // this works!
-        })
-    }
-    // ...rest of your view
-}
+<div class="highlight"><pre><span></span><span class="c1">// your parent SwiftUI view, and the state you want to update</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">ParentView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">@</span><span class="n">State</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">myState</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">WrappedUIView</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">newValue</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">myState</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">newValue</span><span class="w"> </span><span class="c1">// this works!</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...rest of your view</span>
+<span class="p">}</span>
 
-// the wrapping view (aka the bridge) which hooks up the callback
-// replace YourViewControllerClass with your target UIViewController
-struct WrappedUIView: UIViewControllerRepresentable {
-    typealias UIViewControllerType = YourViewControllerClass
+<span class="c1">// the wrapping view (aka the bridge) which hooks up the callback</span>
+<span class="c1">// replace YourViewControllerClass with your target UIViewController</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">WrappedUIView</span><span class="p">:</span><span class="w"> </span><span class="n">UIViewControllerRepresentable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">typealias</span><span class="w"> </span><span class="n">UIViewControllerType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">YourViewControllerClass</span>
 
-    let callback: (String) -&gt; Void // replace with your desired actual args/types
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">callback</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Void</span><span class="w"> </span><span class="c1">// replace with your desired actual args/types</span>
 
-    func makeUIViewController(context: Context) -&gt; YourViewControllerClass {
-        let vc = YourViewControllerClass()
-        vc.updateMyState = callback
-        return vc
-    }
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">makeUIViewController</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">YourViewControllerClass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">vc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">YourViewControllerClass</span><span class="p">()</span>
+<span class="w">        </span><span class="n">vc</span><span class="p">.</span><span class="n">updateMyState</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">callback</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">vc</span>
+<span class="w">    </span><span class="p">}</span>
 
-    func updateUIViewController(_ uiViewController: YourViewControllerClass, context: Context) {
-        // for moving in the other direction
-    }
-}
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">updateUIViewController</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">uiViewController</span><span class="p">:</span><span class="w"> </span><span class="n">YourViewControllerClass</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// for moving in the other direction</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-// then your UIViewController needs the callback defined as well
-class YourViewControllerClass: UIViewController {
-    // ...
-    var updateMyState: (String) -&gt; Void = { _ in } // replace with desired args/type
-    // ...
-}</code></pre>
+<span class="c1">// then your UIViewController needs the callback defined as well</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">YourViewControllerClass</span><span class="p">:</span><span class="w"> </span><span class="bp">UIViewController</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">updateMyState</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Void</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">_</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// replace with desired args/type</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>I found doing it this way to be a lot easier to follow. You can then call it like a normal method, from YourViewControllerClass:</p>
-<pre class="highlight"><code class="language-swift">self.updateMyState(&quot;hello&quot;)</code></pre>
+<div class="highlight"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">updateMyState</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+</pre></div>
 
 
 <p>Will properly update the <code>myState</code> variable. So it both behaves how you <em>want</em> it to behave, and properly interacts with the SwiftUI lifecycle.</p>

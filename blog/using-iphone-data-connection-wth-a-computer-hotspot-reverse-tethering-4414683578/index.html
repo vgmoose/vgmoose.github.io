@@ -12,6 +12,7 @@
     <meta property="og:description" content="So recently I've stumbled upon a pretty neat \"one weird trick\" that can be done to access the iPhone's data connection from any wifi-enabled device. This is still important if your carrier doesn't allow tethering (of which, a surprising amount the US seem to not, despite some court rulings. The same trick can probably work on Android phones as well but I haven't tried anything. So the general idea is this: 1. Host a wifi-hostpot on your computer 2. Turn on wifi on your iPhone and connect to the ..." />
     <meta property="og:image" content="/layout/logo.png" />
     <meta name="theme-color" content="#f8bd01">
+    <script defer src="https://data.ipnotes.page/script.js" data-website-id="f8e8758f-4a65-4a6e-ba34-a4f184686231"></script>
 </head>
 
 <div id="all">
@@ -57,11 +58,13 @@
 6. <strong>Leave everything else blank</strong> (Router, DNS, Search Domains). This tells it to route traffic over the cellular network.</p>
 <p>As for (1), most PC operating systems have some variation of this built-in. Gnome3 network-manager has an option that straight up says "Host wifi hotspot".</p>
 <p>At this point, your computer is able to access your iPhone directly, and your iPhone is able to access its network directly, despite being connected over wifi. So for example, you can do the following:</p>
-<pre class="highlight"><code>ssh mobile@10.42.0.40</code></pre>
+<div class="highlight"><pre><span></span>ssh mobile@10.42.0.40
+</pre></div>
 
 
 <p>And then:</p>
-<pre class="highlight"><code>wget google.com</code></pre>
+<div class="highlight"><pre><span></span>wget google.com
+</pre></div>
 
 
 <p>And get whatever files you need. In this case, I am taking advantage of the fact that my iPhone is jailbroken and is running an sshd server. In theory though, the same can be done with any App Store apps that allow you to download and host files, such as <a href="https://itunes.apple.com/us/app/downloader/id835382053?mt=8">this one</a>. Using xcode tools, someone could make something to host an sshd server on a nonjailbroken iPhone or even host an http proxy, which could be done completely without root.</p>

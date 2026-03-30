@@ -12,6 +12,7 @@
     <meta property="og:description" content="Website redirects can be annoying! The best thing to do is often a 302 (or 301) HTTP redirect, without having to use meta refresh tags or requiring the user to run JavaScript on the page. Gitlab provides an extremely convenient offering with Gitlab Pages and also allows you to set up a single yml config file with some limited dynamic capabilities. See their docs page on redirects. In short, create a .gitlab-ci.yml in the root of your repo, and all that needs to be filled is: variables:   REDIREC..." />
     <meta property="og:image" content="/layout/logo.png" />
     <meta name="theme-color" content="#f8bd01">
+    <script defer src="https://data.ipnotes.page/script.js" data-website-id="f8e8758f-4a65-4a6e-ba34-a4f184686231"></script>
 </head>
 
 <div id="all">
@@ -46,7 +47,7 @@
         <p>Website redirects can be annoying! The best thing to do is often a 302 (or 301) HTTP redirect, without having to use meta refresh tags or requiring the user to run JavaScript on the page.</p>
 <p>Gitlab provides an extremely convenient offering with Gitlab Pages and also allows you to set up a single yml config file with some limited dynamic capabilities. See their <a href="https://docs.gitlab.com/user/project/pages/redirects/">docs page on redirects</a>.</p>
 <p>In short, create a <code>.gitlab-ci.yml</code> in the root of your repo, and all that needs to be filled is:</p>
-<pre class="highlight"><code>variables:
+<div class="highlight"><pre><span></span>variables:
   REDIRECT_DOMAIN: &quot;example.com&quot;
 
 pages:
@@ -61,7 +62,8 @@ pages:
 
   only:
     - main
-    - master</code></pre>
+    - master
+</pre></div>
 
 
 <p>This will cover both main/master branches (depending on which your git client defaults too), and 302 redirect any requsts to the REDIRECT_DOMAIN. All that has to be changed is the 2nd line of the file.</p>
