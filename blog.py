@@ -352,12 +352,15 @@ if action == "compile":
     
     template = template.replace("$entry_group", ''.join(entry_html))
 
-    # generate all projects HTML for use in listing page
+    # generate all projects HTML for use in listing page (active projects only)
     all_projects_html = []
+    archived_projects_html = []
+    
     for project in projects_data["projects"]:
         thumbnail_html = ""
         if os.path.exists(f"projects/{project['id']}.png"):
             thumbnail_html = f'''<img src="/projects/{project['id']}.png" alt="{project['title']}" class="project-thumbnail">'''
+        
         project_item = f'''<div class="project-entry{'' if thumbnail_html else ' no-image'}">
             {thumbnail_html}
             <div class="project-content">
@@ -368,7 +371,12 @@ if action == "compile":
                 <div class="project-description">{project['description']}</div>
             </div>
         </div>'''
-        all_projects_html.append(project_item)
+        
+        # separate active and archived projects
+        if project.get("archived", False):
+            archived_projects_html.append(project_item)
+        else:
+            all_projects_html.append(project_item)
 
     # the left/right layout columns for the home page
     latest_posts_html = []
@@ -408,7 +416,7 @@ if action == "compile":
         </div>'''
         latest_posts_html.append(entry_item)
 
-    featured_projects = [p for p in projects_data["projects"] if p.get("featured", False)][:6]  # Show 6 projects
+    featured_projects = [p for p in projects_data["projects"] if p.get("featured", False) and not p.get("archived", False)][:6]  # Show 6 non-archived featured projects
     featured_projects_html = []
     for project in featured_projects:
         project_item = f'''<div class="project-entry-small">
@@ -472,6 +480,16 @@ if action == "compile":
     }
     generate_page("entry_group", "layout/template.html", "projects/index.html", projects_replacements, subdirectory_level=1)
 
+    # generate archived projects page
+    archived_projects_replacements = {
+        "$title": "VGMoose - Archived Projects",
+        "$description": "Archived projects by VGMoose",
+        "$url": "https://vgmoose.dev/archive/archive-projects",
+        "$previewUrl": "/layout/logo.png",
+        "$entry_group": f'<h2>Archived Projects</h2><p>These are older or discontinued projects that are no longer actively maintained.</p>{"".join(archived_projects_html)}'
+    }
+    generate_page("entry_group", "layout/template.html", "archive/archive-projects/index.html", archived_projects_replacements, subdirectory_level=2)
+
     # build archived posts content
     archived_entry_html = []
     archived_groups = archived_groups[::-1]  # reverse chronological
@@ -510,6 +528,9 @@ if action == "compile":
 <div class="archive-links">
     <h3>Blog Archive</h3>
     <p><a href="/archive/archive-posts">View all archived blog posts (pre-2016)</a></p>
+    
+    <h3>Projects Archive</h3>
+    <p><a href="/archive/archive-projects">View all archived projects</a></p>
     
     <h3>Previous Sites</h3>
     <p><a href="https://backpack.vgmoose.com" target="_blank">VGMoose's Backpack</a></p>

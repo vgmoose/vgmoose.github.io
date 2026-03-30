@@ -88,14 +88,16 @@
       "description": "Type using your Pebble! Tertiary text presents a solution for a quick and efficient method of entering text using only the Pebble itself. By fully utilizing the three buttons and narrowing down the selection each time, it is possible to hit all twenty-six characters of the alphabet in three button strokes. It looks a little clunky at first, but in almost no time the letters become muscle memory and your speed greatly improves.",
       "url": "https://vgmoose.dev/tertiary_text/",
       "source": "https://github.com/vgmoose/tertiary_text",
-      "authors": ["vgmoose", "kanewallmann", "dewguzzler"]
+      "authors": ["vgmoose", "kanewallmann", "dewguzzler"],
+      "archived": true
     },
     {
       "id": "words",
       "title": "words",
       "description": "Web app to keep track of words written over time.",
       "url": "https://vgmoose.dev/words/",
-      "source": "https://github.com/vgmoose/words"
+      "source": "https://github.com/vgmoose/words",
+      "archived": true
     }
   ]
 }
