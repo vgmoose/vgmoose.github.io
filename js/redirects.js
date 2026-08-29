@@ -77,6 +77,7 @@ all_posts = {
     "6547939220": "/blog/experiment-6547939220/",
     "6627877368": "/blog/mario-face-6627877368/",
     "6629164446": "/blog/implementing-a-static-blog-search-clientside-in-js-6629164446/",
+    "6675599092": "/blog/nec-ir-codes-for-ugreen-hdmi-21-switch-6675599092/",
     "6720087730": "/blog/release-space-game-for-web-and-pc-godot-port-6720087730/",
     "6826443561": "/blog/how-to-fix-macos-flakey-screensharing-6826443561/",
     "6898118583": "/blog/how-to-crop-landscape-169-videos-to-vertical-916-using-ffmpeg-for-youtube-shorts-or-tiktok-6898118583/",

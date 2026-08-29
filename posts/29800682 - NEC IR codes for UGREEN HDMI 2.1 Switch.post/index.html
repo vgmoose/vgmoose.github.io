@@ -1,0 +1,34 @@
+<p>Quick blog post to share IR NEC codes for <a href="https://www.amazon.com/dp/B0GL7Q8FLX">UGREEN 8k HDMI 2.1 Switch</a>! The remote on this model has four buttons, one for each input, and then a cycle/next button:</p>
+<table>
+<thead>
+<tr>
+<th>Remote Button</th>
+<th>NEC Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input 1</td>
+<td><code>1FE40BF</code></td>
+</tr>
+<tr>
+<td>Input 2</td>
+<td><code>1FE20DF</code></td>
+</tr>
+<tr>
+<td>Input 3</td>
+<td><code>1FE609F</code></td>
+</tr>
+<tr>
+<td>Next Input</td>
+<td><code>1FE10EF</code></td>
+</tr>
+</tbody>
+</table>
+<p>Hopefully this info is useful to someone else. Here's an image of the breadboard layout that I used to capture and send them:</p>
+<p><img alt="Breadboard with esp32, IR receiver and transmitter" src="./ir_breadboard.png"></p>
+<p>And the specific model interesting parts pictured above are:<br>
+- <a href="https://www.amazon.com/dp/B0DRNSV5CS">Seeed Studio XIAO ESP32C3</a><br>
+- <a href="https://www.amazon.com/dp/B0DSVZ7NNC">38khz Ir Receiver Sensor Module + Ir Transmitter Sensor</a></p>
+<p>If I were a savvier blogger, I'd have Amazon affiliate links up there instead... Well, it's too late now!</p>
+<p>Also the library used is: <a href="https://github.com/crankyoldgit/IRremoteESP8266">github.com/crankyoldgit/IRremoteESP8266</a></p>
